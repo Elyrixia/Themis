@@ -1,9 +1,0 @@
-sudo apt-get update && sudo apt-get install meld
-
-git mergetool
-
-git add file
-
-git commit
-
-git push
