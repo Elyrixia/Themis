@@ -1,4 +1,4 @@
-package metier;
+package business;
 
 public abstract class Enqueteur {
 
