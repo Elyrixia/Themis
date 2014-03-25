@@ -13,13 +13,13 @@ class MainFenetre extends JFrame
 {
 	public static void main(String []args)
 	{
-		/*Factory f = DBFactory.getInstance();
+		Factory f = DBFactory.getInstance();
 		Enqueteur e = f.createEnqueteur();
 		e.create();
-		*/
+		
 		HashMap<String, String> test = new HashMap<>();
 		
-		test.put(":test", "Ceci");
+		/*test.put(":test", "Ceci");
 		test.put(":truc", "est");
 		test.put(":lol", "un");
 		test.put(":gqgq", "fsqfsqf");
@@ -35,6 +35,6 @@ class MainFenetre extends JFrame
 			str = str.replace(s, test.get(s));
 		}
 		
-		System.out.println(str);
+		System.out.println(str);*/
 	}
 }
