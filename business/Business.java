@@ -2,13 +2,15 @@ package business;
 
 import java.util.HashMap;
 
-public interface Business {
+public interface Business 
+{
 	
 	/**
 	 * Add the object to the database system chosen
 	 * Example: if JDBC is chosen, this method will use "INSERT..."
+	 * @return the ID of the object created
 	 */
-	public void create();
+	public int create();
 	
 	/**
 	 * Updates the object already persisted in the database system
