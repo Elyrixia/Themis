@@ -44,9 +44,6 @@ public class SQLManager
 		try
 		{
 			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-			ResultSet genKey = statement.getGeneratedKeys();
-			if(genKey.next())
-				System.out.println(genKey.getInt("id"));
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
@@ -68,6 +65,19 @@ public class SQLManager
 	
 	public int getLastID()
 	{
-		return 1;
+		ResultSet lastID = null;
+		try
+		{
+			lastID = statement.getGeneratedKeys();
+			if(lastID.next())
+				return lastID.getInt(1);
+			
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return -1;
 	}
 }
