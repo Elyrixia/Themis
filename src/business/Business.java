@@ -1,13 +1,31 @@
 package business;
 
-public interface Business {
+import java.util.HashMap;
 
+public interface Business {
+	
+	/**
+	 * Add the object to the database system chosen
+	 * Example: if JDBC is chosen, this method will use "INSERT..."
+	 */
 	public void create();
 	
+	/**
+	 * Updates the object already persisted in the database system
+	 * Example: if JDBC is chosen, this method will use "UPDATE..."
+	 */
 	public void update();
 	
-	public void load(int id);
+	/**
+	 * Loads all the attributes thanks to the parameter map
+	 * @param map contains a map attribute -> value retrieved from the database system
+	 */
+	public void load(HashMap map);
 	
+	/**
+	 * Deletes the object from the database system
+	 * Example: if JDBC is chosen, this method will use "DELETE..."
+	 */
 	public void delete();
 }
 	

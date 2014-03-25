@@ -14,5 +14,4 @@ public abstract class CorpsEnqueteur {
 	 */
 	private ArrayList<ServiceEnqueteur> listeServices;
 	
-	
 }
