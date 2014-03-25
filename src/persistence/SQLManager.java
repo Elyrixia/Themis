@@ -43,8 +43,10 @@ public class SQLManager
 	{
 		try
 		{
-			System.out.println(statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS));
-//			System.out.println(statement.getGeneratedKeys().getInt("id"));
+			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			ResultSet genKey = statement.getGeneratedKeys();
+			if(genKey.next())
+				System.out.println(genKey.getInt("id"));
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
