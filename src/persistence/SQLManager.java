@@ -15,7 +15,7 @@ public class SQLManager
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/phpmyadmin/", "root", "boby34");
+			connection = DriverManager.getConnection("jdbc:mysql://localhost/themis", "root", "boby34");
 			statement = connection.createStatement();
 			
 			System.out.println("tududududu");
@@ -53,6 +53,7 @@ public class SQLManager
 		{
 			newQuery.replace(key, correspondance.get(key));
 		}
+		System.out.println(newQuery);
 		query(newQuery);
 	}
 }

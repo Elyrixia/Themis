@@ -13,7 +13,7 @@ class MainFenetre extends JFrame
 	{
 		Factory f = DBFactory.getInstance();
 		Enqueteur e = f.createEnqueteur();
-		
+		e.create();
 		
 	}
 }
