@@ -36,7 +36,14 @@ public class SQLManager
 	
 	public void query(String query)
 	{
-		
+		try
+		{
+			statement.execute(query);
+		} catch (SQLException e)
+		{
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void query(String string, HashMap<String, String> correspondance)
