@@ -44,7 +44,10 @@ public class EnqueteurDB extends Enqueteur
 	public void delete()
 	{
 		// TODO Auto-generated method stub
+		HashMap<String, String> correspondance = new HashMap<>();
+		correspondance.put(":id", String.valueOf(this.id));
 		
+		sqlManager.query("DELETE FROM enqueteur WHERE id=:id", correspondance);
 	}
 
 }

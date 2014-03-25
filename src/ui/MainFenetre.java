@@ -21,6 +21,11 @@ class MainFenetre extends JFrame
 		e.setPrenom("Ricco");
 		e.update();
 		
+		e.delete();
+		
+		if(e == null)
+			System.out.println("Delete succeed");
+		
 		/*HashMap<String, String> test = new HashMap<>();
 		
 		test.put(":test", "Ceci");
