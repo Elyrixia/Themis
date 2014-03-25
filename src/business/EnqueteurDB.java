@@ -18,14 +18,19 @@ public class EnqueteurDB extends Enqueteur
 		correspondance.put(":truc", "John");
 		sqlManager.query("INSERT INTO enqueteur(nom, prenom) VALUES(':test', ':truc')", correspondance);
 		
-		return sqlManager.getLastID();
+		this.id = sqlManager.getLastID();
+		return this.id;
 	}
 
 	@Override
 	public void update()
 	{
-		// TODO Auto-generated method stub
+		HashMap<String, String> correspondance = new HashMap<>();
+		correspondance.put(":nom", this.nom);
+		correspondance.put(":prenom", this.prenom);
+		correspondance.put(":id", String.valueOf(this.id));
 		
+		sqlManager.query("UPDATE enqueteur SET nom=':nom', prenom=':prenom' WHERE id=:id", correspondance);
 	}
 
 	@Override

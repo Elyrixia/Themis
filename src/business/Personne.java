@@ -3,37 +3,58 @@ package business;
 public abstract class Personne {
 	
 	/**
+	 * The unique id of this person.
+	 */
+	protected int id;
+	
+	/**
 	 * The last name of a person
 	 */
-	private String nom;
+	protected String nom;
 	
 	/**
 	 * The first name of a person
 	 */
-	private String prenom;
+	protected String prenom;
 	
 	/**
 	 * The address of a person
 	 */
-	private String adresse;
+	protected String adresse;
 	
 	/**
 	 * The professional phone number
 	 */
-	private String telephonePro;
+	protected String telephonePro;
 	
 	/**
 	 * The email address
 	 */
-	private String email;
+	protected String email;
 	
 	/**
 	 * The professional fax number
 	 */
-	private String faxPro;
+	protected String faxPro;
 	
 	// Getters and setters
 	
+	/**
+	 * @return the id
+	 */
+	public int getId()
+	{
+		return id;
+	}
+
+	/**
+	 * @param id : the id to set
+	 */
+	public void setId(int id)
+	{
+		this.id = id;
+	}
+
 	public String getNom() {
 		return nom;
 	}

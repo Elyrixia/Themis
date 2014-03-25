@@ -17,9 +17,13 @@ class MainFenetre extends JFrame
 		Enqueteur e = f.createEnqueteur();
 		System.out.println(e.create());
 		
-		HashMap<String, String> test = new HashMap<>();
+		e.setNom("Enrique");
+		e.setPrenom("Ricco");
+		e.update();
 		
-		/*test.put(":test", "Ceci");
+		/*HashMap<String, String> test = new HashMap<>();
+		
+		test.put(":test", "Ceci");
 		test.put(":truc", "est");
 		test.put(":lol", "un");
 		test.put(":gqgq", "fsqfsqf");
