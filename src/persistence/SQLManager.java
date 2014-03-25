@@ -44,7 +44,7 @@ public class SQLManager
 		try
 		{
 			statement.execute(query, Statement.RETURN_GENERATED_KEYS);
-			System.out.println(statement.getGeneratedKeys());
+			System.out.println(statement.getGeneratedKeys().getInt("id"));
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
