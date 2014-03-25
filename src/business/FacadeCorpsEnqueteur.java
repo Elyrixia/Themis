@@ -12,6 +12,10 @@ public abstract class FacadeCorpsEnqueteur {
 	 */
 	private CorpsEnqueteurManager ceMng;
 	
+	// CONSTRUCTOR
+	
+	public FacadeCorpsEnqueteur() {}
+	
 	// METHODS
 	
 	/**
