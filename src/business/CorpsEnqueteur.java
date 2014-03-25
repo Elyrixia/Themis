@@ -1,8 +1,9 @@
 package business;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
-public abstract class CorpsEnqueteur {
+public abstract class CorpsEnqueteur implements Business {
 
 	/**
 	 * The name of the structure of detectives (e.g. Police)
@@ -14,4 +15,23 @@ public abstract class CorpsEnqueteur {
 	 */
 	private ArrayList<ServiceEnqueteur> listeServices;
 	
+	/**
+	 * @see load() from interface Business
+	 */
+	public abstract void load(HashMap map);
+	
+	/**
+	 * @see create() from interface Business
+	 */
+	public abstract int create();
+	
+	/**
+	 * @see update() from interface Business
+	 */
+	public abstract void update();
+	
+	/**
+	 * @see delete() from interface Business
+	 */
+	public abstract void delete();
 }

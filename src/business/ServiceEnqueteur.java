@@ -1,6 +1,8 @@
 package business;
 
-public abstract class ServiceEnqueteur {
+import java.util.HashMap;
+
+public abstract class ServiceEnqueteur implements Business {
 
 	/**
 	 * The name of the service
@@ -16,4 +18,24 @@ public abstract class ServiceEnqueteur {
 	 * The location (full address) of the service
 	 */
 	private String lieu;
+	
+	/**
+	 * @see load() from interface Business
+	 */
+	public abstract void load(HashMap map);
+	
+	/**
+	 * @see create() from interface Business
+	 */
+	public abstract int create();
+	
+	/**
+	 * @see update() from interface Business
+	 */
+	public abstract void update();
+	
+	/**
+	 * @see delete() from interface Business
+	 */
+	public abstract void delete();
 }

@@ -4,7 +4,7 @@ import business.*;
 
 public class DBFactory extends Factory
 {
-	public static DBFactory instance = null;
+	private static DBFactory instance = null;
 	
 	private DBFactory()
 	{
@@ -17,7 +17,7 @@ public class DBFactory extends Factory
 			instance = new DBFactory();
 		return instance;
 	}
-	
+		
 	@Override
 	public Enqueteur createEnqueteur()
 	{

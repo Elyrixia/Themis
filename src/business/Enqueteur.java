@@ -1,6 +1,9 @@
 package business;
 
-public abstract class Enqueteur extends Personne {
+import java.util.HashMap;
+
+public abstract class Enqueteur extends Personne implements Business
+{
 
 	/**
 	 * The title of the detective (for example, "Lieutenant")
@@ -16,30 +19,57 @@ public abstract class Enqueteur extends Personne {
 	 * The personal phone number of the detective
 	 */
 	private String telephonePerso;
+	
+	/**
+	 * @see load() from interface Business
+	 */
+	public abstract void load(HashMap map);
+	
+	/**
+	 * @see create() from interface Business
+	 */
+	public abstract int create();
+	
+	/**
+	 * @see update() from interface Business
+	 */
+	public abstract void update();
+	
+	/**
+	 * @see delete() from interface Business
+	 */
+	public abstract void delete();
+	
+	// getters and setters
 
-	public TitreEnqueteur getTitre() {
+	public TitreEnqueteur getTitre()
+	{
 		return titre;
 	}
 
-	public void setTitre(TitreEnqueteur titre) {
+	public void setTitre(TitreEnqueteur titre)
+	{
 		this.titre = titre;
 	}
 
-	public ServiceEnqueteur getService() {
+	public ServiceEnqueteur getService()
+	{
 		return service;
 	}
 
-	public void setService(ServiceEnqueteur service) {
+	public void setService(ServiceEnqueteur service)
+	{
 		this.service = service;
 	}
 
-	public String getTelephonePerso() {
+	public String getTelephonePerso()
+	{
 		return telephonePerso;
 	}
 
-	public void setTelephonePerso(String telephonePerso) {
+	public void setTelephonePerso(String telephonePerso)
+	{
 		this.telephonePerso = telephonePerso;
 	}
-
 
 }
