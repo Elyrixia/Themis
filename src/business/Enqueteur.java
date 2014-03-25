@@ -2,7 +2,8 @@ package business;
 
 import java.util.HashMap;
 
-public abstract class Enqueteur extends Personne implements Business {
+public abstract class Enqueteur extends Personne implements Business
+{
 
 	/**
 	 * The title of the detective (for example, "Lieutenant")

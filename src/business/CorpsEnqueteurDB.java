@@ -28,5 +28,4 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		// TODO Auto-generated method stub
 		
 	}
-
 }

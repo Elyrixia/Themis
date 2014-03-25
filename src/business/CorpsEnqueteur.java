@@ -1,6 +1,7 @@
 package business;
 
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.HashMap;
 
 public abstract class CorpsEnqueteur implements Business {
