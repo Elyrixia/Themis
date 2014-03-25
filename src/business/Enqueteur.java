@@ -1,7 +1,6 @@
 package business;
 
-public abstract class Enqueteur extends Personne
-{
+public abstract class Enqueteur extends Personne {
 
 	/**
 	 * The title of the detective (for example, "Lieutenant")
@@ -18,8 +17,6 @@ public abstract class Enqueteur extends Personne
 	 */
 	private String telephonePerso;
 
-<<<<<<< HEAD
-=======
 	public TitreEnqueteur getTitre() {
 		return titre;
 	}
@@ -43,7 +40,6 @@ public abstract class Enqueteur extends Personne
 	public void setTelephonePerso(String telephonePerso) {
 		this.telephonePerso = telephonePerso;
 	}
-	
-	
->>>>>>> ec95cd2582944916cb50aa43dca1d4b831c19b48
+
+
 }
