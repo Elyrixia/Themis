@@ -17,7 +17,8 @@ public class EnqueteurDB extends Enqueteur
 		correspondance.put(":test", "Jack");
 		correspondance.put(":truc", "John");
 		sqlManager.query("INSERT INTO enqueteur(nom, prenom) VALUES(':test', ':truc')", correspondance);
-		return 2;
+		
+		return 1;
 	}
 
 	@Override

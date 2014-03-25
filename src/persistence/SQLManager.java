@@ -34,16 +34,22 @@ public class SQLManager
 		return instance;
 	}
 	
+	/**
+	 * 
+	 * @param query : The query to be executed on the Database
+	 * 
+	 */
 	public void query(String query)
 	{
 		try
 		{
-			statement.execute(query);
+			System.out.println(statement.execute(query, Statement.RETURN_GENERATED_KEYS));
 		} catch (SQLException e)
 		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void query(String string, HashMap<String, String> correspondance)
@@ -51,9 +57,14 @@ public class SQLManager
 		String newQuery = string;
 		for(String key: correspondance.keySet())
 		{
-			newQuery.replace(key, correspondance.get(key));
+			newQuery = newQuery.replace(key, correspondance.get(key));
 		}
 		System.out.println(newQuery);
 		query(newQuery);
+	}
+	
+	public int getLastID()
+	{
+		return 1;
 	}
 }
