@@ -34,28 +34,26 @@ public class CorpsEnqueteurManager {
 	public void loadCorpsEnqueteur(HashMap<String,String> filter) {
 		SQLManager connect = SQLManager.getConnection();
 		
-		String query = "SELECT * FROM corps_enqueteur";
+		String where = "";
 		
 		// Si on a fourni un filtre il va falloir specifier le where
 		if(filter.size() > 0) {
-			query += " WHERE ";
-			
 			Iterator<String> keySetIterator = filter.keySet().iterator();
 			
 			// Premiere condition
 			String key = keySetIterator.next();
-			query += key + filter.get(key);
+			where += key + filter.get(key);
 			
 			// S'il y en a d'autres
 			while(keySetIterator.hasNext()) {
-				query += " AND ";
+				where += " AND ";
 				key = keySetIterator.next();
-				query += key + filter.get(key);
+				where += key + filter.get(key);
 			}
 		}
 		
 		// Sending query
-		ResultSet result = connect.querySelect(query);
+		ResultSet result = connect.select(CorpsEnqueteurDB.table,null,where);
 		
 		// Preparing ArrayList
 		try {

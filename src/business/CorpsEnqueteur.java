@@ -29,7 +29,6 @@ public abstract class CorpsEnqueteur implements Business {
 	 */
 	@SuppressWarnings({ "unchecked"})
 	public void load(HashMap<String, Object> map) {
-		
 		this.id = (int) map.get("id");
 		this.libelle = (String) map.get("libelle");
 		this.listeServices = (ArrayList<ServiceEnqueteur>)map.get("listeServices");

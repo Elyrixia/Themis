@@ -3,11 +3,11 @@ package facade;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import persistence.DBFactory;
+import persistence.Factory;
 import business.CorpsEnqueteur;
 import business.CorpsEnqueteurManager;
 import business.ServiceEnqueteur;
-import persistence.DBFactory;
-import persistence.Factory;
 
 public class FacadeCorpsEnqueteur {
 
@@ -30,15 +30,15 @@ public class FacadeCorpsEnqueteur {
 	 * @param: services: List of "services" to add to this new CorpsEnqueteur
 	 */
 	public CorpsEnqueteur ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception {
-			Factory fac = DBFactory.getInstance();
-			CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
+		Factory fac = DBFactory.getInstance();
+		CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
 			
-			newCorps.setLibelle(libelle);
-			newCorps.setListeServices(services);
+		newCorps.setLibelle(libelle);
+		newCorps.setListeServices(services);
 			
-			newCorps.create();
+		newCorps.create();
 			
-			return newCorps;
+		return newCorps;
 	}
 	
 	/**
@@ -47,13 +47,9 @@ public class FacadeCorpsEnqueteur {
 	 * @param: libelle: new "libelle" of this CorpsEnqueteur
 	 */
 	public void modifierCorpsEnqueteur(CorpsEnqueteur corps, String libelle) throws Exception {
-		try {
-			corps.setLibelle(libelle);
+		corps.setLibelle(libelle);
 			
-			corps.update();
-		} catch(Exception e) {
-			throw e;
-		}
+		corps.update();
 	}
 	
 	/**
@@ -61,11 +57,7 @@ public class FacadeCorpsEnqueteur {
 	 * @param: corps: Entity to delete
 	 */
 	public void supprimerCorpsEnqueteur(CorpsEnqueteur corps) throws Exception {
-		try {
-			corps.delete();
-		} catch(Exception e) {
-			throw e;
-		}
+		corps.delete();
 	}
 	
 	/**
@@ -74,9 +66,9 @@ public class FacadeCorpsEnqueteur {
 	 */
 	public HashMap<String,Object> consulterCorpsEnqueteur(CorpsEnqueteur corps) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		result.put(":id", corps.getId());
-		result.put(":listeServices",corps.getListeServices());
-		result.put(":libelle",corps.getLibelle());
+		result.put("id", corps.getId());
+		result.put("listeServices",corps.getListeServices());
+		result.put("libelle",corps.getLibelle());
 		return result;
 	}
 	

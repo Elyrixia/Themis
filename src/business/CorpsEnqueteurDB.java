@@ -17,10 +17,10 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
+		map.put("libelle", this.libelle);
 		
 		// Run the query
-		sql.query("INSERT INTO corps_enqueteur(libelle) VALUES(':libelle')", map);
+		sql.insert(table, map);;
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -33,11 +33,11 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":id",String.valueOf(this.id));
 		map.put(":libelle", this.libelle);
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("UPDATE corps_enqueteur SET libelle=':libelle' WHERE id=':id'", map);
+		sqlManager.update(table, map, where);
 	}
 
 	@Override
@@ -45,10 +45,9 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		SQLManager sqlManager = SQLManager.getConnection();
 		
 		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":id",String.valueOf(this.id));
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("DELETE FROM corps_enqueteur WHERE id=':id'", map);
+		sqlManager.delete(table, where);
 	}
 }

@@ -75,8 +75,8 @@ public class SQLManager
 	 * @param fields
 	 * @param where
 	 */
-	public void select(String table, ArrayList<String> fields, String where) {
-		
+	public ResultSet select(String table, ArrayList<String> fields, String where) {
+		return null;
 		
 	}
 	

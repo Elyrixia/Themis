@@ -23,7 +23,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		map.put(":lieu", this.lieu);
 		
 		// Run the query
-		sql.query("INSERT INTO service_enqueteur(libelle,telephone,lieu) VALUES(':libelle',':telephone',':lieu')", map);
+		sql.insert(table, map);
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -36,13 +36,13 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":id",String.valueOf(this.id));
 		map.put(":libelle", this.libelle);
 		map.put(":telephone", this.telephone);
 		map.put(":lieu", this.lieu);
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("UPDATE service_enqueteur SET libelle=':libelle', telephone=':telephone', lieu=':lieu' WHERE id=':id'", map);
+		sqlManager.update(table, map, where);
 	}
 
 	@Override
@@ -50,11 +50,10 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		SQLManager sqlManager = SQLManager.getConnection();
 		
 		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":id",String.valueOf(this.id));
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("DELETE FROM service_enqueteur WHERE id=':id'", map);
+		sqlManager.delete(table, where);
 	}
 
 }

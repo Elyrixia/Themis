@@ -24,11 +24,11 @@ public class EnqueteurDB extends Enqueteur {
 		map.put(":telephonePerso", this.telephonePerso);
 		map.put(":email", this.email);
 		map.put(":faxPro", this.faxPro);
-		//map.put(":titre", this.titre.getId());
-		//map.put(":service", this.service.getId());
+		map.put(":titre", String.valueOf(this.titre.getId()));
+		map.put(":service", String.valueOf(this.service.getId()));
 		
 		// Run the query
-		sql.query("INSERT INTO Enqueteur(nom,prenom,adresse,telephonePro,telephonePerso,email,faxPro,titre,service) VALUES(':nom',':prenom',':adresse',':telephonePro',':telephonePerso',':email',':faxPro',':titre',':service')", map);
+		sql.insert(table, map);
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -48,11 +48,12 @@ public class EnqueteurDB extends Enqueteur {
 		map.put(":telephonePerso", this.telephonePerso);
 		map.put(":email", this.email);
 		map.put(":faxPro", this.faxPro);
-		//map.put(":titre", this.titre.getId());
-		//map.put(":service", this.service.getId());
+		map.put(":titre", String.valueOf(this.titre.getId()));
+		map.put(":service", String.valueOf(this.service.getId()));
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("UPDATE Enqueteur SET nom=':nom', prenom=':prenom', adresse=':adresse', telephonePro=':telephonePro', telephonePerso=':telephonePerso', email=':email', faxPro=':faxPro', titre=':titre', service=':service' WHERE id=':id'", map);
+		sqlManager.update(table, map, where);
 	}
 
 	@Override
@@ -60,11 +61,10 @@ public class EnqueteurDB extends Enqueteur {
 		SQLManager sqlManager = SQLManager.getConnection();
 		
 		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":id",String.valueOf(this.id));
+		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.query("DELETE FROM Enqueteur WHERE id=':id'", map);
+		sqlManager.delete(table, where);
 	}
 
 }
