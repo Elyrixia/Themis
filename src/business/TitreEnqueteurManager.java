@@ -10,76 +10,87 @@ import persistence.DBFactory;
 import persistence.Factory;
 import persistence.SQLManager;
 
-public class TitreEnqueteurManager {
+public class TitreEnqueteurManager
+{
 
 	// ATTRIBUTES
-	
+
 	/**
 	 * Loaded list of TitreEnqueteur
 	 */
-	private ArrayList<TitreEnqueteur> listeTitres;
-			
+	private ArrayList<TitreEnqueteur>	listeTitres;
+
 	// CONSTRUCTOR
-			
-	public TitreEnqueteurManager() {
+
+	public TitreEnqueteurManager()
+	{
 		this.listeTitres = new ArrayList<TitreEnqueteur>();
 	}
-			
+
 	// METHODS
-			
+
 	/**
 	 * Load TitreEnqueteur list using a filter
+	 * 
 	 * @param: filter: A DEFINIR
 	 */
-	public void loadTitresEnqueteur(HashMap<String,String> filter) {
+	public void loadTitresEnqueteur(HashMap<String, String> filter)
+	{
 		SQLManager connect = SQLManager.getConnection();
-		
+
 		String where = "";
-		
+
 		// Si on a fourni un filtre il va falloir specifier le where
-		if(filter.size() > 0) {
+		if (filter.size() > 0)
+		{
 			Iterator<String> keySetIterator = filter.keySet().iterator();
-			
+
 			// Premiere condition
 			String key = keySetIterator.next();
 			where += key + filter.get(key);
-			
+
 			// S'il y en a d'autres
-			while(keySetIterator.hasNext()) {
+			while (keySetIterator.hasNext())
+			{
 				where += " AND ";
 				key = keySetIterator.next();
 				where += key + filter.get(key);
 			}
 		}
-		
+
 		// Sending query
-		ResultSet result = connect.select(TitreEnqueteurDB.TABLE_NAME,null,where);
-		
+		ResultSet result = connect.select(TitreEnqueteurDB.TABLE_NAME, SQLManager.ALL, where);
+
 		// Preparing ArrayList
-		try {
+		try
+		{
 			Factory fac = DBFactory.getInstance();
-			while(result.next()) {
+			while (result.next())
+			{
 				// Create new ServiceEnqueteur
 				TitreEnqueteur newTitre = fac.createTitreEnqueteur();
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
-				row.put("id",result.getInt("id"));
+				row.put("id", result.getInt("id"));
 				row.put("libelle", result.getString("libelle"));
 				// Loading TitreEnqueteur using values in row
 				newTitre.load(row);
 				// Adding ServiceEnqueteur to ArrayList
 				this.listeTitres.add(newTitre);
 			}
-		} catch (SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-			
+
 	// GETTERS
-		
-	public ArrayList<TitreEnqueteur> getListeTitresEnqueteur() {
-			return this.listeTitres;
+
+	public ArrayList<TitreEnqueteur> getListeTitresEnqueteur()
+	{
+		return this.listeTitres;
 	}
-	
+
 }

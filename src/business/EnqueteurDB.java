@@ -28,7 +28,7 @@ public class EnqueteurDB extends Enqueteur {
 		map.put("service", String.valueOf(this.service.getId()));
 		
 		// Run the query
-		sql.insert(TABLE_NAME, map);
+		sql.insert(EnqueteurDB.TABLE_NAME, map);
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -53,7 +53,7 @@ public class EnqueteurDB extends Enqueteur {
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(EnqueteurDB.TABLE_NAME, map, where);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class EnqueteurDB extends Enqueteur {
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.delete(TABLE_NAME, where);
+		sqlManager.delete(EnqueteurDB.TABLE_NAME, where);
 	}
 
 }

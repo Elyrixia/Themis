@@ -141,10 +141,10 @@ public class SQLManager
 			query += column + " = '" + value + "', ";
 		}
 
-		query = query.substring(0, query.length() - 2); // Getting rid of the last ', 
-		
+		query = query.substring(0, query.length() - 2); // Getting rid of the last ',
+
 		query += " WHERE " + where;
-		
+
 		System.out.println(query);
 	}
 
@@ -214,22 +214,6 @@ public class SQLManager
 		query(newQuery);
 	}
 
-	/**
-	 * 
-	 */
-	public ResultSet querySelect(String query)
-	{
-		try
-		{
-			return statement.executeQuery(query);
-		}
-		catch (SQLException e)
-		{
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-			return null;
-		}
-	}
 
 	/**
 	 * Returns the last ID updated in the Database
@@ -253,5 +237,13 @@ public class SQLManager
 		}
 
 		return -1;
+	}
+
+	public ResultSet select(String tableName, String field, String where)
+	{
+		ArrayList<String> allFields = new ArrayList<String>();
+		allFields.add("*");
+		
+		return select(tableName, allFields, where);
 	}
 }

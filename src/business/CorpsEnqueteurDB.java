@@ -20,7 +20,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		map.put("libelle", this.libelle);
 		
 		// Run the query
-		sql.insert(TABLE_NAME, map);;
+		sql.insert(CorpsEnqueteurDB.TABLE_NAME, map);
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -37,7 +37,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(CorpsEnqueteurDB.TABLE_NAME, map, where);
 	}
 
 	@Override
@@ -48,6 +48,6 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.delete(TABLE_NAME, where);
+		sqlManager.delete(CorpsEnqueteurDB.TABLE_NAME, where);
 	}
 }

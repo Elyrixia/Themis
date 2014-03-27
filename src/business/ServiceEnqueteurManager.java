@@ -10,88 +10,99 @@ import persistence.DBFactory;
 import persistence.Factory;
 import persistence.SQLManager;
 
-public class ServiceEnqueteurManager {
+public class ServiceEnqueteurManager
+{
 
 	// ATTRIBUTES
-	
+
 	/**
 	 * Loaded list of ServiceEnqueteur
 	 */
-	private ArrayList<ServiceEnqueteur> listeServices;
-		
+	private ArrayList<ServiceEnqueteur>	listeServices;
+
 	// CONSTRUCTOR
-		
-	public ServiceEnqueteurManager() {
+
+	public ServiceEnqueteurManager()
+	{
 		this.listeServices = new ArrayList<ServiceEnqueteur>();
 	}
-		
+
 	// METHODS
-		
+
 	/**
 	 * Load ServiceEnqueteur list using a filter
+	 * 
 	 * @param: filter: A DEFINIR
 	 */
-	public void loadServicesEnqueteur(HashMap<String,String> filter) {
+	public void loadServicesEnqueteur(HashMap<String, String> filter)
+	{
 		SQLManager connect = SQLManager.getConnection();
-		
+
 		String where = "";
-		
+
 		// Si on a fourni un filtre il va falloir specifier le where
-		if(filter.size() > 0) {
+		if (filter.size() > 0)
+		{
 			Iterator<String> keySetIterator = filter.keySet().iterator();
-			
+
 			// Premiere condition
 			String key = keySetIterator.next();
 			where += key + filter.get(key);
-			
+
 			// S'il y en a d'autres
-			while(keySetIterator.hasNext()) {
+			while (keySetIterator.hasNext())
+			{
 				where += " AND ";
 				key = keySetIterator.next();
 				where += key + filter.get(key);
 			}
 		}
-		
+
 		// Sending query
-		ResultSet result = connect.select(ServiceEnqueteurDB.TABLE_NAME,null,where);
-		
+		ResultSet result = connect.select(ServiceEnqueteurDB.TABLE_NAME, SQLManager.ALL, where);
+
 		// Preparing ArrayList
-		try {
+		try
+		{
 			Factory fac = DBFactory.getInstance();
-			while(result.next()) {
+			while (result.next())
+			{
 				// Create new ServiceEnqueteur
 				ServiceEnqueteur newService = fac.createServiceEnqueteur();
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
-				row.put("id",result.getInt("id"));
+				row.put("id", result.getInt("id"));
 				row.put("libelle", result.getString("libelle"));
 				row.put("telephone", result.getString("telephone"));
 				row.put("lieu", result.getString("lieu"));
-				
+
 				// Need to instantiate CorpsEnqueteur to add to the ServiceEnqueteur
-				
+
 				int corps = result.getInt("corps");
 				CorpsEnqueteurManager ceMng = new CorpsEnqueteurManager();
-				HashMap<String,String> filterCorps = new HashMap<String,String>();
-				filterCorps.put("id", "="+String.valueOf(corps));
+				HashMap<String, String> filterCorps = new HashMap<String, String>();
+				filterCorps.put("id", "=" + String.valueOf(corps));
 				ceMng.loadCorpsEnqueteur(filterCorps);
 				ArrayList<CorpsEnqueteur> resultCorps = ceMng.getListeCorpsEnqueteur();
 				row.put("corps", resultCorps.get(0));
-				
+
 				// Loading ServiceEnqueteur using values in row
 				newService.load(row);
 				// Adding ServiceEnqueteur to ArrayList
 				this.listeServices.add(newService);
 			}
-		} catch (SQLException e) {
+		}
+		catch (SQLException e)
+		{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
-		
+
 	// GETTERS
-	
-	public ArrayList<ServiceEnqueteur> getListeServicesEnqueteur() {
+
+	public ArrayList<ServiceEnqueteur> getListeServicesEnqueteur()
+	{
 		return this.listeServices;
 	}
 }
