@@ -48,7 +48,10 @@ public class SQLManager
 			e.printStackTrace();
 		}
 	}
-
+	/**
+	 * Get the singleton instance
+	 * @return	THE instance of SQLManager that should be used for the application.
+	 */
 	public static SQLManager getConnection()
 	{
 		if (instance == null)
