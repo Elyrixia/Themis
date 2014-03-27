@@ -3,12 +3,15 @@ package business;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public abstract class FacadeCorpsEnqueteur {
+import persistence.DBFactory;
+import persistence.Factory;
+
+public class FacadeCorpsEnqueteur {
 
 	// ATTRIBUTES
 	
 	/**
-	 * Manager qui permet d'acceder aux entites souhaitees
+	 * Manager to load entities
 	 */
 	private CorpsEnqueteurManager ceMng;
 	
@@ -19,62 +22,71 @@ public abstract class FacadeCorpsEnqueteur {
 	// METHODS
 	
 	/**
-	 * Permet d'ajouter un nouveau corps d'enqueteur
-	 * @libelle: Le libelle de ce corps
-	 * @titres: La liste des titres lies a ce corps
+	 * Add a new CorpsEnqueteur
+	 * @param: libelle: "libelle" of this new CorpsEnqueteur
+	 * @param: services: List of "services" to add to this new CorpsEnqueteur
 	 */
-	public Exception ajouterCorpsEnqueteur(String libelle, ArrayList<TitreEnqueteur> titres) {
+	public void ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception {
 		try {
-			CorpsEnqueteur newCorps = new CorpsEnqueteur();
-			newCorps.create(libelle,titres);
-			return 1;
+			Factory fac = DBFactory.getInstance();
+			CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
+			
+			newCorps.setLibelle(libelle);
+			newCorps.setListeServices(services);
+			
+			newCorps.create();
 		} catch(Exception e) {
-			return 0;
+			throw e;
 		}
 		
 	}
 	/**
-	 * Permet de modifier un corps d'enqueteur existant
-	 * @corps: L'entite a modifier
-	 * @libelle: Le nouveau libelle de ce corps
+	 * Edit a CorpsEnqueteur
+	 * @param: corps: Entity to edit
+	 * @param: libelle: new "libelle" of this CorpsEnqueteur
 	 */
-	public Exception modifierCorpsEnqueteur(CorpsEnqueteur corps, String libelle) {
+	public void modifierCorpsEnqueteur(CorpsEnqueteur corps, String libelle) throws Exception {
 		try {
-			corps.setAttributes(libelle);
-			return 1;
+			corps.setLibelle(libelle);
+			
+			corps.update();
 		} catch(Exception e) {
-			return 0;
+			throw e;
 		}
 	}
 	
 	/**
-	 * Permet de supprimer un corps d'enqueteur existant
-	 * @corps: L'entite a supprimer
+	 * Delete a CorpsEnqueteur
+	 * @param: corps: Entity to delete
 	 */
-	public Exception supprimerCorpsEnqueteur(CorpsEnqueteur corps) {
+	public void supprimerCorpsEnqueteur(CorpsEnqueteur corps) throws Exception {
 		try {
 			corps.delete();
-			return 1;
 		} catch(Exception e) {
-			return 0;
+			throw e;
 		}
 	}
 	
 	/**
-	 * ?
+	 * Get HashMap containing data of a specific CorpsEnqueteur
+	 * @param: corps: Entity to consult
 	 */
-	public void consulterCorpsEnqueteur(CorpsEnqueteur corps) {
-		
+	public HashMap<String,Object> consulterCorpsEnqueteur(CorpsEnqueteur corps) {
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		result.put(":id", corps.getId());
+		result.put(":listeServices",corps.getListeServices());
+		result.put(":libelle",corps.getLibelle());
+		return result;
 	}
 	
 	/**
 	 * Permet de charger les corps d'enqueteur souhaites en fonction du filtre a appliquer
 	 * @filter: Le filtre a appliquer
 	 */
-	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap filter) {
+	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap<String,String> filter) {
 		ceMng = new CorpsEnqueteurManager();
-		ceMng.loadAffaires(filter);
-		return ceMng.listeAffaires;
+		ceMng.loadCorpsEnqueteur(filter);
+		return ceMng.getListeCorps();
 	}
 	
 }

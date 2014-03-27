@@ -20,10 +20,25 @@ public abstract class Enqueteur extends Personne implements Business
 	 */
 	protected String telephonePerso;
 	
+	public Enqueteur() {
+		super();
+	}
+	
 	/**
 	 * @see load() from interface Business
 	 */
-	public abstract void load(HashMap map);
+	public void load(HashMap<String, Object> map) {
+		
+		this.id = (int) map.get("id");
+		this.nom = (String) map.get("nom");
+		this.prenom = (String) map.get("prenom");
+		this.adresse = (String) map.get("adresse");
+		this.telephonePro = (String) map.get("telephonePro");
+		this.email = (String) map.get("email");
+		this.faxPro = (String) map.get("faxPro");
+		this.titre = (TitreEnqueteur) map.get("titre");
+		this.service = (ServiceEnqueteur) map.get("service");
+	}
 	
 	/**
 	 * @see create() from interface Business
@@ -42,33 +57,36 @@ public abstract class Enqueteur extends Personne implements Business
 	
 	// getters and setters
 
-	public TitreEnqueteur getTitre()
-	{
+	public TitreEnqueteur getTitre() {
 		return titre;
 	}
 
-	public void setTitre(TitreEnqueteur titre)
-	{
+	public void setTitre(TitreEnqueteur titre) throws Exception {
+		if(titre == null)
+			throw new Exception("The detective must have a title!");
+		
 		this.titre = titre;
 	}
 
-	public ServiceEnqueteur getService()
-	{
+	public ServiceEnqueteur getService() {
 		return service;
 	}
 
-	public void setService(ServiceEnqueteur service)
-	{
+	public void setService(ServiceEnqueteur service) throws Exception {
+		if(service == null)
+			throw new Exception("The detective must be part of a service!");
+		
 		this.service = service;
 	}
 
-	public String getTelephonePerso()
-	{
+	public String getTelephonePerso() {
 		return telephonePerso;
 	}
 
-	public void setTelephonePerso(String telephonePerso)
-	{
+	public void setTelephonePerso(String telephonePerso) throws Exception {
+		if(telephonePerso.length() > 14) // | (+33)611223344 | = 14
+			throw new Exception("The personal phone number length must not exceed 14 characters!");
+		
 		this.telephonePerso = telephonePerso;
 	}
 

@@ -24,7 +24,7 @@ public interface Business
 	 * there is no need of control. To control the values, we use the method setAttributes(HashMap).
 	 * @param map HashMap containing the pairs Attribute -> Value
 	 */
-	public void load(HashMap map);
+	public void load(HashMap<String, Object> map);
 	
 	/**
 	 * Deletes the object from the database system
