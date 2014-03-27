@@ -34,7 +34,6 @@ public class FacadeCorpsEnqueteur {
 		CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
 			
 		newCorps.setLibelle(libelle);
-		newCorps.setListeServices(services);
 			
 		newCorps.create();
 			
@@ -67,7 +66,6 @@ public class FacadeCorpsEnqueteur {
 	public HashMap<String,Object> consulterCorpsEnqueteur(CorpsEnqueteur corps) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		result.put("id", corps.getId());
-		result.put("listeServices",corps.getListeServices());
 		result.put("libelle",corps.getLibelle());
 		return result;
 	}
