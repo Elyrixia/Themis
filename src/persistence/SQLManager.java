@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import common.Utilitaire;
+
 public class SQLManager
 {
 	private static SQLManager instance = null;
@@ -87,7 +89,29 @@ public class SQLManager
 	 */
 	public void insert(String table, HashMap<String, String> fieldsValues) {
 		
+		String query = "INSERT INTO ";
+		query += table;
+		ArrayList<String> fields = new ArrayList<String>();
+		ArrayList<String> values = new ArrayList<String>();
+		for(String key: fieldsValues.keySet()) {
+			fields.add(key);
+			values.add("'" + fieldsValues.get(key) + "'");
+		}
 		
+		query += "(";
+		query += Utilitaire.implode(",", fields);
+		query += ") VALUES(";
+		query += Utilitaire.implode(",", values);
+		query += ")";
+		
+		System.out.println(query);
+		
+		// executing the query
+		/*try {
+			this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}*/
 	}
 	
 	/**

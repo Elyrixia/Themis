@@ -5,18 +5,31 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
-import facade.FacadeCorpsEnqueteur;
+import persistence.SQLManager;
 import business.CorpsEnqueteur;
-import business.CorpsEnqueteurDB;
 import business.ServiceEnqueteur;
-import business.Enqueteur;
-import persistence.*;
+import common.Utilitaire;
+import facade.FacadeCorpsEnqueteur;
 
 class MainFenetre extends JFrame 
 {
 	public static void main(String []args)
 	{
 		//Factory f = DBFactory.getInstance();
+		
+		/*ArrayList<String> l = new ArrayList<String>();
+		l.add("Bob");
+		l.add("Henri");
+		l.add("Bobette");
+		System.out.println(Utilitaire.implode(",", l));
+		*/
+		
+		SQLManager s = SQLManager.getConnection();
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("nom", "nom_test");
+		hm.put("prenom", "prenom_test");
+		s.insert("enqueteur", hm);
+		
 		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
 		
 		try {

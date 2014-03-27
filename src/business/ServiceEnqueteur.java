@@ -106,9 +106,10 @@ public abstract class ServiceEnqueteur implements Business {
 		return corps;
 	}
 	
+	
 	public void setCorps(CorpsEnqueteur corps) throws Exception {
-		if(corps == null)
-			throw new Exception("The CorpsEnqueteur wasn't instancied properly");
+		if(corps ==  null)
+			throw new Exception("The CorpsEnqueteur wasn't instancied properly!");
 		
 		this.corps = corps;
 	}

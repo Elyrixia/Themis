@@ -1,6 +1,5 @@
 package business;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public abstract class CorpsEnqueteur implements Business {
@@ -15,11 +14,6 @@ public abstract class CorpsEnqueteur implements Business {
 	 */
 	protected String libelle;
 	
-	/**
-	 * The list of services related to this structure
-	 */
-	private ArrayList<ServiceEnqueteur> listeServices;
-	
 	public CorpsEnqueteur() {
 		
 	}
@@ -27,11 +21,9 @@ public abstract class CorpsEnqueteur implements Business {
 	/**
 	 * @see load() from interface Business
 	 */
-	@SuppressWarnings({ "unchecked"})
 	public void load(HashMap<String, Object> map) {
 		this.id = (int) map.get("id");
 		this.libelle = (String) map.get("libelle");
-		this.listeServices = (ArrayList<ServiceEnqueteur>)map.get("listeServices");
 	}
 	
 	/**
@@ -69,15 +61,5 @@ public abstract class CorpsEnqueteur implements Business {
 		
 		this.libelle = libelle;
 	}
-
-	public ArrayList<ServiceEnqueteur> getListeServices() {
-		return listeServices;
-	}
-
-	public void setListeServices(ArrayList<ServiceEnqueteur> listeServices) throws Exception {
-		if(listeServices == null)
-			throw new Exception("The list of services must not be null!");
-		
-		this.listeServices = listeServices;
-	}
+	
 }
