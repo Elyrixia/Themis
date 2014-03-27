@@ -53,4 +53,48 @@ public abstract class ServiceEnqueteur implements Business {
 	 * @see delete() from interface Business
 	 */
 	public abstract void delete();
+	
+	// getters and setters
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getLibelle() {
+		return libelle;
+	}
+
+	public void setLibelle(String libelle) throws Exception {
+		if(libelle.length() > 60)
+			throw new Exception("The label length must not exceed 60 characters!");
+		
+		this.libelle = libelle;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) throws Exception {
+		if(telephone.length() > 14)
+			throw new Exception("The phone number length must not exceed 14 characters!");
+		
+		this.telephone = telephone;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(String lieu) throws Exception {
+		if(lieu.length() > 255)
+			throw new Exception("The place length must not exceed 255 characters!");
+		
+		this.lieu = lieu;
+	}
+	
 }

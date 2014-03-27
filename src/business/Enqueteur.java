@@ -57,33 +57,36 @@ public abstract class Enqueteur extends Personne implements Business
 	
 	// getters and setters
 
-	public TitreEnqueteur getTitre()
-	{
+	public TitreEnqueteur getTitre() {
 		return titre;
 	}
 
-	public void setTitre(TitreEnqueteur titre)
-	{
+	public void setTitre(TitreEnqueteur titre) throws Exception {
+		if(titre == null)
+			throw new Exception("The detective must have a title!");
+		
 		this.titre = titre;
 	}
 
-	public ServiceEnqueteur getService()
-	{
+	public ServiceEnqueteur getService() {
 		return service;
 	}
 
-	public void setService(ServiceEnqueteur service)
-	{
+	public void setService(ServiceEnqueteur service) throws Exception {
+		if(service == null)
+			throw new Exception("The detective must be part of a service!");
+		
 		this.service = service;
 	}
 
-	public String getTelephonePerso()
-	{
+	public String getTelephonePerso() {
 		return telephonePerso;
 	}
 
-	public void setTelephonePerso(String telephonePerso)
-	{
+	public void setTelephonePerso(String telephonePerso) throws Exception {
+		if(telephonePerso.length() > 14) // | (+33)611223344 | = 14
+			throw new Exception("The personal phone number length must not exceed 14 characters!");
+		
 		this.telephonePerso = telephonePerso;
 	}
 

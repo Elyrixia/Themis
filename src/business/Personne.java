@@ -1,5 +1,7 @@
 package business;
 
+import java.util.regex.Pattern;
+
 public abstract class Personne {
 	
 	/**
@@ -63,7 +65,10 @@ public abstract class Personne {
 		return nom;
 	}
 	
-	public void setNom(String nom) {
+	public void setNom(String nom) throws Exception {
+		if(nom.length() > 30)
+			throw new Exception("The last name length must not exceed 30 characters!");
+		
 		this.nom = nom;
 	}
 	
@@ -71,7 +76,10 @@ public abstract class Personne {
 		return prenom;
 	}
 	
-	public void setPrenom(String prenom) {
+	public void setPrenom(String prenom) throws Exception {
+		if(prenom.length() > 30)
+			throw new Exception("The first name length must not exceed 30 characters!");
+		
 		this.prenom = prenom;
 	}
 	
@@ -79,7 +87,10 @@ public abstract class Personne {
 		return adresse;
 	}
 	
-	public void setAdresse(String adresse) {
+	public void setAdresse(String adresse) throws Exception {
+		if(adresse.length() > 255)
+			throw new Exception("The address length must not exceed 255 characters!");
+		
 		this.adresse = adresse;
 	}
 	
@@ -87,7 +98,10 @@ public abstract class Personne {
 		return telephonePro;
 	}
 	
-	public void setTelephonePro(String telephonePro) {
+	public void setTelephonePro(String telephonePro) throws Exception {
+		if(adresse.length() > 14)
+			throw new Exception("The profesionnal phone number length must not exceed 14 characters!");
+		
 		this.telephonePro = telephonePro;
 	}
 	
@@ -95,7 +109,18 @@ public abstract class Personne {
 		return email;
 	}
 	
-	public void setEmail(String email) {
+	public void setEmail(String email) throws Exception {
+		
+		String emailPattern = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		Pattern p = Pattern.compile(emailPattern);
+		
+		if(!p.matcher(email).matches())
+			throw new Exception("The email is not a valid email address!");
+		
+		if(email.length() > 60)
+			throw new Exception("The email length must not exceed 60 characters!");
+		
 		this.email = email;
 	}
 	
@@ -103,7 +128,10 @@ public abstract class Personne {
 		return faxPro;
 	}
 	
-	public void setFaxPro(String faxPro) {
+	public void setFaxPro(String faxPro) throws Exception {
+		if(faxPro.length() > 14)
+			throw new Exception("The profesionnal fax number length must not exceed 14 characters!");
+		
 		this.faxPro = faxPro;
 	}
 	

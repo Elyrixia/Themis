@@ -51,11 +51,22 @@ public abstract class CorpsEnqueteur implements Business {
 	
 	// setters and getters
 	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getLibelle() {
 		return libelle;
 	}
 
-	public void setLibelle(String libelle) {
+	public void setLibelle(String libelle) throws Exception {
+		if(libelle.length() > 60)
+			throw new Exception("The label length must not exceed 60 characters!");
+		
 		this.libelle = libelle;
 	}
 
@@ -63,7 +74,10 @@ public abstract class CorpsEnqueteur implements Business {
 		return listeServices;
 	}
 
-	public void setListeServices(ArrayList<ServiceEnqueteur> listeServices) {
+	public void setListeServices(ArrayList<ServiceEnqueteur> listeServices) throws Exception {
+		if(listeServices == null)
+			throw new Exception("The list of services must not be null!");
+		
 		this.listeServices = listeServices;
 	}
 }
