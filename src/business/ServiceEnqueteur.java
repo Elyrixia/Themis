@@ -69,8 +69,8 @@ public abstract class ServiceEnqueteur implements Business {
 	}
 
 	public void setLibelle(String libelle) throws Exception {
-		if(libelle.length() > 60)
-			throw new Exception("The label length must not exceed 60 characters!");
+		if(libelle.length() > 255)
+			throw new Exception("The label length must not exceed 255 characters!");
 		
 		this.libelle = libelle;
 	}

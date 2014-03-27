@@ -37,6 +37,7 @@ public abstract class Enqueteur extends Personne implements Business
 		this.faxPro = (String) map.get("faxPro");
 		this.titre = (TitreEnqueteur) map.get("titre");
 		this.service = (ServiceEnqueteur) map.get("service");
+		this.telephonePerso = (String) map.get("telephonePerso");
 	}
 	
 	/**
