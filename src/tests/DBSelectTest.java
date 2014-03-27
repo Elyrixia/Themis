@@ -1,12 +1,8 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
-import static org.junit.Assert.assertNotNull;
-
+import static org.junit.Assert.*;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;

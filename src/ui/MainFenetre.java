@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 
 import persistence.SQLManager;
 import business.CorpsEnqueteur;
+import business.EnqueteurDB;
 import business.ServiceEnqueteur;
 import common.Utilitaire;
 import facade.FacadeCorpsEnqueteur;
@@ -29,6 +30,17 @@ class MainFenetre extends JFrame
 		hm.put("nom", "nom_test");
 		hm.put("prenom", "prenom_test");
 		s.insert("enqueteur", hm);
+		
+		
+		HashMap<String, String> m = new HashMap<>();
+		m.put("test1", "abc");
+		m.put("test2", "def");
+		m.put("test3", "ghi");
+		
+		String w = "TEST = 1 AND W = 24 AND Z = 'lol'";
+		
+		s.update(EnqueteurDB.table, m, w);
+		
 		
 		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
 		
