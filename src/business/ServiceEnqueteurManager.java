@@ -67,6 +67,17 @@ public class ServiceEnqueteurManager {
 				row.put("libelle", result.getString("libelle"));
 				row.put("telephone", result.getString("telephone"));
 				row.put("lieu", result.getString("lieu"));
+				
+				// Need to instantiate CorpsEnqueteur to add to the ServiceEnqueteur
+				
+				int corps = result.getInt("corps");
+				CorpsEnqueteurManager ceMng = new CorpsEnqueteurManager();
+				HashMap<String,String> filterCorps = new HashMap<String,String>();
+				filterCorps.put("id", "="+String.valueOf(corps));
+				ceMng.loadCorpsEnqueteur(filterCorps);
+				ArrayList<CorpsEnqueteur> resultCorps = ceMng.getListeCorpsEnqueteur();
+				row.put("corps", resultCorps.get(0));
+				
 				// Loading ServiceEnqueteur using values in row
 				newService.load(row);
 				// Adding ServiceEnqueteur to ArrayList

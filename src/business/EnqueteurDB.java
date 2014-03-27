@@ -17,15 +17,15 @@ public class EnqueteurDB extends Enqueteur {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":nom", this.nom);
-		map.put(":prenom", this.prenom);
-		map.put(":adresse", this.adresse);
-		map.put(":telephonePro", this.telephonePro);
-		map.put(":telephonePerso", this.telephonePerso);
-		map.put(":email", this.email);
-		map.put(":faxPro", this.faxPro);
-		map.put(":titre", String.valueOf(this.titre.getId()));
-		map.put(":service", String.valueOf(this.service.getId()));
+		map.put("nom", this.nom);
+		map.put("prenom", this.prenom);
+		map.put("adresse", this.adresse);
+		map.put("telephonePro", this.telephonePro);
+		map.put("telephonePerso", this.telephonePerso);
+		map.put("email", this.email);
+		map.put("faxPro", this.faxPro);
+		map.put("titre", String.valueOf(this.titre.getId()));
+		map.put("service", String.valueOf(this.service.getId()));
 		
 		// Run the query
 		sql.insert(table, map);
@@ -41,15 +41,15 @@ public class EnqueteurDB extends Enqueteur {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":nom", this.nom);
-		map.put(":prenom", this.prenom);
-		map.put(":adresse", this.adresse);
-		map.put(":telephonePro", this.telephonePro);
-		map.put(":telephonePerso", this.telephonePerso);
-		map.put(":email", this.email);
-		map.put(":faxPro", this.faxPro);
-		map.put(":titre", String.valueOf(this.titre.getId()));
-		map.put(":service", String.valueOf(this.service.getId()));
+		map.put("nom", this.nom);
+		map.put("prenom", this.prenom);
+		map.put("adresse", this.adresse);
+		map.put("telephonePro", this.telephonePro);
+		map.put("telephonePerso", this.telephonePerso);
+		map.put("email", this.email);
+		map.put("faxPro", this.faxPro);
+		map.put("titre", String.valueOf(this.titre.getId()));
+		map.put("service", String.valueOf(this.service.getId()));
 		String where = "id = "+this.id;
 		
 		// Run the query

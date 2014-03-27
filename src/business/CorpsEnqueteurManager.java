@@ -78,7 +78,7 @@ public class CorpsEnqueteurManager {
 	
 	// GETTERS
 	
-	public ArrayList<CorpsEnqueteur> getListeCorps() {
+	public ArrayList<CorpsEnqueteur> getListeCorpsEnqueteur() {
 		return this.listeCorps;
 	}
 	

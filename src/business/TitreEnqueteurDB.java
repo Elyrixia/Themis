@@ -17,7 +17,7 @@ public class TitreEnqueteurDB extends TitreEnqueteur {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
+		map.put("libelle", this.libelle);
 		
 		// Run the query
 		sql.insert(table,map);
@@ -33,7 +33,7 @@ public class TitreEnqueteurDB extends TitreEnqueteur {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
+		map.put("libelle", this.libelle);
 		String where = "id = "+this.id;
 		
 		// Run the query

@@ -25,14 +25,19 @@ public abstract class ServiceEnqueteur implements Business {
 	protected String lieu;
 	
 	/**
+	 * The CorpsEnqueteur concerned by this Service
+	 */
+	protected CorpsEnqueteur corps;
+	
+	/**
 	 * @see load() from interface Business
 	 */
 	public void load(HashMap<String, Object> map) {
-		
 		this.id = (int) map.get("id");
 		this.libelle = (String) map.get("libelle");
 		this.telephone = (String) map.get("telephone");
 		this.lieu = (String) map.get("lieu");
+		this.corps = (CorpsEnqueteur) map.get("corps");
 	}
 	
 	public ServiceEnqueteur() {
@@ -95,6 +100,17 @@ public abstract class ServiceEnqueteur implements Business {
 			throw new Exception("The place length must not exceed 255 characters!");
 		
 		this.lieu = lieu;
+	}
+	
+	public CorpsEnqueteur getCorps() {
+		return corps;
+	}
+	
+	public void setCorps(CorpsEnqueteur corps) throws Exception {
+		if(corps == null)
+			throw new Exception("The CorpsEnqueteur wasn't instancied properly");
+		
+		this.corps = corps;
 	}
 	
 }

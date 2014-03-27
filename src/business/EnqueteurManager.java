@@ -72,7 +72,7 @@ public class EnqueteurManager {
 				row.put("email",result.getString("email"));
 				row.put("faxPro", result.getString("faxPro"));
 				
-				// Need to instanciate TitreEnqueteur to add to the Enqueteur
+				// Need to instantiate TitreEnqueteur to add to the Enqueteur
 				
 				int titre = result.getInt("titre");
 				TitreEnqueteurManager teMng = new TitreEnqueteurManager();
@@ -82,7 +82,7 @@ public class EnqueteurManager {
 				ArrayList<TitreEnqueteur> resultTitre = teMng.getListeTitresEnqueteur();
 				row.put("titre", resultTitre.get(0));
 				
-				// Need to instanciate ServiceEnqueteur to add to the Enqueteur
+				// Need to instantiate ServiceEnqueteur to add to the Enqueteur
 				
 				int service = result.getInt("service");
 				ServiceEnqueteurManager seMng = new ServiceEnqueteurManager();

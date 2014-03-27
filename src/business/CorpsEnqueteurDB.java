@@ -33,7 +33,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
+		map.put("libelle", this.libelle);
 		String where = "id = "+this.id;
 		
 		// Run the query

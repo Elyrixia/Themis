@@ -79,7 +79,7 @@ public class FacadeCorpsEnqueteur {
 	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap<String,String> filter) {
 		ceMng = new CorpsEnqueteurManager();
 		ceMng.loadCorpsEnqueteur(filter);
-		return ceMng.getListeCorps();
+		return ceMng.getListeCorpsEnqueteur();
 	}
 	
 }

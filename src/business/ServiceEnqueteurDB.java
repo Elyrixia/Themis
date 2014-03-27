@@ -18,9 +18,10 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
-		map.put(":telephone", this.telephone);
-		map.put(":lieu", this.lieu);
+		map.put("libelle", this.libelle);
+		map.put("telephone", this.telephone);
+		map.put("lieu", this.lieu);
+		map.put("corps", String.valueOf(this.corps.getId()));
 		
 		// Run the query
 		sql.insert(table, map);
@@ -36,9 +37,10 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put(":libelle", this.libelle);
-		map.put(":telephone", this.telephone);
-		map.put(":lieu", this.lieu);
+		map.put("libelle", this.libelle);
+		map.put("telephone", this.telephone);
+		map.put("lieu", this.lieu);
+		map.put("corps", String.valueOf(this.corps.getId()));
 		String where = "id = "+this.id;
 		
 		// Run the query
