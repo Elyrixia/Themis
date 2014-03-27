@@ -22,14 +22,18 @@ public class FacadeCorpsEnqueteur {
 	// METHODS
 	
 	/**
-	 * Permet d'ajouter un nouveau corps d'enqueteur
-	 * @libelle: Le libelle de ce corps
-	 * @titres: La liste des titres lies a ce corps
+	 * Add a new CorpsEnqueteur
+	 * @param: libelle: "libelle" of this new CorpsEnqueteur
+	 * @param: services: List of "services" to add to this new CorpsEnqueteur
 	 */
-	public void ajouterCorpsEnqueteur(String libelle, ArrayList<TitreEnqueteur> titres) throws Exception {
+	public void ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception {
 		try {
 			Factory fac = DBFactory.getInstance();
 			CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
+			
+			newCorps.setLibelle(libelle);
+			newCorps.setListeServices(services);
+			
 			newCorps.create();
 		} catch(Exception e) {
 			throw e;
@@ -37,22 +41,23 @@ public class FacadeCorpsEnqueteur {
 		
 	}
 	/**
-	 * Permet de modifier un corps d'enqueteur existant
-	 * @corps: L'entite a modifier
-	 * @libelle: Le nouveau libelle de ce corps
+	 * Edit a CorpsEnqueteur
+	 * @param: corps: Entity to edit
+	 * @param: libelle: new "libelle" of this CorpsEnqueteur
 	 */
 	public void modifierCorpsEnqueteur(CorpsEnqueteur corps, String libelle) throws Exception {
 		try {
 			corps.setLibelle(libelle);
 			
+			corps.update();
 		} catch(Exception e) {
 			throw e;
 		}
 	}
 	
 	/**
-	 * Permet de supprimer un corps d'enqueteur existant
-	 * @corps: L'entite a supprimer
+	 * Delete a CorpsEnqueteur
+	 * @param: corps: Entity to delete
 	 */
 	public void supprimerCorpsEnqueteur(CorpsEnqueteur corps) throws Exception {
 		try {
@@ -63,10 +68,13 @@ public class FacadeCorpsEnqueteur {
 	}
 	
 	/**
-	 * ?
+	 * Get HashMap containing data of a specific CorpsEnqueteur
+	 * @param: corps: Entity to consult
 	 */
 	public HashMap<String,Object> consulterCorpsEnqueteur(CorpsEnqueteur corps) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
+		result.put(":id", corps.getId());
+		result.put(":listeServices",corps.getListeServices());
 		result.put(":libelle",corps.getLibelle());
 		return result;
 	}
@@ -75,7 +83,7 @@ public class FacadeCorpsEnqueteur {
 	 * Permet de charger les corps d'enqueteur souhaites en fonction du filtre a appliquer
 	 * @filter: Le filtre a appliquer
 	 */
-	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap filter) {
+	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap<String,String> filter) {
 		ceMng = new CorpsEnqueteurManager();
 		ceMng.loadCorpsEnqueteur(filter);
 		return ceMng.getListeCorps();

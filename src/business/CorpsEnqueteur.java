@@ -51,6 +51,10 @@ public abstract class CorpsEnqueteur implements Business {
 	
 	// setters and getters
 	
+	public int getId() {
+		return id;
+	}
+	
 	public String getLibelle() {
 		return libelle;
 	}
