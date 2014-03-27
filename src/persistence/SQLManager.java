@@ -111,7 +111,6 @@ public class SQLManager
 		}
 	}
 	
-
 	/**
 	 * Returns the last ID updated in the Database
 	 * 

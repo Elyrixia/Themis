@@ -4,10 +4,10 @@ import java.util.HashMap;
 
 import javax.swing.JFrame;
 
+import facade.FacadeCorpsEnqueteur;
 import business.CorpsEnqueteur;
 import business.CorpsEnqueteurDB;
 import business.Enqueteur;
-import business.FacadeCorpsEnqueteur;
 import persistence.*;
 
 class MainFenetre extends JFrame 

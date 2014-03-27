@@ -1,8 +1,11 @@
-package business;
+package facade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import business.CorpsEnqueteur;
+import business.CorpsEnqueteurManager;
+import business.ServiceEnqueteur;
 import persistence.DBFactory;
 import persistence.Factory;
 
@@ -80,8 +83,8 @@ public class FacadeCorpsEnqueteur {
 	}
 	
 	/**
-	 * Permet de charger les corps d'enqueteur souhaites en fonction du filtre a appliquer
-	 * @filter: Le filtre a appliquer
+	 * Load an ArrayList of CorpsEnqueteur using a filter
+	 * @param: filter: condition to respect in the query
 	 */
 	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap<String,String> filter) {
 		ceMng = new CorpsEnqueteurManager();

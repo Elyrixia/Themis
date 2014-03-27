@@ -28,7 +28,6 @@ public abstract class Enqueteur extends Personne implements Business
 	 * @see load() from interface Business
 	 */
 	public void load(HashMap<String, Object> map) {
-		
 		this.id = (int) map.get("id");
 		this.nom = (String) map.get("nom");
 		this.prenom = (String) map.get("prenom");

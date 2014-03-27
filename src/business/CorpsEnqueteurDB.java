@@ -33,7 +33,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		map.put(":libelle", this.libelle);
 		
 		// Run the query
-		sqlManager.query("UPDATE enqueteur SET libelle=':libelle' WHERE id=':id'", map);
+		sqlManager.query("UPDATE CorpsEnqueteur SET libelle=':libelle' WHERE id=':id'", map);
 	}
 
 	@Override
@@ -45,6 +45,6 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		map.put(":id",String.valueOf(this.id));
 		
 		// Run the query
-		sqlManager.query("DELETE FROM enqueteur WHERE id=':id'", map);
+		sqlManager.query("DELETE FROM CorpsEnqueteur WHERE id=':id'", map);
 	}
 }
