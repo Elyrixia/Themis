@@ -6,6 +6,11 @@ import persistence.SQLManager;
 
 public class EnqueteurDB extends Enqueteur {
 	
+	/**
+	 * Correspondence with the table in the database
+	 */
+	public static final String table = "enqueteur";
+	
 	@Override
 	public int create() {
 		SQLManager sql = SQLManager.getConnection();

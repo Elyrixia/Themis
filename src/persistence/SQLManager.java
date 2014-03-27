@@ -1,6 +1,11 @@
 package persistence;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class SQLManager
@@ -59,6 +64,48 @@ public class SQLManager
 			instance = new SQLManager();
 
 		return instance;
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 * @param fields
+	 * @param where
+	 */
+	public void select(String table, ArrayList<String> fields, String where) {
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 * @param fieldsValues
+	 */
+	public void insert(String table, HashMap<String, String> fieldsValues) {
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 * @param fieldsValues
+	 * @param where
+	 */
+	public void update(String table, HashMap<String, String> fieldsValues, String where) {
+		
+		
+	}
+	
+	/**
+	 * 
+	 * @param table
+	 * @param where
+	 */
+	public void delete(String table, String where) {
+		
+		
 	}
 
 	/**

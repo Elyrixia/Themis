@@ -6,7 +6,11 @@ import persistence.SQLManager;
 
 public class CorpsEnqueteurDB extends CorpsEnqueteur
 {
-
+	/**
+	 * Correspondence with the table in the database
+	 */
+	public static final String table = "corps_enqueteur";
+	
 	@Override
 	public int create() {
 		SQLManager sql = SQLManager.getConnection();

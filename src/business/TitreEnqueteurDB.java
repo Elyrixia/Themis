@@ -3,6 +3,11 @@ package business;
 public class TitreEnqueteurDB extends TitreEnqueteur
 {
 
+	/**
+	 * Correspondence with the table in the database
+	 */
+	public static final String table = "titre_enqueteur";
+	
 	@Override
 	public int create() {
 		// TODO Auto-generated method stub
