@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import business.CorpsEnqueteur;
 import business.CorpsEnqueteurDB;
 import business.Enqueteur;
+import business.FacadeCorpsEnqueteur;
 import persistence.*;
 
 class MainFenetre extends JFrame 
@@ -14,7 +15,12 @@ class MainFenetre extends JFrame
 	public static void main(String []args)
 	{
 		Factory f = DBFactory.getInstance();
-		Enqueteur e = f.createEnqueteur();
+		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
+		
+		HashMap<String,String> filter = new HashMap<String,String>();
+		fce.chargerCorpsEnqueteur(filter);
+		
+		/*Enqueteur e = f.createEnqueteur();
 		System.out.println(e.create());
 		
 		e.setNom("Enrique");
@@ -26,7 +32,7 @@ class MainFenetre extends JFrame
 		if(e == null)
 			System.out.println("Delete succeed");
 		
-		/*HashMap<String, String> test = new HashMap<>();
+		HashMap<String, String> test = new HashMap<>();
 		
 		test.put(":test", "Ceci");
 		test.put(":truc", "est");

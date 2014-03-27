@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import persistence.SQLManager;
+
 public class CorpsEnqueteurManager {
 
 	// ATTRIBUTES
@@ -26,6 +28,8 @@ public class CorpsEnqueteurManager {
 	 * @filter: A DEFINIR
 	 */
 	public void loadCorpsEnqueteur(HashMap<String,String> filter) {
+		SQLManager connect = SQLManager.getConnection();
+		
 		String query = "SELECT * FROM CorpsEnqueteur";
 		
 		// Si on a fourni un filtre il va falloir specifier le where
@@ -41,11 +45,16 @@ public class CorpsEnqueteurManager {
 			// S'il y en a d'autres
 			while(keySetIterator.hasNext()) {
 				query += " AND ";
-				String key = keySetIterator.next();
+				key = keySetIterator.next();
 				query += key + filter.get(key);
 			}
 		}
 		
+		System.out.println(query);
+	}
+	
+	public ArrayList<CorpsEnqueteur> getListeCorps() {
+		return this.listeCorps;
 	}
 	
 }
