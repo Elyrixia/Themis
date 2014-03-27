@@ -12,6 +12,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import business.EnqueteurDB;
 import persistence.SQLManager;
 
 public class DBInsertTest {
@@ -23,6 +24,7 @@ public class DBInsertTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManager.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 		rs.last();
@@ -45,10 +47,11 @@ public class DBInsertTest {
 		map.put(":faxPro", "0011223344");
 		map.put(":telephonePerso", "0011223344");
 		
-		// Run the query
+		//connect.insert(EnqueteurDB.table, map);
 		connect.query("INSERT INTO enqueteur(id_titre, id_service, nom, prenom, adresse, telephone_pro, email, fax_pro, telephone_perso) "
 				+ "VALUES(':titre', ':service', ':nom', ':prenom', ':adresse', ':telephonePro', 'email', 'faxPro', 'telephonePerso')", map);
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManager.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 		

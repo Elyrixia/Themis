@@ -18,6 +18,7 @@ public class DBUpdateTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 	}

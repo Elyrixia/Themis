@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.SQLManager;
+import business.EnqueteurDB;
 
 public class DBSelectTest {
 
@@ -20,6 +21,7 @@ public class DBSelectTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 		rs.last();
@@ -31,6 +33,7 @@ public class DBSelectTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, "nom='test_nom'");
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur WHERE nom='test_nom'");
 		assertNotNull(rs);
 		rs.last();

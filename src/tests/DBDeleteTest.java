@@ -22,6 +22,7 @@ public class DBDeleteTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 		rs.last();
@@ -33,9 +34,10 @@ public class DBDeleteTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		// Run the query
+		//ResultSet rs = connect.delete(EnqueteurDB.table, "nom='test_nom'");
 		connect.query("DELETE FROM enqueteur WHERE nom='test_nom'");
 		
+		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
 		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
 		assertNotNull(rs);
 		
