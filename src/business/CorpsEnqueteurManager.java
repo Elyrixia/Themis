@@ -53,7 +53,7 @@ public class CorpsEnqueteurManager {
 		}
 		
 		// Sending query
-		ResultSet result = connect.select(CorpsEnqueteurDB.table,null,where);
+		ResultSet result = connect.select(CorpsEnqueteurDB.TABLE_NAME,null,where);
 		
 		// Preparing ArrayList
 		try {

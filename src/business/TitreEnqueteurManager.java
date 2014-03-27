@@ -53,7 +53,7 @@ public class TitreEnqueteurManager {
 		}
 		
 		// Sending query
-		ResultSet result = connect.select(TitreEnqueteurDB.table,null,where);
+		ResultSet result = connect.select(TitreEnqueteurDB.TABLE_NAME,null,where);
 		
 		// Preparing ArrayList
 		try {

@@ -39,7 +39,7 @@ class MainFenetre extends JFrame
 		
 		String w = "TEST = 1 AND W = 24 AND Z = 'lol'";
 		
-		s.update(EnqueteurDB.table, m, w);
+		s.update(EnqueteurDB.TABLE_NAME, m, w);
 		
 		
 		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();

@@ -10,7 +10,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 	/**
 	 * Correspondence with the table in the database
 	 */
-	public static final String table = "service_enqueteur";
+	public static final String TABLE_NAME = "service_enqueteur";
 	
 	@Override
 	public int create() {
@@ -24,7 +24,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		map.put("corps", String.valueOf(this.corps.getId()));
 		
 		// Run the query
-		sql.insert(table, map);
+		sql.insert(TABLE_NAME, map);
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -44,7 +44,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(table, map, where);
+		sqlManager.update(TABLE_NAME, map, where);
 	}
 
 	@Override
@@ -55,7 +55,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.delete(table, where);
+		sqlManager.delete(TABLE_NAME, where);
 	}
 
 }

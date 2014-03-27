@@ -53,7 +53,7 @@ public class ServiceEnqueteurManager {
 		}
 		
 		// Sending query
-		ResultSet result = connect.select(ServiceEnqueteurDB.table,null,where);
+		ResultSet result = connect.select(ServiceEnqueteurDB.TABLE_NAME,null,where);
 		
 		// Preparing ArrayList
 		try {

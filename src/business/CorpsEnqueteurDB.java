@@ -9,7 +9,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 	/**
 	 * Correspondence with the table in the database
 	 */
-	public static final String table = "corps_enqueteur";
+	public static final String TABLE_NAME = "corps_enqueteur";
 	
 	@Override
 	public int create() {
@@ -20,7 +20,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		map.put("libelle", this.libelle);
 		
 		// Run the query
-		sql.insert(table, map);;
+		sql.insert(TABLE_NAME, map);;
 		
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -37,7 +37,7 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(table, map, where);
+		sqlManager.update(TABLE_NAME, map, where);
 	}
 
 	@Override
@@ -48,6 +48,6 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.delete(table, where);
+		sqlManager.delete(TABLE_NAME, where);
 	}
 }
