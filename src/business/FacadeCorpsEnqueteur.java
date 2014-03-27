@@ -11,7 +11,7 @@ public class FacadeCorpsEnqueteur {
 	// ATTRIBUTES
 	
 	/**
-	 * Manager qui permet d'acceder aux entites souhaitees
+	 * Manager to load entities
 	 */
 	private CorpsEnqueteurManager ceMng;
 	
@@ -43,7 +43,8 @@ public class FacadeCorpsEnqueteur {
 	 */
 	public void modifierCorpsEnqueteur(CorpsEnqueteur corps, String libelle) throws Exception {
 		try {
-			//corps.setLibelle(libelle);
+			corps.setLibelle(libelle);
+			
 		} catch(Exception e) {
 			throw e;
 		}
@@ -66,7 +67,7 @@ public class FacadeCorpsEnqueteur {
 	 */
 	public HashMap<String,Object> consulterCorpsEnqueteur(CorpsEnqueteur corps) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		//result.put(":libelle",corps.getLibelle());
+		result.put(":libelle",corps.getLibelle());
 		return result;
 	}
 	

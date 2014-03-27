@@ -93,6 +93,20 @@ public class SQLManager
 		System.out.println(newQuery);
 		query(newQuery);
 	}
+	
+	/**
+	 * 
+	 */
+	public ResultSet querySelect(String query) {
+		try {
+			return statement.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 
 	/**
 	 * Returns the last ID updated in the Database

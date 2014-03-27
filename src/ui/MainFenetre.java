@@ -14,10 +14,13 @@ class MainFenetre extends JFrame
 {
 	public static void main(String []args)
 	{
-		Factory f = DBFactory.getInstance();
+		//Factory f = DBFactory.getInstance();
+		
 		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
 		
 		HashMap<String,String> filter = new HashMap<String,String>();
+		filter.put("id","=344");
+		//filter.put("libelle", "<>henri");
 		fce.chargerCorpsEnqueteur(filter);
 		
 		/*Enqueteur e = f.createEnqueteur();
