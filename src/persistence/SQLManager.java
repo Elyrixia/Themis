@@ -102,13 +102,26 @@ public class SQLManager
 	}
 	
 	/**
-	 * 
-	 * @param table
-	 * @param where
+	 * Creates and executes a DELETE query
+	 * @param table table in which lines have to be deleted
+	 * @param where the where clause of the query
 	 */
 	public void delete(String table, String where) {
 		
+		// building the query
+		String query = "DELETE FROM ";
+		query += table;
+		if(where != NO_WHERE)
+			query += "WHERE " + where;
 		
+		System.out.println(query);
+		
+		// executing the query
+		try {
+			this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
