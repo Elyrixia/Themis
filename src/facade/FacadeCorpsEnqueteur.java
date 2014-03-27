@@ -29,8 +29,7 @@ public class FacadeCorpsEnqueteur {
 	 * @param: libelle: "libelle" of this new CorpsEnqueteur
 	 * @param: services: List of "services" to add to this new CorpsEnqueteur
 	 */
-	public void ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception {
-		try {
+	public CorpsEnqueteur ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception {
 			Factory fac = DBFactory.getInstance();
 			CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
 			
@@ -38,11 +37,10 @@ public class FacadeCorpsEnqueteur {
 			newCorps.setListeServices(services);
 			
 			newCorps.create();
-		} catch(Exception e) {
-			throw e;
-		}
-		
+			
+			return newCorps;
 	}
+	
 	/**
 	 * Edit a CorpsEnqueteur
 	 * @param: corps: Entity to edit

@@ -34,7 +34,7 @@ public class CorpsEnqueteurManager {
 	public void loadCorpsEnqueteur(HashMap<String,String> filter) {
 		SQLManager connect = SQLManager.getConnection();
 		
-		String query = "SELECT * FROM CorpsEnqueteur";
+		String query = "SELECT * FROM corps_enqueteur";
 		
 		// Si on a fourni un filtre il va falloir specifier le where
 		if(filter.size() > 0) {
@@ -65,8 +65,8 @@ public class CorpsEnqueteurManager {
 				CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
-				row.put(":id",result.getInt("id"));
-				row.put(":libelle", result.getString("libelle"));
+				row.put("id",result.getInt("id"));
+				row.put("libelle", result.getString("libelle"));
 				// Loading CorpsEnqueteur using values in row
 				newCorps.load(row);
 				// Adding CorpsEnqueteur to ArrayList

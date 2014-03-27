@@ -65,13 +65,13 @@ public class EnqueteurManager {
 				Enqueteur newEnqueteur = fac.createEnqueteur();
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
-				row.put(":id",result.getInt("id"));
-				row.put(":nom", result.getString("nom"));
-				row.put(":prenom", result.getString("prenom"));
-				row.put(":adresse", result.getString("adresse"));
-				row.put(":telephonePro", result.getString("telephonePro"));
-				row.put(":telephonePerso", result.getString("telephonePerso"));
-				row.put(":email",result.getString("email"));
+				row.put("id",result.getInt("id"));
+				row.put("nom", result.getString("nom"));
+				row.put("prenom", result.getString("prenom"));
+				row.put("adresse", result.getString("adresse"));
+				row.put("telephonePro", result.getString("telephonePro"));
+				row.put("telephonePerso", result.getString("telephonePerso"));
+				row.put("email",result.getString("email"));
 				row.put("faxPro", result.getString("faxPro"));
 				
 				// Need to instanciate TitreEnqueteur to add to the Enqueteur
@@ -85,7 +85,6 @@ public class EnqueteurManager {
 				row.put("titre", resultTitre.get(0));
 				
 					/*
-					
 					String queryTitre = "SELECT * FROM TitreEnqueteur WHERE id = "+String.valueOf(titre);
 					ResultSet resultTitre = connect.querySelect(queryTitre);
 					resultTitre.first();
