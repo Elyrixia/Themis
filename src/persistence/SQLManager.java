@@ -38,7 +38,7 @@ public class SQLManager
 			try
 			{
 				connection = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net/sql434397", "sql434397", "qE1*kB2*");
-				System.err.println("WARNING : You are using a remote databse : sql4.freemysqlhosting.net/sql434397");
+				System.err.println("WARNING : You are using a remote database : sql4.freemysqlhosting.net/sql434397");
 			} catch (SQLException e)
 			{
 				// TODO Auto-generated catch block
