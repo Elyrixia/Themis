@@ -13,6 +13,9 @@ public class SQLManager
 	private static SQLManager instance = null;
 	private Connection connection;
 	private Statement statement;
+	
+	public static final String ALL = "*";
+	public static final String NO_WHERE = "no_where";
 
 	private SQLManager()
 	{
