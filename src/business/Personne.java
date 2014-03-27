@@ -37,6 +37,10 @@ public abstract class Personne {
 	 */
 	protected String faxPro;
 	
+	public Personne() {
+		
+	}
+	
 	// Getters and setters
 	
 	/**

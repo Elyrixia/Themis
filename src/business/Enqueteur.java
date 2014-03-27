@@ -20,10 +20,25 @@ public abstract class Enqueteur extends Personne implements Business
 	 */
 	protected String telephonePerso;
 	
+	public Enqueteur() {
+		super();
+	}
+	
 	/**
 	 * @see load() from interface Business
 	 */
-	public abstract void load(HashMap map);
+	public void load(HashMap<String, Object> map) {
+		
+		this.id = (int) map.get("id");
+		this.nom = (String) map.get("nom");
+		this.prenom = (String) map.get("prenom");
+		this.adresse = (String) map.get("adresse");
+		this.telephonePro = (String) map.get("telephonePro");
+		this.email = (String) map.get("email");
+		this.faxPro = (String) map.get("faxPro");
+		this.titre = (TitreEnqueteur) map.get("titre");
+		this.service = (ServiceEnqueteur) map.get("service");
+	}
 	
 	/**
 	 * @see create() from interface Business

@@ -5,24 +5,39 @@ import java.util.HashMap;
 public abstract class ServiceEnqueteur implements Business {
 
 	/**
+	 * The id in the database
+	 */
+	protected int id;
+	
+	/**
 	 * The name of the service
 	 */
-	private String libelle;
+	protected String libelle;
 	
 	/**
 	 * The phone number of the service
 	 */
-	private String telephone;
+	protected String telephone;
 	
 	/**
 	 * The location (full address) of the service
 	 */
-	private String lieu;
+	protected String lieu;
 	
 	/**
 	 * @see load() from interface Business
 	 */
-	public abstract void load(HashMap map);
+	public void load(HashMap<String, Object> map) {
+		
+		this.id = (int) map.get("id");
+		this.libelle = (String) map.get("libelle");
+		this.telephone = (String) map.get("telephone");
+		this.lieu = (String) map.get("lieu");
+	}
+	
+	public ServiceEnqueteur() {
+		
+	}
 	
 	/**
 	 * @see create() from interface Business
