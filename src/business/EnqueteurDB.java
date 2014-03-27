@@ -7,12 +7,10 @@ import persistence.SQLManager;
 public class EnqueteurDB extends Enqueteur
 {
 	
-	private static SQLManager sqlManager = SQLManager.getConnection();
-	
 	@Override
 	public int create()
 	{
-		// TODO Auto-generated method stub
+		SQLManager sqlManager = SQLManager.getConnection();
 		HashMap<String, String> correspondance = new HashMap<>();
 		correspondance.put(":test", "Jack");
 		correspondance.put(":truc", "John");
@@ -25,7 +23,8 @@ public class EnqueteurDB extends Enqueteur
 	@Override
 	public void update()
 	{
-		HashMap<String, String> correspondance = new HashMap<>();
+		SQLManager sqlManager = SQLManager.getConnection();
+		HashMap<String, String> correspondance = new HashMap<String, String>();
 		correspondance.put(":nom", this.nom);
 		correspondance.put(":prenom", this.prenom);
 		correspondance.put(":id", String.valueOf(this.id));
@@ -34,15 +33,10 @@ public class EnqueteurDB extends Enqueteur
 	}
 
 	@Override
-	public void load(HashMap map)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
 	public void delete()
 	{
+		SQLManager sqlManager = SQLManager.getConnection();
+		
 		// TODO Auto-generated method stub
 		HashMap<String, String> correspondance = new HashMap<>();
 		correspondance.put(":id", String.valueOf(this.id));

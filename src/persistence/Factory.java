@@ -8,6 +8,4 @@ public abstract class Factory
 	public abstract CorpsEnqueteur createCorpsEnqueteur();
 	public abstract ServiceEnqueteur createServiceEnqueteur();
 	public abstract TitreEnqueteur createTitreEnqueteur();
-	
-	
 }

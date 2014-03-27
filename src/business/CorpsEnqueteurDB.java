@@ -2,24 +2,49 @@ package business;
 
 import java.util.HashMap;
 
+import persistence.SQLManager;
+
 public class CorpsEnqueteurDB extends CorpsEnqueteur
 {
 
 	@Override
 	public int create() {
-		// TODO Auto-generated method stub
-		return 0;
+		SQLManager sql = SQLManager.getConnection();
+		
+		// Prepare the query
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put(":libelle", this.libelle);
+		
+		// Run the query
+		sql.query("INSERT INTO CorpsEnqueteur(libelle) VALUES(':libelle')", map);
+		
+		// Get the id of this new CorpsEnqueteur
+		this.id = sql.getLastID();
+		return this.id;
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		SQLManager sqlManager = SQLManager.getConnection();
 		
+		// Prepare the query
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put(":id",String.valueOf(this.id));
+		map.put(":libelle", this.libelle);
+		
+		// Run the query
+		sqlManager.query("UPDATE enqueteur SET libelle=':libelle' WHERE id=':id'", map);
 	}
 
 	@Override
 	public void delete() {
-		// TODO Auto-generated method stub
+		SQLManager sqlManager = SQLManager.getConnection();
 		
+		// Prepare the query
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put(":id",String.valueOf(this.id));
+		
+		// Run the query
+		sqlManager.query("DELETE FROM enqueteur WHERE id=':id'", map);
 	}
 }
