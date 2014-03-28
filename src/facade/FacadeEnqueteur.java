@@ -7,6 +7,7 @@ import persistence.DBFactory;
 import persistence.Factory;
 import business.Enqueteur;
 import business.EnqueteurManager;
+import business.EnqueteurManagerDB;
 import business.ServiceEnqueteur;
 import business.TitreEnqueteur;
 
@@ -98,7 +99,7 @@ public class FacadeEnqueteur {
 	 * @param: filter: condition to respect in the query
 	 */
 	public ArrayList<Enqueteur> chargerEnqueteur(HashMap<String,String> filter) {
-		eMng = new EnqueteurManager();
+		eMng = new EnqueteurManagerDB();
 		eMng.loadEnqueteurs(filter);
 		return eMng.getListeEnqueteurs();
 	}

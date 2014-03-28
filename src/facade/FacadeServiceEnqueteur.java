@@ -7,6 +7,7 @@ import persistence.DBFactory;
 import persistence.Factory;
 import business.ServiceEnqueteur;
 import business.ServiceEnqueteurManager;
+import business.ServiceEnqueteurManagerDB;
 
 public class FacadeServiceEnqueteur {
 
@@ -78,7 +79,7 @@ public class FacadeServiceEnqueteur {
 	 * @param: filter: condition to respect in the query
 	 */
 	public ArrayList<ServiceEnqueteur> chargerServiceEnqueteur(HashMap<String,String> filter) {
-		seMng = new ServiceEnqueteurManager();
+		seMng = new ServiceEnqueteurManagerDB();
 		seMng.loadServicesEnqueteur(filter);
 		return seMng.getListeServicesEnqueteur();
 	}

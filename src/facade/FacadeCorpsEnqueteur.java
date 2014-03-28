@@ -7,6 +7,7 @@ import persistence.DBFactory;
 import persistence.Factory;
 import business.CorpsEnqueteur;
 import business.CorpsEnqueteurManager;
+import business.CorpsEnqueteurManagerDB;
 import business.ServiceEnqueteur;
 
 public class FacadeCorpsEnqueteur
@@ -88,7 +89,7 @@ public class FacadeCorpsEnqueteur
 	 */
 	public ArrayList<CorpsEnqueteur> chargerCorpsEnqueteur(HashMap<String, String> filter)
 	{
-		ceMng = new CorpsEnqueteurManager();
+		ceMng = new CorpsEnqueteurManagerDB();
 		ceMng.loadCorpsEnqueteur(filter);
 		return ceMng.getListeCorpsEnqueteur();
 	}
