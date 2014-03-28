@@ -35,7 +35,7 @@ public class EnqueteurManagerDB extends EnqueteurManager
 		String where = Utilitaire.getWhere(filter);
 
 		// Sending query
-		ResultSet result = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.ALL, where);
+		ResultSet result = connect.select(EnqueteurDB.TABLE_NAME, where);
 
 		// Preparing ArrayList
 		try

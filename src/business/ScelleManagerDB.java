@@ -21,7 +21,7 @@ public class ScelleManagerDB extends ScelleManager {
 		String where = Utilitaire.getWhere(filter);
 
 		// Sending query
-		ResultSet result = connect.select(ScelleDB.TABLE_NAME, SQLManager.ALL, where);
+		ResultSet result = connect.select(ScelleDB.TABLE_NAME, where);
 
 		// Preparing ArrayList
 		try

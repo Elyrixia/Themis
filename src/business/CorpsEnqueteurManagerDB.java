@@ -34,7 +34,7 @@ public class CorpsEnqueteurManagerDB extends CorpsEnqueteurManager
 		String where = Utilitaire.getWhere(filter);
 
 		// Sending query
-		ResultSet result = connect.select(CorpsEnqueteurDB.TABLE_NAME, SQLManager.ALL, where);
+		ResultSet result = connect.select(CorpsEnqueteurDB.TABLE_NAME, where);
 
 		// Preparing ArrayList
 		try
