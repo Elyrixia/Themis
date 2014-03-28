@@ -27,7 +27,7 @@ public abstract class CorpsEnqueteurManager
 	 * 
 	 * @param: filter: A DEFINIR
 	 */
-	public void loadCorpsEnqueteur(HashMap<String, String> filter) {}
+	public abstract void loadCorpsEnqueteur(HashMap<String, String> filter);
 
 	// GETTERS
 

@@ -1,15 +1,18 @@
 package business;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import common.Utilitaire;
 import persistence.SQLManager;
 
-public class EnqueteurDB extends Enqueteur {
-	
+public class AffaireDB extends Affaire {
+
 	/**
 	 * Correspondence with the table in the database
 	 */
-	public static final String TABLE_NAME = "enqueteur";
+	public static final String TABLE_NAME = "affaire";
 	
 	@Override
 	public int create() {
@@ -18,14 +21,15 @@ public class EnqueteurDB extends Enqueteur {
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("nom", this.nom);
-		map.put("prenom", this.prenom);
-		map.put("adresse", this.adresse);
-		map.put("telephonePro", this.telephonePro);
-		map.put("telephonePerso", this.telephonePerso);
-		map.put("email", this.email);
-		map.put("faxPro", this.faxPro);
-		map.put("titre", String.valueOf(this.titre.getId()));
-		map.put("service", String.valueOf(this.service.getId()));
+		map.put("numDossier", String.valueOf(this.numDossier));
+		map.put("numInstruction", String.valueOf(this.numInstruction));
+		map.put("numParquet", String.valueOf(this.numParquet));
+		
+		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
+		map.put("dateOrdre", db.format(this.dateOrdre));
+		map.put("dateRendu", db.format(this.dateRendu));
+		
+		map.put("delai", Utilitaire.booleanToString(this.delai));
 		
 		// Run the query
 		sql.insert(TABLE_NAME, map);
@@ -42,14 +46,16 @@ public class EnqueteurDB extends Enqueteur {
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("nom", this.nom);
-		map.put("prenom", this.prenom);
-		map.put("adresse", this.adresse);
-		map.put("telephonePro", this.telephonePro);
-		map.put("telephonePerso", this.telephonePerso);
-		map.put("email", this.email);
-		map.put("faxPro", this.faxPro);
-		map.put("titre", String.valueOf(this.titre.getId()));
-		map.put("service", String.valueOf(this.service.getId()));
+		map.put("numDossier", String.valueOf(this.numDossier));
+		map.put("numInstruction", String.valueOf(this.numInstruction));
+		map.put("numParquet", String.valueOf(this.numParquet));
+		
+		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
+		map.put("dateOrdre", db.format(this.dateOrdre));
+		map.put("dateRendu", db.format(this.dateRendu));
+		
+		map.put("delai", Utilitaire.booleanToString(this.delai));
+		
 		String where = "id = "+this.id;
 		
 		// Run the query

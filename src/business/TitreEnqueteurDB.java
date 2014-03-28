@@ -22,7 +22,7 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 		map.put("libelle", this.libelle);
 
 		// Run the query
-		sql.insert(TitreEnqueteurDB.TABLE_NAME, map);
+		sql.insert(TABLE_NAME, map);
 
 		// Get the id of this new CorpsEnqueteur
 		this.id = sql.getLastID();
@@ -40,7 +40,7 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 		String where = "id = " + this.id;
 
 		// Run the query
-		sqlManager.update(TitreEnqueteurDB.TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, map, where);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 		String where = "id = " + this.id;
 
 		// Run the query
-		sqlManager.delete(TitreEnqueteurDB.TABLE_NAME, where);
+		sqlManager.delete(TABLE_NAME, where);
 	}
 
 }

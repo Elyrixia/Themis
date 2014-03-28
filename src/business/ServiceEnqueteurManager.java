@@ -27,7 +27,7 @@ public abstract class ServiceEnqueteurManager
 	 * 
 	 * @param: filter: A DEFINIR
 	 */
-	public void loadServicesEnqueteur(HashMap<String, String> filter) {}
+	public abstract void loadServicesEnqueteur(HashMap<String, String> filter);
 
 	// GETTERS
 

@@ -25,7 +25,7 @@ class MainFenetre extends JFrame
 		System.out.println(Utilitaire.implode(",", l));
 		*/
 		
-		SQLManager s = SQLManager.getConnection();
+		/*SQLManager s = SQLManager.getConnection();
 		HashMap<String, String> hm = new HashMap<String, String>();
 		hm.put("nom", "nom_test");
 		hm.put("prenom", "prenom_test");
@@ -39,19 +39,19 @@ class MainFenetre extends JFrame
 		
 		String w = "TEST = 1 AND W = 24 AND Z = 'lol'";
 		
-		s.update(EnqueteurDB.TABLE_NAME, m, w);
+		s.update(EnqueteurDB.TABLE_NAME, m, w); */
 		
 		
 		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
 		
 		try {
-			CorpsEnqueteur bob = fce.ajouterCorpsEnqueteur("boby", new ArrayList<ServiceEnqueteur>());
+			CorpsEnqueteur bob = fce.ajouterCorpsEnqueteur("henri");
 			
 			HashMap<String,Object> map = fce.consulterCorpsEnqueteur(bob);
 			System.out.println(map.get(":libelle"));
 			
 			HashMap<String,String> filter = new HashMap<String,String>();
-			filter.put("id", "=3");
+			filter.put("id", "=5");
 			ArrayList<CorpsEnqueteur> test = fce.chargerCorpsEnqueteur(filter);
 			System.out.println(test.get(0).getLibelle());
 			

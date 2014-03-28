@@ -8,7 +8,6 @@ import persistence.Factory;
 import business.CorpsEnqueteur;
 import business.CorpsEnqueteurManager;
 import business.CorpsEnqueteurManagerDB;
-import business.ServiceEnqueteur;
 
 public class FacadeCorpsEnqueteur
 {
@@ -34,7 +33,7 @@ public class FacadeCorpsEnqueteur
 	 * @param: libelle: "libelle" of this new CorpsEnqueteur
 	 * @param: services: List of "services" to add to this new CorpsEnqueteur
 	 */
-	public CorpsEnqueteur ajouterCorpsEnqueteur(String libelle, ArrayList<ServiceEnqueteur> services) throws Exception
+	public CorpsEnqueteur ajouterCorpsEnqueteur(String libelle) throws Exception
 	{
 		Factory fac = DBFactory.getInstance();
 		CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
