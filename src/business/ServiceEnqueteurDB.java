@@ -25,10 +25,8 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		map.put("id_corps", String.valueOf(this.idCorps.getId()));
 
 		// Run the query
-		sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, map);
 
-		// Get the id of this new CorpsEnqueteur
-		this.id = sql.getLastID();
 		return this.id;
 	}
 

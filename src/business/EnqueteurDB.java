@@ -28,10 +28,8 @@ public class EnqueteurDB extends Enqueteur {
 		map.put("id_service", String.valueOf(this.idService.getId()));
 		
 		// Run the query
-		sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, map);
 		
-		// Get the id of this new CorpsEnqueteur
-		this.id = sql.getLastID();
 		return this.id;
 	}
 

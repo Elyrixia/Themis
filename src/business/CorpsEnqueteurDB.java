@@ -20,10 +20,8 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		map.put("libelle", this.libelle);
 		
 		// Run the query
-		sql.insert(TABLE_NAME, map);
-		
-		// Get the id of this new CorpsEnqueteur
-		this.id = sql.getLastID();
+		this.id = sql.insert(TABLE_NAME, map);
+
 		return this.id;
 	}
 

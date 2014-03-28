@@ -32,10 +32,8 @@ public class ScelleDB extends Scelle {
 		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		
 		// Run the query
-		sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, map);
 		
-		// Get the id of this new CorpsEnqueteur
-		this.id = sql.getLastID();
 		return this.id;
 		
 	}
