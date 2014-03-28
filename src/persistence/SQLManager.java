@@ -116,13 +116,7 @@ public class SQLManager
 		System.out.println(query);
 
 		// executing the query
-		/*
-		 * try {
-		 * this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-		 * } catch(SQLException e) {
-		 * e.printStackTrace();
-		 * }
-		 */
+		this._executeQuery(query);
 	}
 
 	/**
@@ -146,6 +140,9 @@ public class SQLManager
 		query += " WHERE " + where;
 
 		System.out.println(query);
+		
+		// executing the query
+		this._executeQuery(query);
 	}
 
 	/**
@@ -166,14 +163,7 @@ public class SQLManager
 		System.out.println(query);
 
 		// executing the query
-		try
-		{
-			this.statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
+		this._executeQuery(query);
 	}
 
 	/**
@@ -182,7 +172,7 @@ public class SQLManager
 	 *            : The query to be executed on the Database
 	 * 
 	 */
-	public void query(String query)
+	private void _executeQuery(String query)
 	{
 		try
 		{
