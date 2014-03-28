@@ -15,7 +15,6 @@ public class SQLManager
 {
 	private static SQLManager	instance	= null;
 	private Connection			connection;
-	private Statement			statement;
 	
 	public static final String	NO_WHERE	= "no_where";
 	
@@ -55,15 +54,6 @@ public class SQLManager
 				e.printStackTrace();
 			}
 		}
-		
-		try
-		{
-			statement = connection.createStatement();
-		}
-		catch (SQLException e)
-		{
-			e.printStackTrace();
-		}
 	}
 
 	/**
@@ -100,6 +90,7 @@ public class SQLManager
 		
 		try
 		{
+			Statement statement = connection.createStatement();
 			return statement.executeQuery(query);
 		}
 		catch (SQLException e)
@@ -211,6 +202,7 @@ public class SQLManager
 	{
 		try
 		{
+			Statement statement = connection.createStatement();
 			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
 		}
 		catch (SQLException e)
@@ -230,6 +222,7 @@ public class SQLManager
 		ResultSet lastID = null;
 		try
 		{
+			Statement statement = connection.createStatement();
 			lastID = statement.getGeneratedKeys();
 			if (lastID.next())
 				return lastID.getInt(1);
