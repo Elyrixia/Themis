@@ -15,8 +15,7 @@ public class SQLManager
 	private static SQLManager	instance	= null;
 	private Connection			connection;
 	private Statement			statement;
-
-	public static final String	ALL			= "*";
+	
 	public static final String	NO_WHERE	= "no_where";
 
 	private SQLManager()
@@ -86,18 +85,15 @@ public class SQLManager
 	public ResultSet select(String table, ArrayList<String> fields, String where)
 	{
 		String query = "SELECT ";
-		for(String s : fields)
-		{
-			query += s + ", ";
-		}
-		
-		query = query.substring(0, query.length() - 2); // Getting rid of the last ", "
+		query += Utilitaire.implode(",", fields);
 		query += " FROM " + table;
 		
 		if(where != SQLManager.NO_WHERE)
 		{
-			query += " WHERE "+where;
+			query += " WHERE " + where;
 		}
+		
+		System.out.println(query);
 		
 		try
 		{
@@ -109,6 +105,20 @@ public class SQLManager
 		}
 		
 		return null;
+	}
+	
+	/**
+	 * 
+	 * @param tableName
+	 * @param where
+	 * @return
+	 */
+	public ResultSet select(String tableName, String where)
+	{
+		ArrayList<String> allFields = new ArrayList<String>();
+		allFields.add("*");
+		
+		return select(tableName, allFields, where);
 	}
 
 	/**
@@ -154,10 +164,10 @@ public class SQLManager
 		for (String column : fieldsValues.keySet())
 		{
 			value = fieldsValues.get(column);
-			query += column + " = '" + value + "', ";
+			query += column + "='" + value + "',";
 		}
 
-		query = query.substring(0, query.length() - 2); // Getting rid of the last ',
+		query = query.substring(0, query.length() - 1); // Getting rid of the last ',
 
 		query += " WHERE " + where;
 
@@ -180,7 +190,7 @@ public class SQLManager
 		String query = "DELETE FROM ";
 		query += table;
 		if (where != SQLManager.NO_WHERE)
-			query += "WHERE " + where;
+			query += " WHERE " + where;
 
 		System.out.println(query);
 
@@ -209,25 +219,6 @@ public class SQLManager
 	}
 
 	/**
-	 * 
-	 * @param string
-	 *            : A query with token to replace
-	 * @param correspondance
-	 *            : Correspondence between token and their values
-	 */
-	public void query(String string, HashMap<String, String> correspondance)
-	{
-		String newQuery = string;
-		for (String key : correspondance.keySet())
-		{
-			newQuery = newQuery.replace(key, correspondance.get(key));
-		}
-		System.out.println(newQuery);
-		query(newQuery);
-	}
-
-
-	/**
 	 * Returns the last ID updated in the Database
 	 * 
 	 * @return int : The last ID updated
@@ -249,13 +240,5 @@ public class SQLManager
 		}
 
 		return -1;
-	}
-
-	public ResultSet select(String tableName, String field, String where)
-	{
-		ArrayList<String> allFields = new ArrayList<String>();
-		allFields.add("*");
-		
-		return select(tableName, allFields, where);
 	}
 }
