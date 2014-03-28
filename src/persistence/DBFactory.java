@@ -1,6 +1,20 @@
 package persistence;
 
 import business.*;
+import business.affaire.Affaire;
+import business.affaire.AffaireDB;
+import business.affaire.Scelle;
+import business.affaire.ScelleDB;
+import business.affaire.TypeObjet;
+import business.affaire.TypeObjetDB;
+import business.enqueteur.CorpsEnqueteur;
+import business.enqueteur.CorpsEnqueteurDB;
+import business.enqueteur.Enqueteur;
+import business.enqueteur.EnqueteurDB;
+import business.enqueteur.ServiceEnqueteur;
+import business.enqueteur.ServiceEnqueteurDB;
+import business.enqueteur.TitreEnqueteur;
+import business.enqueteur.TitreEnqueteurDB;
 
 public class DBFactory extends Factory
 {
@@ -50,6 +64,11 @@ public class DBFactory extends Factory
 	@Override
 	public Scelle createScelle() {
 		return new ScelleDB();
+	}
+	
+	@Override
+	public TypeObjet createTypeObjet() {
+		return new TypeObjetDB();
 	}
 
 }

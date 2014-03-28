@@ -6,9 +6,9 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.Affaire;
-import business.AffaireManager;
-import business.AffaireManagerDB;
+import business.affaire.Affaire;
+import business.affaire.AffaireManager;
+import business.affaire.AffaireManagerDB;
 
 public class FacadeAffaire {
 

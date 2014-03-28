@@ -1,4 +1,4 @@
-package business;
+package business.affaire;
 
 import java.util.ArrayList;
 import java.util.HashMap;

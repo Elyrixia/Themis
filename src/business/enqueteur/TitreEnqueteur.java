@@ -1,6 +1,9 @@
-package business;
+package business.enqueteur;
 
 import java.util.HashMap;
+
+import business.Business;
+import business.Titre;
 
 public abstract class TitreEnqueteur extends Titre implements Business {
 

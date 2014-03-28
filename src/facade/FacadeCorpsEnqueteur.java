@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.CorpsEnqueteur;
-import business.CorpsEnqueteurManager;
-import business.CorpsEnqueteurManagerDB;
+import business.enqueteur.CorpsEnqueteur;
+import business.enqueteur.CorpsEnqueteurManager;
+import business.enqueteur.CorpsEnqueteurManagerDB;
 
 public class FacadeCorpsEnqueteur
 {

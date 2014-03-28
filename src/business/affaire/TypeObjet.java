@@ -1,22 +1,19 @@
-package business;
+package business.affaire;
 
 import java.util.HashMap;
 
-public abstract class CorpsEnqueteur implements Business {
+import business.Business;
 
+public abstract class TypeObjet implements Business {
+	
 	/**
 	 * The id in the database
 	 */
 	protected int id;
 	
-	/**
-	 * The name of the structure of detectives (e.g. Police)
-	 */
 	protected String libelle;
 	
-	public CorpsEnqueteur() {
-		
-	}
+	public TypeObjet() {}
 
 	/**
 	 * @see load() from interface Business
@@ -35,13 +32,13 @@ public abstract class CorpsEnqueteur implements Business {
 	 * @see update() from interface Business
 	 */
 	public abstract void update();
-	
+
 	/**
 	 * @see delete() from interface Business
 	 */
 	public abstract void delete();
 	
-	// setters and getters
+	// getters and setters
 	
 	public int getId() {
 		return id;
@@ -50,16 +47,13 @@ public abstract class CorpsEnqueteur implements Business {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getLibelle() {
 		return libelle;
 	}
 
-	public void setLibelle(String libelle) throws Exception {
-		if(libelle.length() > 60)
-			throw new Exception("The label length must not exceed 60 characters!");
-		
+	public void setLibelle(String libelle) {
 		this.libelle = libelle;
 	}
-	
+
 }

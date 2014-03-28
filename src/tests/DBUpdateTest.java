@@ -16,7 +16,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.SQLManager;
-import business.EnqueteurDB;
+import business.enqueteur.EnqueteurDB;
 
 public class DBUpdateTest {
 	

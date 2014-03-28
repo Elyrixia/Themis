@@ -1,4 +1,4 @@
-package business;
+package business.enqueteur;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import common.Utilitaire;
-
 import persistence.DBFactory;
 import persistence.Factory;
 import persistence.SQLManager;

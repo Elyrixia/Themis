@@ -1,40 +1,25 @@
-package business;
+package business.affaire;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 
-import common.Utilitaire;
-
 import persistence.DBFactory;
 import persistence.Factory;
 import persistence.SQLManager;
+import common.Utilitaire;
 
-public class CorpsEnqueteurManagerDB extends CorpsEnqueteurManager
-{
+public class TypeObjetManagerDB extends TypeObjetManager {
 
-	// CONSTRUCTOR
-
-	public CorpsEnqueteurManagerDB()
-	{
-		super();
-	}
-
-	// METHODS
-
-	/**
-	 * Load CorpsEnqueteur list using a filter
-	 * 
-	 * @param: filter: A DEFINIR
-	 */
-	public void loadCorpsEnqueteur(HashMap<String, String> filter)
-	{
+	@Override
+	public void loadTypeObjet(HashMap<String, String> filter) {
+		
 		SQLManager connect = SQLManager.getConnection();
 
 		String where = Utilitaire.getWhere(filter);
 
 		// Sending query
-		ResultSet result = connect.select(CorpsEnqueteurDB.TABLE_NAME, where);
+		ResultSet result = connect.select(TypeObjetDB.TABLE_NAME, where);
 
 		// Preparing ArrayList
 		try
@@ -42,19 +27,19 @@ public class CorpsEnqueteurManagerDB extends CorpsEnqueteurManager
 			Factory fac = DBFactory.getInstance();
 			while (result.next())
 			{
-				// Create new CorpsEnqueteur
-				CorpsEnqueteur newCorps = fac.createCorpsEnqueteur();
+				// Create new TypeObjet
+				TypeObjet newTypeObjet = fac.createTypeObjet();
 				
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
 				row.put("id", result.getInt("id"));
 				row.put("libelle", result.getString("libelle"));
 				
-				// Loading CorpsEnqueteur using values in row
-				newCorps.load(row);
+				// Loading TypeObjet using values in row
+				newTypeObjet.load(row);
 				
-				// Adding CorpsEnqueteur to ArrayList
-				this.listeCorps.add(newCorps);
+				// Adding TypeObjet to ArrayList
+				this.listeTypesObjet.add(newTypeObjet);
 			}
 		}
 		catch (SQLException e)
@@ -62,6 +47,7 @@ public class CorpsEnqueteurManagerDB extends CorpsEnqueteurManager
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

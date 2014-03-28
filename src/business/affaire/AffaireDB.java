@@ -1,71 +1,67 @@
-package business;
+package business.affaire;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
 
+import common.Utilitaire;
 import persistence.SQLManager;
 
-public class ScelleDB extends Scelle {
+public class AffaireDB extends Affaire {
 
 	/**
 	 * Correspondence with the table in the database
 	 */
-	public static final String TABLE_NAME = "scelle";
+	public static final String TABLE_NAME = "affaire";
 	
 	@Override
 	public int create() {
-		
 		SQLManager sql = SQLManager.getConnection();
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("num_proces", String.valueOf(this.numProces));
+		map.put("nom", this.nom);
+		map.put("num_dossier", String.valueOf(this.numDossier));
+		map.put("num_instruction", String.valueOf(this.numInstruction));
+		map.put("num_parquet", String.valueOf(this.numParquet));
 		
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("date_recup", db.format(this.dateRecup));
+		map.put("date_ordre", db.format(this.dateOrdre));
+		map.put("date_rendu", db.format(this.dateRendu));
 		
-		map.put("lieu_recup", this.lieuRecup);
-		map.put("comment", this.comment);
-		
-		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
+		map.put("delai", Utilitaire.booleanToString(this.delai));
 		
 		// Run the query
 		this.id = sql.insert(TABLE_NAME, map);
 		
 		return this.id;
-		
 	}
 
 	@Override
 	public void update() {
-		
 		SQLManager sqlManager = SQLManager.getConnection();
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("num_proces", String.valueOf(this.numProces));
-				
+		map.put("nom", this.nom);
+		map.put("num_dossier", String.valueOf(this.numDossier));
+		map.put("num_instruction", String.valueOf(this.numInstruction));
+		map.put("num_parquet", String.valueOf(this.numParquet));
+		
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("date_recup", db.format(this.dateRecup));
-				
-		map.put("lieu_recup", this.lieuRecup);
-		map.put("comment", this.comment);
-				
-		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
+		map.put("date_ordre", db.format(this.dateOrdre));
+		map.put("date_rendu", db.format(this.dateRendu));
+		
+		map.put("delai", Utilitaire.booleanToString(this.delai));
 		
 		String where = "id = "+this.id;
 		
 		// Run the query
 		sqlManager.update(TABLE_NAME, map, where);
-		
 	}
 
 	@Override
 	public void delete() {
-		
 		SQLManager sqlManager = SQLManager.getConnection();
 		
 		// Prepare the query
@@ -73,7 +69,6 @@ public class ScelleDB extends Scelle {
 		
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
-		
 	}
 
 }

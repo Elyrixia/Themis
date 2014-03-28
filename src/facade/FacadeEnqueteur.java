@@ -5,11 +5,11 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.Enqueteur;
-import business.EnqueteurManager;
-import business.EnqueteurManagerDB;
-import business.ServiceEnqueteur;
-import business.TitreEnqueteur;
+import business.enqueteur.Enqueteur;
+import business.enqueteur.EnqueteurManager;
+import business.enqueteur.EnqueteurManagerDB;
+import business.enqueteur.ServiceEnqueteur;
+import business.enqueteur.TitreEnqueteur;
 
 public class FacadeEnqueteur {
 

@@ -6,10 +6,10 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.Affaire;
-import business.Scelle;
-import business.ScelleManager;
-import business.ScelleManagerDB;
+import business.affaire.Affaire;
+import business.affaire.Scelle;
+import business.affaire.ScelleManager;
+import business.affaire.ScelleManagerDB;
 
 public class FacadeScelle {
 	

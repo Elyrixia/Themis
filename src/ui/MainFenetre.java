@@ -6,9 +6,9 @@ import java.util.HashMap;
 import javax.swing.JFrame;
 
 import persistence.SQLManager;
-import business.CorpsEnqueteur;
-import business.EnqueteurDB;
-import business.ServiceEnqueteur;
+import business.enqueteur.CorpsEnqueteur;
+import business.enqueteur.EnqueteurDB;
+import business.enqueteur.ServiceEnqueteur;
 import common.Utilitaire;
 import facade.FacadeCorpsEnqueteur;
 import facade.FacadeServiceEnqueteur;

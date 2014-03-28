@@ -5,9 +5,9 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.TitreEnqueteur;
-import business.TitreEnqueteurManager;
-import business.TitreEnqueteurManagerDB;
+import business.enqueteur.TitreEnqueteur;
+import business.enqueteur.TitreEnqueteurManager;
+import business.enqueteur.TitreEnqueteurManagerDB;
 
 public class FacadeTitreEnqueteur {
 

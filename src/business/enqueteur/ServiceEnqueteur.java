@@ -1,6 +1,8 @@
-package business;
+package business.enqueteur;
 
 import java.util.HashMap;
+
+import business.Business;
 
 public abstract class ServiceEnqueteur implements Business
 {

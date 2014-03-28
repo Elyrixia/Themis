@@ -1,24 +1,26 @@
-package business;
+package business.enqueteur;
 
 import java.util.HashMap;
 
 import persistence.SQLManager;
 
-public class CorpsEnqueteurDB extends CorpsEnqueteur
+public class TitreEnqueteurDB extends TitreEnqueteur
 {
+
 	/**
 	 * Correspondence with the table in the database
 	 */
-	public static final String TABLE_NAME = "corps_enqueteur";
-	
+	public static final String	TABLE_NAME	= "titre_enqueteur";
+
 	@Override
-	public int create() {
+	public int create()
+	{
 		SQLManager sql = SQLManager.getConnection();
-		
+
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("libelle", this.libelle);
-		
+
 		// Run the query
 		this.id = sql.insert(TABLE_NAME, map);
 
@@ -26,26 +28,29 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 	}
 
 	@Override
-	public void update() {
+	public void update()
+	{
 		SQLManager sqlManager = SQLManager.getConnection();
-		
+
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("libelle", this.libelle);
-		String where = "id = "+this.id;
-		
+		String where = "id = " + this.id;
+
 		// Run the query
 		sqlManager.update(TABLE_NAME, map, where);
 	}
 
 	@Override
-	public void delete() {
+	public void delete()
+	{
 		SQLManager sqlManager = SQLManager.getConnection();
-		
+
 		// Prepare the query
-		String where = "id = "+this.id;
-		
+		String where = "id = " + this.id;
+
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
 	}
+
 }

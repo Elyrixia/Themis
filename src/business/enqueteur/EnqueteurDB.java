@@ -1,4 +1,4 @@
-package business;
+package business.enqueteur;
 
 import java.util.HashMap;
 

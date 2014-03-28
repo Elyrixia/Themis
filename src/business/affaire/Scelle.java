@@ -1,7 +1,9 @@
-package business;
+package business.affaire;
 
 import java.util.Date;
 import java.util.HashMap;
+
+import business.Business;
 
 public abstract class Scelle implements Business {
 	

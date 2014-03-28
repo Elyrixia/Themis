@@ -5,10 +5,10 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
-import business.CorpsEnqueteur;
-import business.ServiceEnqueteur;
-import business.ServiceEnqueteurManager;
-import business.ServiceEnqueteurManagerDB;
+import business.enqueteur.CorpsEnqueteur;
+import business.enqueteur.ServiceEnqueteur;
+import business.enqueteur.ServiceEnqueteurManager;
+import business.enqueteur.ServiceEnqueteurManagerDB;
 
 public class FacadeServiceEnqueteur {
 
