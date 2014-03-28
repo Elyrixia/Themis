@@ -41,5 +41,11 @@ public class DBFactory extends Factory
 	{
 		return new TitreEnqueteurDB();
 	}
+	
+	@Override
+	public Affaire createAffaire() {
+		return new AffaireDB();
+	}
+	
 
 }

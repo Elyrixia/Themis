@@ -18,4 +18,13 @@ public class Utilitaire {
 		
 		return s.substring(0, s.length() - 1);
 	}
+	
+	/**
+	 * Converts a boolean into a String
+	 */
+	public static String booleanToString(boolean bool) {
+		return bool?"1":"0";
+	}
+	
+	
 }

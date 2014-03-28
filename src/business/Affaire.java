@@ -41,7 +41,6 @@ public abstract class Affaire implements Business {
 	 * @see load() from interface Business
 	 */
 	public void load(HashMap<String, Object> map) {
-		
 		this.id = (int) map.get("id");
 		this.nom = (String) map.get("nom");
 		this.numDossier = (int) map.get("numDossier");
@@ -125,7 +124,7 @@ public abstract class Affaire implements Business {
 		this.dateRendu = dateRendu;
 	}
 
-	public boolean isDelai() {
+	public boolean getDelai() {
 		return delai;
 	}
 
