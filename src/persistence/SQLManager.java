@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Properties;
 
 import common.Utilitaire;
 
@@ -17,48 +18,50 @@ public class SQLManager
 	private Statement			statement;
 	
 	public static final String	NO_WHERE	= "no_where";
-
+	
 	private SQLManager()
 	{
 		try
 		{
 			Class.forName("com.mysql.jdbc.Driver");
-
 		}
 		catch (Exception e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
 		try
 		{
-			connection = DriverManager.getConnection("jdbc:mysql://localhost/themis", "root", "boby34");
+			Properties p = Utilitaire.getPropertiesFromFile("src/persistence/local.properties");
+			String url = "jdbc:mysql://"+p.getProperty("host")+"/"+p.getProperty("database");
+			connection = DriverManager.getConnection(url, p.getProperty("user"), p.getProperty("password"));
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		if (connection == null)
+		
+		if (connection == null) // couldn't connect to the local database
 		{
 			try
 			{
-				connection = DriverManager.getConnection("jdbc:mysql://sql4.freemysqlhosting.net/sql434397", "sql434397", "qE1*kB2*");
-				System.err.println("WARNING : You are using a remote database : sql4.freemysqlhosting.net/sql434397");
+				Properties p = Utilitaire.getPropertiesFromFile("src/persistence/remote.properties");
+				String url = "jdbc:mysql://"+p.getProperty("host")+"/"+p.getProperty("database");
+				connection = DriverManager.getConnection(url, p.getProperty("user"), p.getProperty("password"));
+				System.err.println("WARNING : You are using a remote database : " + p.getProperty("host") + "/" + p.getProperty("database"));
 			}
 			catch (SQLException e)
 			{
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
+		
 		try
 		{
 			statement = connection.createStatement();
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -212,7 +215,6 @@ public class SQLManager
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -235,7 +237,6 @@ public class SQLManager
 		}
 		catch (SQLException e)
 		{
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
