@@ -85,8 +85,30 @@ public class SQLManager
 	 */
 	public ResultSet select(String table, ArrayList<String> fields, String where)
 	{
+		String query = "SELECT ";
+		for(String s : fields)
+		{
+			query += s + ", ";
+		}
+		
+		query = query.substring(0, query.length() - 2); // Getting rid of the last ", "
+		query += " FROM " + table;
+		
+		if(where != SQLManager.NO_WHERE)
+		{
+			query += " WHERE "+where;
+		}
+		
+		try
+		{
+			return statement.executeQuery(query);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
 		return null;
-
 	}
 
 	/**
