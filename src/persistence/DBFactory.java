@@ -47,5 +47,9 @@ public class DBFactory extends Factory
 		return new AffaireDB();
 	}
 	
+	@Override
+	public Scelle createScelle() {
+		return new ScelleDB();
+	}
 
 }

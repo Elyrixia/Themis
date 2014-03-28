@@ -4,7 +4,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
+
+import common.Utilitaire;
 
 import persistence.DBFactory;
 import persistence.Factory;
@@ -31,28 +32,10 @@ public class ServiceEnqueteurManagerDB extends ServiceEnqueteurManager
 	{
 		SQLManager connect = SQLManager.getConnection();
 
-		String where = "";
-
-		// Si on a fourni un filtre il va falloir specifier le where
-		if (filter.size() > 0)
-		{
-			Iterator<String> keySetIterator = filter.keySet().iterator();
-
-			// Premiere condition
-			String key = keySetIterator.next();
-			where += key + filter.get(key);
-
-			// S'il y en a d'autres
-			while (keySetIterator.hasNext())
-			{
-				where += " AND ";
-				key = keySetIterator.next();
-				where += key + filter.get(key);
-			}
-		}
+		String where = Utilitaire.getWhere(filter);
 
 		// Sending query
-		ResultSet result = connect.select(ServiceEnqueteurDB.TABLE_NAME, SQLManager.ALL, where);
+		ResultSet result = connect.select(ServiceEnqueteurDB.TABLE_NAME, where);
 
 		// Preparing ArrayList
 		try

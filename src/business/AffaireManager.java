@@ -8,7 +8,7 @@ public abstract class AffaireManager {
 	// ATTRIBUTES
 
 	/**
-	 * Loaded list of CorpsEnqueteur
+	 * Loaded list of Affaires
 	 */
 	protected ArrayList<Affaire>	listeAffaires;
 
