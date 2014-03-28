@@ -37,7 +37,7 @@ public class SQLManager
 		}
 		catch (SQLException e)
 		{
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
 		
 		if (connection == null) // couldn't connect to the local database
@@ -119,8 +119,9 @@ public class SQLManager
 	 * 
 	 * @param table
 	 * @param fieldsValues
+	 * @return
 	 */
-	public void insert(String table, HashMap<String, String> fieldsValues)
+	public int insert(String table, HashMap<String, String> fieldsValues)
 	{
 
 		String query = "INSERT INTO " + table + "(";
@@ -142,7 +143,13 @@ public class SQLManager
 		System.out.println(query);
 
 		// executing the query
-		this._executeQuery(query);
+		Statement s = this._executeQuery(query);
+		
+		// return the id of the last insert
+		if(s != null)
+			return this.getLastID(s);
+		else
+			return -1;
 	}
 
 	/**
@@ -195,34 +202,34 @@ public class SQLManager
 	/**
 	 * 
 	 * @param query
-	 *            : The query to be executed on the Database
-	 * 
+	 * @return
 	 */
-	private void _executeQuery(String query)
+	private Statement _executeQuery(String query)
 	{
 		try
 		{
 			Statement statement = connection.createStatement();
 			statement.executeUpdate(query, Statement.RETURN_GENERATED_KEYS);
+			return statement;
 		}
 		catch (SQLException e)
 		{
 			e.printStackTrace();
 		}
-
+		
+		return null;
 	}
 
 	/**
 	 * Returns the last ID updated in the Database
-	 * 
+	 * @param statement
 	 * @return int : The last ID updated
 	 */
-	public int getLastID()
+	public int getLastID(Statement statement)
 	{
 		ResultSet lastID = null;
 		try
 		{
-			Statement statement = connection.createStatement();
 			lastID = statement.getGeneratedKeys();
 			if (lastID.next())
 				return lastID.getInt(1);

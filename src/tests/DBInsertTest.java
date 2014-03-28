@@ -1,6 +1,7 @@
 package tests;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
@@ -48,7 +49,9 @@ public class DBInsertTest {
 		map.put("fax_pro", "0011223344");
 		map.put("telephone_perso", "0011223344");
 		
-		connect.insert(EnqueteurDB.TABLE_NAME, map);
+		int lastId = connect.insert(EnqueteurDB.TABLE_NAME, map);
+		
+		assertThat(lastId, is(not(-1)));
 		
 		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
