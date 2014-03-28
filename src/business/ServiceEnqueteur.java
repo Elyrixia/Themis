@@ -28,7 +28,7 @@ public abstract class ServiceEnqueteur implements Business
 	/**
 	 * The CorpsEnqueteur concerned by this Service
 	 */
-	protected CorpsEnqueteur	corps;
+	protected CorpsEnqueteur	idCorps;
 
 	/**
 	 * @see load() from interface Business
@@ -39,7 +39,7 @@ public abstract class ServiceEnqueteur implements Business
 		this.libelle = (String) map.get("libelle");
 		this.telephone = (String) map.get("telephone");
 		this.lieu = (String) map.get("lieu");
-		this.corps = (CorpsEnqueteur) map.get("corps");
+		this.idCorps = (CorpsEnqueteur) map.get("id_corps");
 	}
 
 	public ServiceEnqueteur()
@@ -115,7 +115,7 @@ public abstract class ServiceEnqueteur implements Business
 
 	public CorpsEnqueteur getCorps()
 	{
-		return corps;
+		return idCorps;
 	}
 
 	public void setCorps(CorpsEnqueteur corps) throws Exception
@@ -123,7 +123,7 @@ public abstract class ServiceEnqueteur implements Business
 		if (corps == null)
 			throw new Exception("The CorpsEnqueteur wasn't instancied properly!");
 
-		this.corps = corps;
+		this.idCorps = corps;
 	}
 
 }

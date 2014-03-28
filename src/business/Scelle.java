@@ -29,12 +29,12 @@ public abstract class Scelle implements Business {
 	 */
 	public void load(HashMap<String, Object> map) {
 		this.id = (int) map.get("id");
-		this.numProces = (int) map.get("numProces");
-		this.dateRecup = (Date) map.get("dateRecup");
-		this.lieuRecup = (String) map.get("lieuRecup");
+		this.numProces = (int) map.get("num_proces");
+		this.dateRecup = (Date) map.get("date_recup");
+		this.lieuRecup = (String) map.get("lieu_recup");
 		this.comment = (String) map.get("comment");
-		this.idAffaire = (Affaire) map.get("idAffaire");
-		this.idScelle = (Scelle) map.get("idScelle");
+		this.idAffaire = (Affaire) map.get("id_affaire");
+		this.idScelle = (Scelle) map.get("id_scelle");
 	}
 	
 	/**

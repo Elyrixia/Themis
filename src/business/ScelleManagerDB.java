@@ -35,31 +35,31 @@ public class ScelleManagerDB extends ScelleManager {
 				// Reading row in SQLResult
 				HashMap<String, Object> row = new HashMap<String, Object>();
 				row.put("id", result.getInt("id"));
-				row.put("numProces", result.getInt("numProces"));
-				row.put("dateRecup", result.getDate("dateRecup"));
-				row.put("lieuRecup", result.getString("lieuRecup"));
+				row.put("num_proces", result.getInt("num_proces"));
+				row.put("date_recup", result.getDate("date_recup"));
+				row.put("lieu_recup", result.getString("lieu_recup"));
 				row.put("comment", result.getString("comment"));
 				
 				// Need to instantiate Affaire to add to the Scelle
 
-				int affaire = result.getInt("idAffaire");
+				int affaire = result.getInt("id_affaire");
 				AffaireManager aMng = new AffaireManagerDB();
 				HashMap<String, String> filterAffaire = new HashMap<String, String>();
 				filterAffaire.put("id", "=" + String.valueOf(affaire));
 				aMng.loadAffaire(filterAffaire);
 				ArrayList<Affaire> resultAffaire = aMng.getListeAffaires();
-				row.put("idAffaire", resultAffaire.get(0));
+				row.put("id_affaire", resultAffaire.get(0));
 				
 				// Need to instantiate Scelle to add to the Scelle if it exists
 
-				int scelle = result.getInt("idScelle");
+				int scelle = result.getInt("id_scelle");
 				if (!result.wasNull()) {
 					ScelleManager sMng = new ScelleManagerDB();
 					HashMap<String, String> filterScelle = new HashMap<String, String>();
 					filterScelle.put("id", "=" + String.valueOf(scelle));
 					sMng.loadScelle(filterScelle);
 					ArrayList<Scelle> resultScelle = sMng.getListeScelles();
-					row.put("idScelle", resultScelle.get(0));
+					row.put("id_scelle", resultScelle.get(0));
 				}
 				
 				// Loading Scelle using values in row

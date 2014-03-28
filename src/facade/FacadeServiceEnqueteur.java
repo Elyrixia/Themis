@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import persistence.DBFactory;
 import persistence.Factory;
+import business.CorpsEnqueteur;
 import business.ServiceEnqueteur;
 import business.ServiceEnqueteurManager;
 import business.ServiceEnqueteurManagerDB;
@@ -28,13 +29,14 @@ public class FacadeServiceEnqueteur {
 	 * Add a new ServiceEnqueteur
 	 * @param: Service attributes
 	 */
-	public ServiceEnqueteur ajouterServiceEnqueteur(String libelle, String telephone, String lieu) throws Exception {
+	public ServiceEnqueteur ajouterServiceEnqueteur(String libelle, String telephone, String lieu, CorpsEnqueteur corps) throws Exception {
 		Factory fac = DBFactory.getInstance();
 		ServiceEnqueteur newService = fac.createServiceEnqueteur();
 		
 		newService.setLibelle(libelle);
 		newService.setTelephone(telephone);
 		newService.setLieu(lieu);
+		newService.setCorps(corps);
 		
 		newService.create();
 			
@@ -45,10 +47,11 @@ public class FacadeServiceEnqueteur {
 	 * Edit a ServiceEnqueteur
 	 * @param: Service attributes
 	 */
-	public void modifierServiceEnqueteur(ServiceEnqueteur service, String libelle, String telephone, String lieu) throws Exception {
+	public void modifierServiceEnqueteur(ServiceEnqueteur service, String libelle, String telephone, String lieu, CorpsEnqueteur corps) throws Exception {
 		service.setLibelle(libelle);
 		service.setTelephone(telephone);
 		service.setLieu(lieu);
+		service.setCorps(corps);
 			
 		service.update();
 	}
@@ -71,6 +74,7 @@ public class FacadeServiceEnqueteur {
 		result.put("libelle", service.getLibelle());
 		result.put("telephone", service.getTelephone());
 		result.put("lieu", service.getLieu());
+		result.put("id_corps", service.getCorps());
 		return result;
 	}
 	

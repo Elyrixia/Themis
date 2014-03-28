@@ -83,11 +83,11 @@ public class FacadeAffaire {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("id", affaire.getId());
 		result.put("nom", affaire.getNom());
-		result.put("numDossier", affaire.getNumDossier());
-		result.put("numInstruction", affaire.getNumInstruction());
-		result.put("numParquet", affaire.getNumParquet());
-		result.put("dateOrdre", affaire.getDateOrdre());
-		result.put("dateRendu", affaire.getDateRendu());
+		result.put("num_dossier", affaire.getNumDossier());
+		result.put("num_instruction", affaire.getNumInstruction());
+		result.put("num_parquet", affaire.getNumParquet());
+		result.put("date_ordre", affaire.getDateOrdre());
+		result.put("date_rendu", affaire.getDateRendu());
 		result.put("delai", affaire.getDelai());
 		return result;
 	}

@@ -80,12 +80,12 @@ public class FacadeScelle {
 	public HashMap<String, Object> consulterScelle(Scelle scelle) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("id", scelle.getId());
-		result.put("numProces", scelle.getNumProces());
-		result.put("dateRecup", scelle.getDateRecup());
-		result.put("lieuRecup", scelle.getLieuRecup());
+		result.put("num_proces", scelle.getNumProces());
+		result.put("date_recup", scelle.getDateRecup());
+		result.put("lieu_recup", scelle.getLieuRecup());
 		result.put("comment", scelle.getComment());
-		result.put("idAffaire", scelle.getIdAffaire());
-		result.put("idScelle", scelle.getIdScelle());
+		result.put("id_affaire", scelle.getIdAffaire());
+		result.put("id_scelle", scelle.getIdScelle());
 		return result;
 	}
 

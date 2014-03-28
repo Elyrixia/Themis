@@ -20,12 +20,12 @@ public class EnqueteurDB extends Enqueteur {
 		map.put("nom", this.nom);
 		map.put("prenom", this.prenom);
 		map.put("adresse", this.adresse);
-		map.put("telephonePro", this.telephonePro);
-		map.put("telephonePerso", this.telephonePerso);
+		map.put("telephone_pro", this.telephonePro);
+		map.put("telephone_perso", this.telephonePerso);
 		map.put("email", this.email);
-		map.put("faxPro", this.faxPro);
-		map.put("titre", String.valueOf(this.titre.getId()));
-		map.put("service", String.valueOf(this.service.getId()));
+		map.put("fax_pro", this.faxPro);
+		map.put("id_titre", String.valueOf(this.idTitre.getId()));
+		map.put("id_service", String.valueOf(this.idService.getId()));
 		
 		// Run the query
 		sql.insert(TABLE_NAME, map);
@@ -44,12 +44,12 @@ public class EnqueteurDB extends Enqueteur {
 		map.put("nom", this.nom);
 		map.put("prenom", this.prenom);
 		map.put("adresse", this.adresse);
-		map.put("telephonePro", this.telephonePro);
-		map.put("telephonePerso", this.telephonePerso);
+		map.put("telephone_pro", this.telephonePro);
+		map.put("telephone_perso", this.telephonePerso);
 		map.put("email", this.email);
-		map.put("faxPro", this.faxPro);
-		map.put("titre", String.valueOf(this.titre.getId()));
-		map.put("service", String.valueOf(this.service.getId()));
+		map.put("fax_pro", this.faxPro);
+		map.put("id_titre", String.valueOf(this.idTitre.getId()));
+		map.put("id_service", String.valueOf(this.idService.getId()));
 		String where = "id = "+this.id;
 		
 		// Run the query

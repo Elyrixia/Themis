@@ -8,12 +8,12 @@ public abstract class Enqueteur extends Personne implements Business
 	/**
 	 * The title of the detective (for example, "Lieutenant")
 	 */
-	protected TitreEnqueteur titre;
+	protected TitreEnqueteur idTitre;
 
 	/**
 	 * The service where the detective works (for instance, police station)
 	 */
-	protected ServiceEnqueteur service;
+	protected ServiceEnqueteur idService;
 
 	/**
 	 * The personal phone number of the detective
@@ -32,12 +32,12 @@ public abstract class Enqueteur extends Personne implements Business
 		this.nom = (String) map.get("nom");
 		this.prenom = (String) map.get("prenom");
 		this.adresse = (String) map.get("adresse");
-		this.telephonePro = (String) map.get("telephonePro");
+		this.telephonePro = (String) map.get("telephone_pro");
 		this.email = (String) map.get("email");
-		this.faxPro = (String) map.get("faxPro");
-		this.titre = (TitreEnqueteur) map.get("titre");
-		this.service = (ServiceEnqueteur) map.get("service");
-		this.telephonePerso = (String) map.get("telephonePerso");
+		this.faxPro = (String) map.get("fax_pro");
+		this.idTitre = (TitreEnqueteur) map.get("id_titre");
+		this.idService = (ServiceEnqueteur) map.get("id_service");
+		this.telephonePerso = (String) map.get("telephone_perso");
 	}
 	
 	/**
@@ -58,25 +58,25 @@ public abstract class Enqueteur extends Personne implements Business
 	// getters and setters
 
 	public TitreEnqueteur getTitre() {
-		return titre;
+		return idTitre;
 	}
 
 	public void setTitre(TitreEnqueteur titre) throws Exception {
 		if(titre == null)
 			throw new Exception("The detective must have a title!");
 		
-		this.titre = titre;
+		this.idTitre = titre;
 	}
 
 	public ServiceEnqueteur getService() {
-		return service;
+		return idService;
 	}
 
 	public void setService(ServiceEnqueteur service) throws Exception {
 		if(service == null)
 			throw new Exception("The detective must be part of a service!");
 		
-		this.service = service;
+		this.idService = service;
 	}
 
 	public String getTelephonePerso() {

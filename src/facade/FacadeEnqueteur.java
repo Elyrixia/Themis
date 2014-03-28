@@ -84,12 +84,12 @@ public class FacadeEnqueteur {
 		result.put("nom", enqueteur.getNom());
 		result.put("prenom", enqueteur.getPrenom());
 		result.put("adresse", enqueteur.getAdresse());
-		result.put("telephonePro", enqueteur.getTelephonePro());
-		result.put("telephonePerso", enqueteur.getTelephonePerso());
+		result.put("telephone_pro", enqueteur.getTelephonePro());
+		result.put("telephone_perso", enqueteur.getTelephonePerso());
 		result.put("email",enqueteur.getEmail());
-		result.put("faxPro", enqueteur.getFaxPro());
-		result.put("titre", enqueteur.getTitre());
-		result.put("service", enqueteur.getService());
+		result.put("fax_pro", enqueteur.getFaxPro());
+		result.put("id_titre", enqueteur.getTitre());
+		result.put("id_service", enqueteur.getService());
 		
 		return result;
 	}

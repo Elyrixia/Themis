@@ -43,11 +43,11 @@ public abstract class Affaire implements Business {
 	public void load(HashMap<String, Object> map) {
 		this.id = (int) map.get("id");
 		this.nom = (String) map.get("nom");
-		this.numDossier = (int) map.get("numDossier");
-		this.numInstruction = (int) map.get("numInstruction");
-		this.numParquet = (int) map.get("numParquet");
-		this.dateOrdre = (Date) map.get("dateOrdre");
-		this.dateRendu = (Date) map.get("dateRendu");
+		this.numDossier = (int) map.get("num_dossier");
+		this.numInstruction = (int) map.get("num_instruction");
+		this.numParquet = (int) map.get("num_parquet");
+		this.dateOrdre = (Date) map.get("date_ordre");
+		this.dateRendu = (Date) map.get("date_rendu");
 		this.delai = (boolean) map.get("delai");
 	}
 	

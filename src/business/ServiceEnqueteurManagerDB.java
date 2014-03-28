@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import common.Utilitaire;
-
 import persistence.DBFactory;
 import persistence.Factory;
 import persistence.SQLManager;
@@ -53,20 +52,30 @@ public class ServiceEnqueteurManagerDB extends ServiceEnqueteurManager
 				row.put("lieu", result.getString("lieu"));
 
 				// Need to instantiate CorpsEnqueteur to add to the ServiceEnqueteur
-
-				int corps = result.getInt("corps");
+				
+				int corps = result.getInt("id_corps");
 				CorpsEnqueteurManager ceMng = new CorpsEnqueteurManagerDB();
 				HashMap<String, String> filterCorps = new HashMap<String, String>();
 				filterCorps.put("id", "=" + String.valueOf(corps));
 				ceMng.loadCorpsEnqueteur(filterCorps);
 				ArrayList<CorpsEnqueteur> resultCorps = ceMng.getListeCorpsEnqueteur();
-				row.put("corps", resultCorps.get(0));
+				row.put("id_corps", resultCorps.get(0));
 
 				// Loading ServiceEnqueteur using values in row
 				newService.load(row);
 				// Adding ServiceEnqueteur to ArrayList
 				this.listeServices.add(newService);
 			}
+			
+			/*
+			Iterator<ServiceEnqueteur> it = this.listeServices.iterator();
+			while (it.hasNext()) {
+				ServiceEnqueteur modif = it.next();
+				HashMap<String, String> filterCorps = new HashMap<String, String>();
+				filterCorps.put("id")
+			}
+			*/
+			
 		}
 		catch (SQLException e)
 		{

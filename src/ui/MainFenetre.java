@@ -11,6 +11,7 @@ import business.EnqueteurDB;
 import business.ServiceEnqueteur;
 import common.Utilitaire;
 import facade.FacadeCorpsEnqueteur;
+import facade.FacadeServiceEnqueteur;
 
 class MainFenetre extends JFrame 
 {
@@ -41,19 +42,52 @@ class MainFenetre extends JFrame
 		
 		s.update(EnqueteurDB.TABLE_NAME, m, w); */
 		
-		
-		FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
+		// TESTS FACADE
 		
 		try {
-			CorpsEnqueteur bob = fce.ajouterCorpsEnqueteur("henri");
 			
+			// CORPS
+			FacadeCorpsEnqueteur fce = new FacadeCorpsEnqueteur();
+			
+			// AJOUTER
+			CorpsEnqueteur bob = fce.ajouterCorpsEnqueteur("henri8");
+			
+			// MODIFIER
+			fce.modifierCorpsEnqueteur(bob, "henri88");
+			
+			// CONSULTER
 			HashMap<String,Object> map = fce.consulterCorpsEnqueteur(bob);
-			System.out.println(map.get(":libelle"));
+			System.out.println(map.get("libelle"));
 			
+			// CHARGER AVEC CONDITION
 			HashMap<String,String> filter = new HashMap<String,String>();
-			filter.put("id", "=5");
+			filter.put("id", "=7");
 			ArrayList<CorpsEnqueteur> test = fce.chargerCorpsEnqueteur(filter);
 			System.out.println(test.get(0).getLibelle());
+			
+			// CHARGER COMPLET
+			ArrayList<CorpsEnqueteur> test2 = fce.chargerCorpsEnqueteur(new HashMap<String,String>());
+			System.out.println(test2.get(0).getLibelle());
+			System.out.println(test2.get(8).getLibelle());
+			
+			// SERVICE
+			FacadeServiceEnqueteur fse = new FacadeServiceEnqueteur();
+			
+			// AJOUTER
+			ServiceEnqueteur service = fse.ajouterServiceEnqueteur("leservice", "0102030405", "montpel", bob);
+			
+			// MODIFIER
+			fse.modifierServiceEnqueteur(service, "leservice2", "0102030405", "montpel", bob);
+			
+			// CONSULTER
+			HashMap<String,Object> map2 = fse.consulterServiceEnqueteur(service);
+			System.out.println(map2.get("libelle"));
+			
+			// CHARGER COMPLET
+			ArrayList<ServiceEnqueteur> test3 = fse.chargerServiceEnqueteur(new HashMap<String,String>());
+			System.out.println(test3.get(0).getLibelle());
+			System.out.println(test3.get(0).getCorps().getLibelle());
+			
 			
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

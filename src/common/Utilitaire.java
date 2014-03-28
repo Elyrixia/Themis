@@ -1,8 +1,17 @@
 package common;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
+<<<<<<< HEAD
+
+import persistence.SQLManager;
+=======
+>>>>>>> d96790cbbea4373d9b01e3889298ac988c3cec06
 
 public class Utilitaire {
 	
@@ -25,17 +34,51 @@ public class Utilitaire {
 	 * Converts a boolean into a String
 	 */
 	public static String booleanToString(boolean bool) {
-		return bool?"1":"0";
+		return bool ? "1" : "0";
 	}
 	
 	/**
+	 * 
+	 * @param filepath
+	 * @return
+	 */
+	public static Properties getPropertiesFromFile(String filepath) {
+		
+		Properties prop = new Properties();
+		InputStream file = null;
+		try {
+			file = new FileInputStream(filepath);
+			
+			// load a properties file
+			prop.load(file);
+			
+			return prop;
+	 
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		} finally {
+			if (file != null) {
+				try {
+					file.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	/*
 	 * Create where condition using the filter
 	 */
 	public static String getWhere(HashMap<String, String> filter) {
-		String where = "";
+		String where = SQLManager.NO_WHERE;
 		
 		// Si on a fourni un filtre il va falloir specifier le where
 		if (filter.size() > 0) {
+			where = "";
+			
 			Iterator<String> keySetIterator = filter.keySet().iterator();
 
 			// Premiere condition
@@ -45,7 +88,7 @@ public class Utilitaire {
 			// S'il y en a d'autres
 			while (keySetIterator.hasNext())
 			{
-				where += " AND ";
+				where += " OR ";
 				key = keySetIterator.next();
 				where += key + filter.get(key);
 			}
@@ -53,6 +96,4 @@ public class Utilitaire {
 		
 		return where;
 	}
-	
-	
 }

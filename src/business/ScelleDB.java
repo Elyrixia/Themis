@@ -20,16 +20,16 @@ public class ScelleDB extends Scelle {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("numProces", String.valueOf(this.numProces));
+		map.put("num_proces", String.valueOf(this.numProces));
 		
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("dateRecup", db.format(this.dateRecup));
+		map.put("date_recup", db.format(this.dateRecup));
 		
-		map.put("lieuRecup", this.lieuRecup);
+		map.put("lieu_recup", this.lieuRecup);
 		map.put("comment", this.comment);
 		
-		map.put("idAffaire", String.valueOf(this.idAffaire.getId()));
-		map.put("idScelle", String.valueOf(this.idScelle.getId()));
+		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
+		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		
 		// Run the query
 		sql.insert(TABLE_NAME, map);
@@ -47,16 +47,16 @@ public class ScelleDB extends Scelle {
 		
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("numProces", String.valueOf(this.numProces));
+		map.put("num_proces", String.valueOf(this.numProces));
 				
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("dateRecup", db.format(this.dateRecup));
+		map.put("date_recup", db.format(this.dateRecup));
 				
-		map.put("lieuRecup", this.lieuRecup);
+		map.put("lieu_recup", this.lieuRecup);
 		map.put("comment", this.comment);
 				
-		map.put("idAffaire", String.valueOf(this.idAffaire.getId()));
-		map.put("idScelle", String.valueOf(this.idScelle.getId()));
+		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
+		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		
 		String where = "id = "+this.id;
 		

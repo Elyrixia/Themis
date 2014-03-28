@@ -21,13 +21,13 @@ public class AffaireDB extends Affaire {
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("nom", this.nom);
-		map.put("numDossier", String.valueOf(this.numDossier));
-		map.put("numInstruction", String.valueOf(this.numInstruction));
-		map.put("numParquet", String.valueOf(this.numParquet));
+		map.put("num_dossier", String.valueOf(this.numDossier));
+		map.put("num_instruction", String.valueOf(this.numInstruction));
+		map.put("num_parquet", String.valueOf(this.numParquet));
 		
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("dateOrdre", db.format(this.dateOrdre));
-		map.put("dateRendu", db.format(this.dateRendu));
+		map.put("date_ordre", db.format(this.dateOrdre));
+		map.put("date_rendu", db.format(this.dateRendu));
 		
 		map.put("delai", Utilitaire.booleanToString(this.delai));
 		
@@ -46,13 +46,13 @@ public class AffaireDB extends Affaire {
 		// Prepare the query
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("nom", this.nom);
-		map.put("numDossier", String.valueOf(this.numDossier));
-		map.put("numInstruction", String.valueOf(this.numInstruction));
-		map.put("numParquet", String.valueOf(this.numParquet));
+		map.put("num_dossier", String.valueOf(this.numDossier));
+		map.put("num_instruction", String.valueOf(this.numInstruction));
+		map.put("num_parquet", String.valueOf(this.numParquet));
 		
 		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
-		map.put("dateOrdre", db.format(this.dateOrdre));
-		map.put("dateRendu", db.format(this.dateRendu));
+		map.put("date_ordre", db.format(this.dateOrdre));
+		map.put("date_rendu", db.format(this.dateRendu));
 		
 		map.put("delai", Utilitaire.booleanToString(this.delai));
 		

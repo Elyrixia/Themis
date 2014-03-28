@@ -35,11 +35,11 @@ public class AffaireManagerDB extends AffaireManager {
 				HashMap<String, Object> row = new HashMap<String, Object>();
 				row.put("id", result.getInt("id"));
 				row.put("nom", result.getString("nom"));
-				row.put("numDossier", result.getInt("numDossier"));
-				row.put("numInstruction", result.getInt("numInstruction"));
-				row.put("numParquet", result.getInt("numParquet"));
-				row.put("dateOrdre", result.getDate("dateOrdre"));
-				row.put("dateRendu", result.getDate("dateRendu"));
+				row.put("num_dossier", result.getInt("num_dossier"));
+				row.put("num_instruction", result.getInt("num_instruction"));
+				row.put("num_parquet", result.getInt("num_parquet"));
+				row.put("date_ordre", result.getDate("date_ordre"));
+				row.put("date_rendu", result.getDate("date_rendu"));
 				row.put("delai", result.getBoolean("delai"));
 				
 				// Loading Affaire using values in row

@@ -22,7 +22,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		map.put("libelle", this.libelle);
 		map.put("telephone", this.telephone);
 		map.put("lieu", this.lieu);
-		map.put("corps", String.valueOf(this.corps.getId()));
+		map.put("id_corps", String.valueOf(this.idCorps.getId()));
 
 		// Run the query
 		sql.insert(TABLE_NAME, map);
@@ -42,7 +42,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		map.put("libelle", this.libelle);
 		map.put("telephone", this.telephone);
 		map.put("lieu", this.lieu);
-		map.put("corps", String.valueOf(this.corps.getId()));
+		map.put("id_corps", String.valueOf(this.idCorps.getId()));
 		String where = "id = " + this.id;
 
 		// Run the query
