@@ -1,13 +1,7 @@
 package persistence;
 
-import business.*;
-import business.affaire.Affaire;
-import business.affaire.Scelle;
-import business.affaire.TypeObjet;
-import business.enqueteur.CorpsEnqueteur;
-import business.enqueteur.Enqueteur;
-import business.enqueteur.ServiceEnqueteur;
-import business.enqueteur.TitreEnqueteur;
+import business.affaire.*;
+import business.enqueteur.*;
 
 public abstract class Factory
 {
