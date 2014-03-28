@@ -7,11 +7,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Properties;
-<<<<<<< HEAD
 
 import persistence.SQLManager;
-=======
->>>>>>> d96790cbbea4373d9b01e3889298ac988c3cec06
 
 public class Utilitaire {
 	
