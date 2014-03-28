@@ -1,5 +1,7 @@
 package common;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 public class Utilitaire {
@@ -24,6 +26,32 @@ public class Utilitaire {
 	 */
 	public static String booleanToString(boolean bool) {
 		return bool?"1":"0";
+	}
+	
+	/**
+	 * Create where condition using the filter
+	 */
+	public static String getWhere(HashMap<String, String> filter) {
+		String where = "";
+		
+		// Si on a fourni un filtre il va falloir specifier le where
+		if (filter.size() > 0) {
+			Iterator<String> keySetIterator = filter.keySet().iterator();
+
+			// Premiere condition
+			String key = keySetIterator.next();
+			where += key + filter.get(key);
+
+			// S'il y en a d'autres
+			while (keySetIterator.hasNext())
+			{
+				where += " AND ";
+				key = keySetIterator.next();
+				where += key + filter.get(key);
+			}
+		}
+		
+		return where;
 	}
 	
 	

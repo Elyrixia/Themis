@@ -12,7 +12,7 @@ import business.AffaireManagerDB;
 
 public class FacadeAffaire {
 
-//ATTRIBUTES
+	//ATTRIBUTES
 
 	/**
 	 * Manager to load entities

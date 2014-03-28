@@ -9,4 +9,5 @@ public abstract class Factory
 	public abstract ServiceEnqueteur createServiceEnqueteur();
 	public abstract TitreEnqueteur createTitreEnqueteur();
 	public abstract Affaire createAffaire();
+	public abstract Scelle createScelle();
 }
