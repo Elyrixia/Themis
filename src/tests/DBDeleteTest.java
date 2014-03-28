@@ -12,6 +12,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import persistence.SQLManager;
+import business.EnqueteurDB;
 
 public class DBDeleteTest {
 	
@@ -22,8 +23,7 @@ public class DBDeleteTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
 		rs.last();
 		this.sizeBeforeDelete = rs.getRow();
@@ -34,11 +34,9 @@ public class DBDeleteTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		//ResultSet rs = connect.delete(EnqueteurDB.table, "nom='test_nom'");
-		connect.query("DELETE FROM enqueteur WHERE nom='test_nom'");
+		connect.delete(EnqueteurDB.TABLE_NAME, "nom='test_nom'");
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
 		
 		rs.last();

@@ -1,7 +1,8 @@
 package tests;
 
-import static org.junit.Assert.assertEquals;
+import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,8 +13,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.EnqueteurDB;
 import persistence.SQLManager;
+import business.EnqueteurDB;
 
 public class DBInsertTest {
 	
@@ -24,9 +25,9 @@ public class DBInsertTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManager.NO_WHERE);
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
+		
 		rs.last();
 		this.sizeBeforeInsert = rs.getRow();
 	}
@@ -37,26 +38,24 @@ public class DBInsertTest {
 		SQLManager connect = SQLManager.getConnection();
 		HashMap<String, String> map = new HashMap<String, String>();
 		
-		map.put(":titre", String.valueOf(42));
-		map.put(":service", String.valueOf(42));
-		map.put(":nom", "test_nom");
-		map.put(":prenom", "test_prenom");
-		map.put(":adresse", "test_adresse");
-		map.put(":telephonePro", "0011223344");
-		map.put(":email", "test_email");
-		map.put(":faxPro", "0011223344");
-		map.put(":telephonePerso", "0011223344");
+		map.put("id_titre", String.valueOf(9999));
+		map.put("id_service", String.valueOf(9999));
+		map.put("nom", "test_nom");
+		map.put("prenom", "test_prenom");
+		map.put("adresse", "test_adresse");
+		map.put("telephone_pro", "0011223344");
+		map.put("email", "test_email");
+		map.put("fax_pro", "0011223344");
+		map.put("telephone_perso", "0011223344");
 		
-		//connect.insert(EnqueteurDB.table, map);
-		connect.query("INSERT INTO enqueteur(id_titre, id_service, nom, prenom, adresse, telephone_pro, email, fax_pro, telephone_perso) "
-				+ "VALUES(':titre', ':service', ':nom', ':prenom', ':adresse', ':telephonePro', 'email', 'faxPro', 'telephonePerso')", map);
+		connect.insert(EnqueteurDB.TABLE_NAME, map);
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManager.NO_WHERE);
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
 		
 		rs.last();
-		assertEquals(this.sizeBeforeInsert + 1, rs.getRow());
+		assertThat(this.sizeBeforeInsert + 1, is(rs.getRow()));
+		//assertEquals(this.sizeBeforeInsert + 1, rs.getRow());
 	}
 
 	@BeforeClass

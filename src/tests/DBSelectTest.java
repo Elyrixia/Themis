@@ -1,8 +1,13 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertThat;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,11 +22,11 @@ public class DBSelectTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, SQLManage.NO_WHERE);
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, SQLManager.NO_WHERE);
 		assertNotNull(rs);
 		rs.last();
-		assertNotEquals(rs.getRow(), 0);
+		assertThat(rs.getRow(), is(not(0)));
+		//assertNotEquals(rs.getRow(), 0);
 	}
 	
 	@Test
@@ -29,11 +34,11 @@ public class DBSelectTest {
 		
 		SQLManager connect = SQLManager.getConnection();
 		
-		//ResultSet rs = connect.select(EnqueteurDB.table, SQLManager.ALL, "nom='test_nom'");
-		ResultSet rs = connect.querySelect("SELECT * FROM enqueteur WHERE nom='test_nom'");
+		ResultSet rs = connect.select(EnqueteurDB.TABLE_NAME, "nom='test_nom'");
 		assertNotNull(rs);
 		rs.last();
-		assertEquals(rs.getRow(), 1);
+		assertThat(rs.getRow(), is(1));
+		//assertEquals(rs.getRow(), 1);
 	}
 	
 	@BeforeClass
