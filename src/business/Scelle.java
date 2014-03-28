@@ -20,6 +20,9 @@ public abstract class Scelle implements Business {
 	
 	protected Affaire idAffaire;
 	
+	/**
+	 * ID of the container. NULL if the current Scelle is the master container
+	 */
 	protected Scelle idScelle;
 	
 	public Scelle() {}
