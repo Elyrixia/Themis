@@ -57,9 +57,14 @@ public abstract class TypeObjet implements Business {
 	}
 
 	public String toString() {
-		String message = "TypeObjet n°"+this.id+" - "+this.libelle;
+		String message = "TypeObjet nï¿½"+this.id+" - "+this.libelle;
 		
 		return message;
+	}
+	
+	public boolean equals(TypeObjet a) {
+		return  id == a.getId() && 
+				libelle.equals(a.getLibelle());
 	}
 	
 }

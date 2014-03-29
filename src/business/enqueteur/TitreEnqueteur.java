@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import business.Business;
 import business.Titre;
+import business.affaire.Scelle;
 
 public abstract class TitreEnqueteur extends Titre implements Business {
 
@@ -26,4 +27,8 @@ public abstract class TitreEnqueteur extends Titre implements Business {
 	 * @see delete() from interface Business
 	 */
 	public abstract void delete();
+	
+	public boolean equals(TitreEnqueteur a) {
+		return super.equals(a);
+	}
 }

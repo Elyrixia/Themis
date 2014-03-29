@@ -116,9 +116,18 @@ public abstract class Scelle implements Business {
 	}
 	
 	public String toString() {
-		String message = "Scelle n°"+this.id+" - "+this.comment;
+		String message = "Scelle nï¿½"+this.id+" - "+this.comment;
 		
 		return message;
+	}
+	
+	public boolean equals(Scelle a) {
+		return  id == a.getId() && 
+				numProces == a.getNumProces() && 
+				dateRecup.equals(a.getDateRecup()) && 
+				lieuRecup.equals(a.getLieuRecup()) && 
+				comment.equals(a.getComment()) && 
+				idAffaire.equals(a.getIdAffaire());
 	}
 	
 }

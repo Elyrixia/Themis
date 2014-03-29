@@ -94,9 +94,15 @@ public abstract class Enqueteur extends Personne implements Business
 	}
 	
 	public String toString() {
-		String message = "Enqueteur n°"+this.id+" - "+this.nom+" "+this.prenom;
+		String message = "Enqueteur nï¿½"+this.id+" - "+this.nom+" "+this.prenom;
 		
 		return message;
+	}
+	
+	public boolean equals(Enqueteur a) {
+		return  super.equals(a) && 
+				idTitre.equals(a.getTitre()) && 
+				idService.equals(a.getService());
 	}
 
 }

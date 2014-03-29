@@ -3,6 +3,7 @@ package business.affaire;
 import java.util.HashMap;
 
 import business.Business;
+import business.Personne;
 
 public abstract class Objet implements Business {
 
@@ -96,6 +97,15 @@ public abstract class Objet implements Business {
 
 	public void setIdObjet(Objet idObjet) {
 		this.idObjet = idObjet;
+	}
+	
+	public boolean equals(Objet a) {
+		return  id == a.getId() && 
+				libelle.equals(a.getLibelle()) && 
+				comment.equals(a.getComment()) && 
+				idScelle.equals(a.getIdScelle()) && 
+				idType.equals(a.getIdType()) && 
+				idObjet.equals(a.getIdObjet());
 	}
 	
 }

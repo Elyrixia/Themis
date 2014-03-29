@@ -3,6 +3,7 @@ package business.enqueteur;
 import java.util.HashMap;
 
 import business.Business;
+import business.affaire.Scelle;
 
 public abstract class ServiceEnqueteur implements Business
 {
@@ -129,9 +130,17 @@ public abstract class ServiceEnqueteur implements Business
 	}
 	
 	public String toString() {
-		String message = "ServiceEnqueteur n°"+this.id+" - "+this.libelle;
+		String message = "ServiceEnqueteur nï¿½"+this.id+" - "+this.libelle;
 		
 		return message;
+	}
+	
+	public boolean equals(ServiceEnqueteur a) {
+		return  id == a.getId() && 
+				libelle.equals(a.getLibelle()) && 
+				lieu.equals(a.getLieu()) && 
+				telephone.equals(a.getTelephone()) && 
+				idCorps.equals(a.getCorps());
 	}
 
 }

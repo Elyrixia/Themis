@@ -2,6 +2,8 @@ package business;
 
 import java.util.regex.Pattern;
 
+import business.affaire.Affaire;
+
 public abstract class Personne {
 	
 	/**
@@ -133,6 +135,16 @@ public abstract class Personne {
 			throw new Exception("The profesionnal fax number length must not exceed 14 characters!");
 		
 		this.faxPro = faxPro;
+	}
+	
+	public boolean equals(Personne a) {
+		return  id == a.getId() && 
+				nom.equals(a.getNom()) && 
+				prenom.equals(a.getPrenom()) && 
+				adresse.equals(a.getAdresse()) && 
+				telephonePro.equals(a.getTelephonePro()) && 
+				email.equals(a.getEmail()) && 
+				faxPro.equals(a.getFaxPro());
 	}
 	
 }

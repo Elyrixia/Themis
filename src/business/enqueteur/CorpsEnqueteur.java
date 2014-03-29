@@ -65,9 +65,14 @@ public abstract class CorpsEnqueteur implements Business {
 	}
 	
 	public String toString() {
-		String message = "CorpsEnqueteur n°"+this.id+" - "+this.libelle;
+		String message = "CorpsEnqueteur nï¿½"+this.id+" - "+this.libelle;
 		
 		return message;
+	}
+	
+	public boolean equals(CorpsEnqueteur a) {
+		return  id == a.getId() && 
+				libelle.equals(a.getLibelle());
 	}
 	
 }

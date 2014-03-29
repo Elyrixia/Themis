@@ -34,9 +34,14 @@ public abstract class Titre {
 	}
 	
 	public String toString() {
-		String message = "Titre n°"+this.id+" - "+this.libelle;
+		String message = "Titre nï¿½"+this.id+" - "+this.libelle;
 		
 		return message;
+	}
+	
+	public boolean equals(Titre a) {
+		return  id == a.getId() && 
+				libelle.equals(a.getLibelle());
 	}
 	
 }

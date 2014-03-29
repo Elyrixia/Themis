@@ -135,9 +135,20 @@ public abstract class Affaire implements Business {
 	}
 	
 	public String toString() {
-		String message = "Affaire n°"+this.id+" - "+this.nom;
+		String message = "Affaire nï¿½"+this.id+" - "+this.nom;
 		
 		return message;
+	}
+	
+	public boolean equals(Affaire a) {
+		return  id == a.getId() && 
+				nom.equals(a.getNom()) && 
+				numDossier == a.getNumDossier() && 
+				numInstruction == a.getNumInstruction() && 
+				numParquet == a.getNumParquet() && 
+				dateOrdre.equals(a.getDateOrdre()) && 
+				dateRendu.equals(a.getDateRendu()) && 
+				delai == a.getDelai();
 	}
 	
 }
