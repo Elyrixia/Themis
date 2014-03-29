@@ -30,6 +30,6 @@ public interface Business
 	 * Deletes the object from the database system
 	 * Example: if JDBC is chosen, this method will use "DELETE..."
 	 */
-	public void delete();
+	public void delete() throws Exception;
 }
 	

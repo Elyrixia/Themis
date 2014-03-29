@@ -63,7 +63,7 @@ public abstract class ServiceEnqueteur implements Business
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 
 	// getters and setters
 

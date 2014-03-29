@@ -286,6 +286,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 						JOptionPane.showMessageDialog(null,"Suppression reussie");
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 					this.getPanelOnglet().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
@@ -302,6 +303,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 						JOptionPane.showMessageDialog(null,"Suppression reussie");
 					} catch (Exception e1) {
 						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
 					this.getPanelOnglet().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);

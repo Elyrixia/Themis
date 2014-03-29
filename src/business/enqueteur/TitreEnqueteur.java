@@ -26,7 +26,7 @@ public abstract class TitreEnqueteur extends Titre implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	public boolean equals(TitreEnqueteur a) {
 		return super.equals(a);

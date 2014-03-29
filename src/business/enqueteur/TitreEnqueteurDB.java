@@ -1,5 +1,7 @@
 package business.enqueteur;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import persistence.SQLManager;
@@ -42,10 +44,21 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 	}
 
 	@Override
-	public void delete()
+	public void delete() throws Exception
 	{
 		SQLManager sqlManager = SQLManager.getConnection();
-
+		
+		ResultSet rs = sqlManager.select(EnqueteurDB.TABLE_NAME, "id_titre = " + this.id);
+		try {
+			rs.last();
+			int nbEnqueteurs = rs.getRow();
+			if(nbEnqueteurs > 0) {
+				throw new Exception("This title is used by " + nbEnqueteurs + " detective(s)!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		// Prepare the query
 		String where = "id = " + this.id;
 
