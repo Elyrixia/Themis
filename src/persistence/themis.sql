@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Jeu 27 Mars 2014 à 14:08
+-- Généré le: Sam 29 Mars 2014 à 12:21
 -- Version du serveur: 5.5.35-0ubuntu0.13.10.2
 -- Version de PHP: 5.5.3-1ubuntu2.2
 
@@ -23,18 +23,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `corps_enqueteur`
---
-
-CREATE TABLE IF NOT EXISTS `corps_enqueteur` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(60) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
 -- Structure de la table `enqueteur`
 --
 
@@ -50,34 +38,14 @@ CREATE TABLE IF NOT EXISTS `enqueteur` (
   `fax_pro` varchar(14) NOT NULL,
   `telephone_perso` varchar(14) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
--- Structure de la table `service_enqueteur`
+-- Contenu de la table `enqueteur`
 --
 
-CREATE TABLE IF NOT EXISTS `service_enqueteur` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_corps_enqueteur` int(11) NOT NULL,
-  `libelle` varchar(255) NOT NULL,
-  `telephone` varchar(14) NOT NULL,
-  `lieu` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Structure de la table `titre_enqueteur`
---
-
-CREATE TABLE IF NOT EXISTS `titre_enqueteur` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `libelle` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+INSERT INTO `enqueteur` (`id`, `id_titre`, `id_service`, `nom`, `prenom`, `adresse`, `telephone_pro`, `email`, `fax_pro`, `telephone_perso`) VALUES
+(1, 1, 1, 'test_nom', 'test_prenom', 'test_adresse', '0011223344', 'test_email@bob.fr', '0011223344', '0011223344');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

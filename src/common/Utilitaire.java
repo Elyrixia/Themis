@@ -66,8 +66,10 @@ public class Utilitaire {
 		return null;
 	}
 	
-	/*
+	/**
 	 * Create where condition using the filter
+	 * @param filter
+	 * @return
 	 */
 	public static String getWhere(HashMap<String, String> filter) {
 		String where = SQLManager.NO_WHERE;
