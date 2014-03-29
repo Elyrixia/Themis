@@ -67,15 +67,6 @@ public class ServiceEnqueteurManagerDB extends ServiceEnqueteurManager
 				this.listeServices.add(newService);
 			}
 			
-			/*
-			Iterator<ServiceEnqueteur> it = this.listeServices.iterator();
-			while (it.hasNext()) {
-				ServiceEnqueteur modif = it.next();
-				HashMap<String, String> filterCorps = new HashMap<String, String>();
-				filterCorps.put("id")
-			}
-			*/
-			
 		}
 		catch (SQLException e)
 		{
