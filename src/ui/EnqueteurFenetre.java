@@ -118,8 +118,8 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	    
 	    HashMap<String,String> filtreTitre = new HashMap<String, String>();
 	    listeTitreEnqueteur = facadeTitreEnqueteur.chargerTitreEnqueteur(filtreTitre);
-	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
-			modelListTitreEnqueteur.addElement(this.listeEnqueteur.get(i));
+	    for (int i=0; i < this.listeTitreEnqueteur.size(); i++) {
+			modelListTitreEnqueteur.addElement(this.listeTitreEnqueteur.get(i));
 		}
 		
 		//Creation contraintes
