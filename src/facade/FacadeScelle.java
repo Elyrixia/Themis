@@ -3,6 +3,7 @@ package facade;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import persistence.DBFactory;
 import persistence.Factory;
@@ -89,6 +90,24 @@ public class FacadeScelle {
 		return result;
 	}
 
+	/**
+	 * Get ArrayList<String> containing a toString for each Scelle
+	 * 
+	 * @param: listeScelles: ArrayList to read
+	 */
+	public ArrayList<String> getApercu(ArrayList<Scelle> listeScelles) {
+		
+		ArrayList<String> listeApercus = new ArrayList<String>();
+		Iterator<Scelle> it = listeScelles.iterator();
+		
+		while(it.hasNext()) {
+			listeApercus.add(it.next().toString());
+		}
+		
+		return listeApercus;
+		
+	}
+	
 	/**
 	 * Load an ArrayList of Scelle using a filter
 	 * 

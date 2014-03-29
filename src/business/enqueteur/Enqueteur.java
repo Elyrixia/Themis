@@ -92,5 +92,21 @@ public abstract class Enqueteur extends Personne implements Business
 		
 		this.telephonePerso = telephonePerso;
 	}
+	
+	public String toString() {
+		String message = "Enqueteur n°"+this.id+" - ";
+		message += "Nom: "+this.nom+", ";
+		message += "Prenom: "+this.prenom+", ";
+		message += "Adresse: "+this.adresse+", ";
+		message += "Telephone professionnel: "+this.telephonePro+", ";
+		message += "Telephone personnel: "+this.telephonePerso+", ";
+		message += "Email: "+this.email+", ";
+		message += "Fax: "+this.faxPro+", ";
+		
+		message += "A pour titre: "+this.idTitre.getLibelle()+"("+this.idTitre.getId()+")"+", ";
+		message += "Fait parti du service: "+this.idService.getLibelle()+"("+this.idService.getId()+")"+".";
+		
+		return message;
+	}
 
 }

@@ -1,5 +1,7 @@
 package business.affaire;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -132,6 +134,23 @@ public abstract class Affaire implements Business {
 
 	public void setDelai(boolean delai) {
 		this.delai = delai;
+	}
+	
+	public String toString() {
+		String message = "Affaire n°"+this.id+" - ";
+		message += "Nom: "+this.nom+", ";
+		message += "Numero de dossier: "+this.numDossier+", ";
+		message += "Numero d'instruction: "+this.numInstruction+", ";
+		message += "Numero de parquet: "+this.numParquet+", ";
+		
+		Format formatter = new SimpleDateFormat("dd/mm/yyyy");
+		message += "Date ordre: "+formatter.format(this.dateOrdre)+", ";
+		message += "Date rendu: "+formatter.format(this.dateRendu)+", ";
+		
+		if(this.delai) message += "Avec un delai de 10 jours.";
+		else message += "Sans delai";
+		
+		return message;
 	}
 	
 }

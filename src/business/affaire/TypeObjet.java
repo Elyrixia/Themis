@@ -56,4 +56,11 @@ public abstract class TypeObjet implements Business {
 		this.libelle = libelle;
 	}
 
+	public String toString() {
+		String message = "TypeObjet n°"+this.id+" - ";
+		message += "Libelle: "+this.libelle+".";
+		
+		return message;
+	}
+	
 }

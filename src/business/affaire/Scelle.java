@@ -1,5 +1,7 @@
 package business.affaire;
 
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -113,6 +115,23 @@ public abstract class Scelle implements Business {
 
 	public void setIdScelle(Scelle idScelle) {
 		this.idScelle = idScelle;
+	}
+	
+	public String toString() {
+		String message = "Scelle n°"+this.id+" - ";
+		message += "Numero du Proces: "+this.numProces+", ";
+		
+		Format formatter = new SimpleDateFormat("dd/mm/yyyy");
+		message += "Date de recuperation: "+formatter.format(this.dateRecup)+", ";
+		
+		message += "Lieu de recuperation: "+this.lieuRecup+", ";
+		message += "Commentaire: "+this.comment+", ";
+		
+		message += "Concerne l'affaire: "+this.idAffaire.getNom()+"("+this.getIdAffaire().getId()+")"+", ";
+		
+		if(this.idScelle != null) message += "Fait parti du scelle n°"+this.idScelle.getId()+".";
+		
+		return message;
 	}
 	
 }

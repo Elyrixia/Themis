@@ -127,5 +127,16 @@ public abstract class ServiceEnqueteur implements Business
 
 		this.idCorps = corps;
 	}
+	
+	public String toString() {
+		String message = "ServiceEnqueteur n°"+this.id+" - ";
+		message += "Libelle: "+this.libelle+", ";
+		message += "Telephone: "+this.telephone+", ";
+		message += "Lieu: "+this.lieu+", ";
+		
+		message += "Fait parti du corps: "+this.idCorps.getLibelle()+"("+this.idCorps.getId()+")"+".";
+		
+		return message;
+	}
 
 }

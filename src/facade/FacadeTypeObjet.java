@@ -2,6 +2,7 @@ package facade;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import persistence.DBFactory;
 import persistence.Factory;
@@ -72,6 +73,24 @@ public class FacadeTypeObjet {
 		return result;
 	}
 
+	/**
+	 * Get ArrayList<String> containing a toString for each TypeObjet
+	 * 
+	 * @param: listeTypesObjet: ArrayList to read
+	 */
+	public ArrayList<String> getApercu(ArrayList<TypeObjet> listeTypesObjet) {
+		
+		ArrayList<String> listeApercus = new ArrayList<String>();
+		Iterator<TypeObjet> it = listeTypesObjet.iterator();
+		
+		while(it.hasNext()) {
+			listeApercus.add(it.next().toString());
+		}
+		
+		return listeApercus;
+		
+	}
+	
 	/**
 	 * Load an ArrayList of CorpsEnqueteur using a filter
 	 * 

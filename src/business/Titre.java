@@ -32,4 +32,12 @@ public abstract class Titre {
 		
 		this.libelle = libelle;
 	}
+	
+	public String toString() {
+		String message = "Titre n°"+this.id+" - ";
+		message += "Libelle: "+this.libelle+".";
+		
+		return message;
+	}
+	
 }
