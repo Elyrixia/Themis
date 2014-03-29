@@ -58,4 +58,9 @@ public class DBFactory extends Factory
 		return new TypeObjetDB();
 	}
 
+	@Override
+	public Objet createObjet() {
+		return new ObjetDB();
+	}
+	
 }
