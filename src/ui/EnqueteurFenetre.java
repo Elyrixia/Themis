@@ -221,7 +221,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur();
 			panelAjoutTitreEnqueteur.setFenetre(this);
 			this.fenetreParent.getContentPane().add(panelAjoutTitreEnqueteur);
-			//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
@@ -231,34 +231,38 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			}
 		}
 		else if(e.getSource() == boutonConsulterTitreEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO
+			if (!(this.listeSelectionTitreEnqueteur.getSelectedValue() == null)){
+				/*String idTitre = ((String) listeSelectionTitreEnqueteur.getSelectedValue()).substring(8, 9);
+				HashMap filtre = new HashMap<String,String>();
+				filtre.put("id=", idTitre);
+				System.out.println(facadeTitreEnqueteur.chargerTitreEnqueteur(filtre));*/
+				
 			}
 		}
 		else if(e.getSource() == boutonModifierEnqueteur){
 			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO : v�rif d'une s�lection de la liste + modif par rapport � ajout
+				//TODO : verif d'une selection de la liste + modif par rapport a ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
 			
 				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur();
 				panelModifEnqueteur.setFenetre(this);
 				this.fenetreParent.getContentPane().add(panelModifEnqueteur);
-				//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO : v�rif d'une s�lection de la liste + modif par rapport � ajout
+			if (!(this.listeSelectionTitreEnqueteur.getSelectedValue() == null)){
+				//TODO : verif d'une selection de la liste + modif par rapport a ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
 				
 				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur();
 				panelModifTitreEnqueteur.setFenetre(this);
 				this.fenetreParent.getContentPane().add(panelModifTitreEnqueteur);
-				//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
@@ -279,7 +283,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		
 	}
 
-	//M�thode appell�e par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
+	//Methode appellee par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
 	public JTabbedPane getPanelOnglet() {
 		return panelOnglet;
 	}

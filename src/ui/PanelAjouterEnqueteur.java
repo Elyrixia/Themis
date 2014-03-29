@@ -184,17 +184,20 @@ public class PanelAjouterEnqueteur extends JPanel implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
 		{
-			this.fenetre.getContentPane().remove(this);
-			this.fenetre.setTitle("Accueil Gestion Enqueteur");
-			this.fenetre.getPanelOnglet().setVisible(true);
-			
-			//On remet la taille de la fenetre d'accueil avant de pack sinon la fenetre n'aura pas une taille convenable (affichage que du menu)
-			this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
-			this.fenetre.pack();
+		this.retourFenetre();
 		}else if (e.getSource() == boutonValider){
 			//TODO
 		}
-		
 	}
+		
+	public void retourFenetre(){
+		this.fenetre.getContentPane().remove(this);
+		this.fenetre.setTitle("Accueil Gestion Enqueteur");
+		this.fenetre.createOnglets();
+			
+		this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
+		this.fenetre.pack();
+	}
+	
 
 }
