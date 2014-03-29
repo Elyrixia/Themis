@@ -199,8 +199,8 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		panelTitreEnqueteur.add(boutonSupprimerTitreEnqueteur, contrainteBoutonSupprimerTitreEnqueteur);
 		
 		//Ajout onglet a la fenetre
-		getPanelOnglet().addTab("Enqueteurs", null, panelEnqueteur);
-		getPanelOnglet().addTab("Titres d'Enqueteurs", null, panelTitreEnqueteur);
+		getPanelOnglet().addTab("Enqueteurs", null, new JScrollPane(panelEnqueteur));
+		getPanelOnglet().addTab("Titres d'Enqueteurs", null, new JScrollPane(panelTitreEnqueteur));
 		this.fenetreParent.getContentPane().add(getPanelOnglet());
 	}
 
@@ -217,7 +217,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.setTitle("Ajout d'un enqueteur");
 			
 			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur(this);
-			this.fenetreParent.getContentPane().add(panelAjoutEnqueteur);
+			this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutEnqueteur));
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
@@ -227,7 +227,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.setTitle("Ajout d'un titre enqueteur");
 			
 			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur(this);
-			this.fenetreParent.getContentPane().add(panelAjoutTitreEnqueteur);
+			this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutTitreEnqueteur));
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
@@ -258,7 +258,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
 			
 				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur(this, enqueteur);
-				this.fenetreParent.getContentPane().add(panelModifEnqueteur);
+				this.fenetreParent.getContentPane().add(new JScrollPane(panelModifEnqueteur));
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
@@ -266,12 +266,11 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
 			if (titre != null){
-				//TODO : verif d'une selection de la liste + modif par rapport a ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
 				
 				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur(this, titre);
-				this.fenetreParent.getContentPane().add(panelModifTitreEnqueteur);
+				this.fenetreParent.getContentPane().add(new JScrollPane(panelModifTitreEnqueteur));
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
@@ -317,18 +316,12 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	
 	public boolean verifierSuppressionEnqueteur() {
 		int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
-		if (reply == JOptionPane.YES_OPTION) 
-			return true;
-		else
-			return false;
+		return reply == JOptionPane.YES_OPTION;
 	}
 	
 	public boolean verifierSuppressionTitreEnqueteur() {
 		int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionTitreEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
-		if (reply == JOptionPane.YES_OPTION) 
-			return true;
-		else
-			return false;
+		return reply == JOptionPane.YES_OPTION;
 	}
 
 	//Methode appellee par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation

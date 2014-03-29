@@ -7,16 +7,19 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import business.enqueteur.CorpsEnqueteur;
 import business.enqueteur.CorpsEnqueteur;
 import facade.FacadeCorpsEnqueteur;
 
@@ -25,7 +28,6 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 	
 	private FacadeCorpsEnqueteur facadeCorpsEnqueteur;
 	private ArrayList<CorpsEnqueteur> listeCorpsEnqueteur;
-	
 	private JFrame fenetreParent;
 	
 	private JPanel panelCorps;
@@ -48,23 +50,23 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			this.fenetreParent = super.getFenetre();
 			this.fenetreParent.setTitle("Accueil Gestion Corps");
 			this.createPanel();
-			//Ajout listener sur boutons
-			this.boutonAjouterCorpsEnqueteur.addActionListener(this);
-			this.boutonConsulterCorpsEnqueteur.addActionListener(this);
-			this.boutonModifierCorpsEnqueteur.addActionListener(this);
-			this.boutonSupprimerCorpsEnqueteur.addActionListener(this);
-			
 			this.setVisible(true);
 		}
 
 		public void createPanel() {
 			panelCorps = new JPanel(new GridBagLayout());
-			
+			//initialisation label & boutons
 			labelCorpsEnqueteur = new JLabel("Liste des corps enqueteurs enregistres");
 			boutonAjouterCorpsEnqueteur = new JButton("Ajouter Corps Enqueteur");
 			boutonConsulterCorpsEnqueteur = new JButton("Consulter");
 			boutonModifierCorpsEnqueteur = new JButton("Modifier");
 			boutonSupprimerCorpsEnqueteur = new JButton("Supprimer");
+			
+			//Ajout listener sur boutons
+			this.boutonAjouterCorpsEnqueteur.addActionListener(this);
+			this.boutonConsulterCorpsEnqueteur.addActionListener(this);
+			this.boutonModifierCorpsEnqueteur.addActionListener(this);
+			this.boutonSupprimerCorpsEnqueteur.addActionListener(this);
 			
 			//Creation liste
 		    modelListCorpsEnqueteur = new DefaultListModel();
@@ -72,14 +74,10 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 		    panneauListeCorpsEnqueteur = new JScrollPane(listeSelectionCorpsEnqueteur);
 		    listeSelectionCorpsEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		    
-		    /*
-		     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
-		     */
-		    HashMap<String,String> filtre = new HashMap<String, String>();
-		    listeCorpsEnqueteur = facadeCorpsEnqueteur.chargerCorpsEnqueteur(filtre);
-		    ArrayList<String> apercus = facadeCorpsEnqueteur.getApercu(listeCorpsEnqueteur);
-		    for (int i=0; i < apercus.size(); i++) {
-		    	modelListCorpsEnqueteur.addElement(apercus.get(i));
+		    HashMap<String,String> filtreCorps = new HashMap<String, String>();
+		    listeCorpsEnqueteur = facadeCorpsEnqueteur.chargerCorpsEnqueteur(filtreCorps);
+		    for (int i=0; i < listeCorpsEnqueteur.size(); i++) {
+				modelListCorpsEnqueteur.addElement(listeCorpsEnqueteur.get(i));
 			}
 			
 			//Creation contraintes
@@ -118,62 +116,80 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			panelCorps.add(boutonSupprimerCorpsEnqueteur, contrainteBoutonSupprimerCorpsEnqueteur);
 			
 			//Ajout onglet a la fenetre
-			this.fenetreParent.add(panelCorps);
+			this.fenetreParent.getContentPane().add(new JScrollPane(panelCorps));
 		}
 		
 		public void actionPerformed(ActionEvent e) {
 			
 			super.actionPerformed(e);
+			CorpsEnqueteur corps = (CorpsEnqueteur) listeSelectionCorpsEnqueteur.getSelectedValue();
 			
 			if (e.getSource() == boutonAjouterCorpsEnqueteur)
 			{
 				this.getPanelCorps().setVisible(false);
 				this.fenetreParent.setTitle("Ajout d'un corps enqueteur");
 				
-				PanelAjouterCorpsEnqueteur panelAjoutCorpsEnqueteur = new PanelAjouterCorpsEnqueteur();
-				panelAjoutCorpsEnqueteur.setFenetre(this);
-				this.fenetreParent.getContentPane().add(panelAjoutCorpsEnqueteur);
-				//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+				PanelAjouterCorpsEnqueteur panelAjoutCorpsEnqueteur = new PanelAjouterCorpsEnqueteur(this);
+				this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutCorpsEnqueteur));
+				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
 			
 			else if(e.getSource() == boutonConsulterCorpsEnqueteur){
-				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
-					//TODO
+				if (corps != null){
+					HashMap<String, Object> hashMapCorpsEnqueteur = facadeCorpsEnqueteur.consulterCorpsEnqueteur(corps);
+					String descriptionCorpsEnqueteur = "";
+					for (Map.Entry entry : hashMapCorpsEnqueteur.entrySet()) {
+					    descriptionCorpsEnqueteur += entry.getKey() + " : " + entry.getValue() + "\n";
+					}
+					JOptionPane.showMessageDialog(null, descriptionCorpsEnqueteur);
 				}
 			}
-			
 			else if(e.getSource() == boutonModifierCorpsEnqueteur){
-				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
-					//TODO : v�rif d'une s�lection de la liste + modif par rapport � ajout
+				if (corps != null){
 					this.getPanelCorps().setVisible(false);
 					this.fenetreParent.setTitle("Modification d'un corps enqueteur");
-				
-					PanelModifCorpsEnqueteur panelModifCorpsEnqueteur = new PanelModifCorpsEnqueteur();
-					panelModifCorpsEnqueteur.setFenetre(this);
-					this.fenetreParent.getContentPane().add(panelModifCorpsEnqueteur);
-					//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+					
+					PanelModifCorpsEnqueteur panelModifCorpsEnqueteur = new PanelModifCorpsEnqueteur(this, corps);
+					this.fenetreParent.getContentPane().add(new JScrollPane(panelModifCorpsEnqueteur));
+					//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 					this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 					this.fenetreParent.pack();
 				}
 			}
 			
 			else if(e.getSource() == boutonSupprimerCorpsEnqueteur){
-				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
-					//TODO
+				if (corps != null){
+					if(verifierSuppressionCorpsEnqueteur()){
+						try {
+							facadeCorpsEnqueteur.supprimerCorpsEnqueteur(corps);
+							JOptionPane.showMessageDialog(null,"Suppression reussie");
+						} catch (Exception e1) {
+							e1.printStackTrace();
+							JOptionPane.showMessageDialog(null, e1.getMessage());
+						}
+						this.getPanelCorps().setVisible(false);
+						this.fenetreParent.getContentPane().remove(panelCorps);
+						this.createPanel();
+					}
 				}
 				
 			}
 			
 		}
+		
+		public boolean verifierSuppressionCorpsEnqueteur() {
+			int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionCorpsEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
+			return reply == JOptionPane.YES_OPTION;
+		}
 
-		//Pour que les panneaux ajout ou modifier puisse acc�der au panel accueil
+		//Pour que les panneaux ajout ou modifier puisse acceder au panel accueil
 		public JPanel getPanelCorps() {
 			return panelCorps;
 		}
 
-		//getter de la facade pour que les panels ajouter et modifier puisse appeller les fonctions correspondantes
+		//getter de la facade pour que les panels ajouter et modifier puisse ajouter/modif un corps
 		public FacadeCorpsEnqueteur getFacadeCorpsEnqueteur() {
 			return facadeCorpsEnqueteur;
 		}

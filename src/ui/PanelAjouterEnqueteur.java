@@ -21,7 +21,6 @@ import javax.swing.ListSelectionModel;
 
 import business.enqueteur.ServiceEnqueteur;
 import business.enqueteur.TitreEnqueteur;
-import facade.FacadeServiceEnqueteur;
 
 
 public class PanelAjouterEnqueteur extends JPanel implements ActionListener{

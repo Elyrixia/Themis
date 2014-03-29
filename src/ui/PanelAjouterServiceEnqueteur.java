@@ -5,12 +5,21 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
+
+import business.enqueteur.CorpsEnqueteur;
 
 
 public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListener{
@@ -20,17 +29,21 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 	protected JLabel labelLibelle;
 	protected JLabel labelTelephone;
 	protected JLabel labelLieu;
-	
 	//Inputs
 	protected JTextField inputLibelle;
 	protected JTextField inputTelephone;
 	protected JTextField inputLieu;
-	
+	//JList pour choisir un titre et un service
+    private DefaultListModel modelListCorpsEnqueteur;
+	protected JList listeSelectionCorpsEnqueteur;
+	private JScrollPane panneauListeCorpsEnqueteur;
 	//Boutons
 	protected JButton boutonValider;
 	protected JButton boutonAnnuler;
 	
-	PanelAjouterServiceEnqueteur(){
+	PanelAjouterServiceEnqueteur(ServiceEnqueteurFenetre fen){
+		fenetre = fen;
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		 
@@ -82,11 +95,32 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 		contrainteInputLieu.anchor = GridBagConstraints.WEST;
 		add(inputLieu, contrainteInputLieu);
 		
+		modelListCorpsEnqueteur = new DefaultListModel();
+		listeSelectionCorpsEnqueteur = new JList(modelListCorpsEnqueteur);
+	    panneauListeCorpsEnqueteur = new JScrollPane(listeSelectionCorpsEnqueteur);
+	    listeSelectionCorpsEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    MyRenderer affichageCorpsEnqueteur = new MyRenderer(this.fenetre.getFacadeCorpsEnqueteur());
+	    listeSelectionCorpsEnqueteur.setCellRenderer(affichageCorpsEnqueteur);
+	    GridBagConstraints contrainteListeCorpsEnqueteur = new GridBagConstraints();
+		contrainteListeCorpsEnqueteur.gridx=0; contrainteListeCorpsEnqueteur.gridy=3;
+		contrainteListeCorpsEnqueteur.gridwidth=2;
+		contrainteListeCorpsEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteListeCorpsEnqueteur.anchor = GridBagConstraints.CENTER;
+		
+		ArrayList<CorpsEnqueteur> listeCorpsEnqueteur;
+	    HashMap<String,String> filtreCorps = new HashMap<String, String>();
+	    listeCorpsEnqueteur = this.fenetre.getFacadeCorpsEnqueteur().chargerCorpsEnqueteur(filtreCorps);
+	    for (int i=0; i < listeCorpsEnqueteur.size(); i++) {
+			modelListCorpsEnqueteur.addElement(listeCorpsEnqueteur.get(i));
+		}
+	    this.add(panneauListeCorpsEnqueteur, contrainteListeCorpsEnqueteur);
+		
+		
 		//Boutons :
 		boutonValider = new JButton("Valider");
 		GridBagConstraints contrainteBoutonValider = new GridBagConstraints();
 		contrainteBoutonValider.gridx = 0;
-		contrainteBoutonValider.gridy = 3;
+		contrainteBoutonValider.gridy = 4;
 		contrainteBoutonValider.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonValider.anchor = GridBagConstraints.WEST;
 		add(boutonValider, contrainteBoutonValider);
@@ -95,7 +129,7 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 		boutonAnnuler = new JButton("Annuler");
 		GridBagConstraints contrainteBoutonAnnuler = new GridBagConstraints();
 		contrainteBoutonAnnuler.gridx = 1;
-		contrainteBoutonAnnuler.gridy = 3;
+		contrainteBoutonAnnuler.gridy = 4;
 		contrainteBoutonAnnuler.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonAnnuler.anchor = GridBagConstraints.WEST;
 		add(boutonAnnuler, contrainteBoutonAnnuler);
@@ -104,23 +138,36 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 		this.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 	}
 	
-	public void setFenetre(ServiceEnqueteurFenetre fen){
-		fenetre = fen;
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
-		{
-			this.fenetre.getContentPane().remove(this);
-			this.fenetre.setTitle("Accueil Gestion Enqueteur");
-			this.fenetre.getPanelService().setVisible(true);
-			
-			//On remet la taille de la fenetre d'accueil avant de pack sinon la fenetre n'aura pas une taille convenable (affichage que du menu)
-			this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
-			this.fenetre.pack();
-		}else if (e.getSource() == boutonValider){
-			//TODO
+		{			
+			this.retourFenetre();
+		}
+		else if(e.getSource() == boutonValider){
+			String libelle = inputLibelle.getText(); String telephone = inputTelephone.getText(); String lieu = inputLieu.getText();
+			CorpsEnqueteur corps = (CorpsEnqueteur) listeSelectionCorpsEnqueteur.getSelectedValue();
+			if(libelle.equals("") || telephone.equals("") || lieu.equals("") || corps == null ){
+				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champ !", "Error", JOptionPane.ERROR_MESSAGE);
+			}else{
+				try {
+					this.fenetre.getFacadeServiceEnqueteur().ajouterServiceEnqueteur(libelle, telephone, lieu, corps);
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null,"Ajout reussi");
+				this.retourFenetre();
+			}
 		}
 		
 	}
+	
+	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
+		public void retourFenetre(){
+			this.fenetre.getContentPane().remove(this);
+			this.fenetre.setTitle("Accueil Gestion Service Enqueteur");
+			this.fenetre.createPanel();
+				
+			this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH, MainFenetre.WINDOW_HEIGHT));
+			this.fenetre.pack();
+		}
 }

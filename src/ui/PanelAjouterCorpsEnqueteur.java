@@ -26,7 +26,9 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	protected JButton boutonValider;
 	protected JButton boutonAnnuler;
 	
-	PanelAjouterCorpsEnqueteur(){
+	PanelAjouterCorpsEnqueteur(CorpsEnqueteurFenetre fen){
+		
+		fenetre = fen;
 		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
@@ -68,11 +70,6 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 				
 		this.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 	}
-
-	public void setFenetre(CorpsEnqueteurFenetre fen) {
-		fenetre = fen;
-	}
-
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
@@ -92,19 +89,17 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 				this.retourFenetre();
 			}
 		}
-		
 	}
 	
-	/*
-	 * Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
-	 */
+	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	public void retourFenetre(){
 		this.fenetre.getContentPane().remove(this);
-		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
-		this.fenetre.getPanelCorps().setVisible(true);
+		this.fenetre.setTitle("Accueil Gestion Corps Enqueteur");
+		this.fenetre.createPanel();
 		
 		this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 		this.fenetre.pack();
 	}
-
+	
+	
 }

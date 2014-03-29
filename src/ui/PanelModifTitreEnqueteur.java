@@ -3,7 +3,6 @@ import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
-
 import business.enqueteur.TitreEnqueteur;
 
 

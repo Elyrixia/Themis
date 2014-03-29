@@ -7,30 +7,31 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import business.enqueteur.ServiceEnqueteur;
-import facade.FacadeEnqueteur;
+import facade.FacadeCorpsEnqueteur;
 import facade.FacadeServiceEnqueteur;
 
 
 public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListener{
 
 	private FacadeServiceEnqueteur facadeServiceEnqueteur;
+	private FacadeCorpsEnqueteur facadeCorpsEnqueteur;
 	private ArrayList<ServiceEnqueteur> listeServiceEnqueteur;
 	
 	private JFrame fenetreParent;
-	
 	private JPanel panelService;
-	
 	private JLabel labelServiceEnqueteur;
 	
 	private JScrollPane panneauListeServiceEnqueteur;
@@ -48,12 +49,6 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Service");
 		this.createPanel();
-		//Ajout listener sur boutons
-		this.boutonAjouterServiceEnqueteur.addActionListener(this);
-		this.boutonConsulterServiceEnqueteur.addActionListener(this);
-		this.boutonModifierServiceEnqueteur.addActionListener(this);
-		this.boutonSupprimerServiceEnqueteur.addActionListener(this);
-		
 		this.setVisible(true);
 	}
 	
@@ -66,20 +61,22 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		boutonModifierServiceEnqueteur = new JButton("Modifier");
 		boutonSupprimerServiceEnqueteur = new JButton("Supprimer");
 		
+		//Ajout listener sur boutons
+		this.boutonAjouterServiceEnqueteur.addActionListener(this);
+		this.boutonConsulterServiceEnqueteur.addActionListener(this);
+		this.boutonModifierServiceEnqueteur.addActionListener(this);
+		this.boutonSupprimerServiceEnqueteur.addActionListener(this);
+		
 		//Creation liste
 	    modelListServiceEnqueteur = new DefaultListModel();
 		listeSelectionServiceEnqueteur = new JList(modelListServiceEnqueteur);
 	    panneauListeServiceEnqueteur = new JScrollPane(listeSelectionServiceEnqueteur);
 	    listeSelectionServiceEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 	    
-	    /*
-	     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
-	     */
-	    HashMap<String,String> filtre = new HashMap<String, String>();
-	    listeServiceEnqueteur = facadeServiceEnqueteur.chargerServiceEnqueteur(filtre);
-	    ArrayList<String> apercus = facadeServiceEnqueteur.getApercu(listeServiceEnqueteur);
-	    for (int i=0; i < apercus.size(); i++) {
-	    	modelListServiceEnqueteur.addElement(apercus.get(i));
+	    HashMap<String,String> filtreService = new HashMap<String, String>();
+	    listeServiceEnqueteur = facadeServiceEnqueteur.chargerServiceEnqueteur(filtreService);
+	    for (int i=0; i < listeServiceEnqueteur.size(); i++) {
+			modelListServiceEnqueteur.addElement(listeServiceEnqueteur.get(i));
 		}
 		
 		//Creation contraintes
@@ -118,58 +115,81 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		panelService.add(boutonSupprimerServiceEnqueteur, contrainteBoutonSupprimerServiceEnqueteur);
 		
 		//Ajout onglet a la fenetre
-		this.fenetreParent.add(panelService);
+		this.fenetreParent.getContentPane().add(new JScrollPane(panelService));
 	}
 	
 	public void actionPerformed(ActionEvent e) {
 		
 		super.actionPerformed(e);
+		ServiceEnqueteur service = (ServiceEnqueteur) listeSelectionServiceEnqueteur.getSelectedValue();
 		
 		if (e.getSource() == boutonAjouterServiceEnqueteur)
 		{
 			this.getPanelService().setVisible(false);
-			this.fenetreParent.setTitle("Ajout d'un services enqueteur");
+			this.fenetreParent.setTitle("Ajout d'un service enqueteur");
 			
-			PanelAjouterServiceEnqueteur panelAjoutServiceEnqueteur = new PanelAjouterServiceEnqueteur();
-			panelAjoutServiceEnqueteur.setFenetre(this);
-			this.fenetreParent.getContentPane().add(panelAjoutServiceEnqueteur);
-			//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+			PanelAjouterServiceEnqueteur panelAjoutServiceEnqueteur = new PanelAjouterServiceEnqueteur(this);
+			this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutServiceEnqueteur));
+			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
-		
 		else if(e.getSource() == boutonConsulterServiceEnqueteur){
-			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
-				//TODO
+			if (service != null){
+				HashMap<String, Object> hashMapServiceEnqueteur = facadeServiceEnqueteur.consulterServiceEnqueteur(service);
+				String descriptionServiceEnqueteur = "";
+				for (Map.Entry entry : hashMapServiceEnqueteur.entrySet()) {
+				    descriptionServiceEnqueteur += entry.getKey() + " : " + entry.getValue() + "\n";
+				}
+				JOptionPane.showMessageDialog(null, descriptionServiceEnqueteur);
 			}
 		}
-		
 		else if(e.getSource() == boutonModifierServiceEnqueteur){
-			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
-				//TODO : v�rif d'une s�lection de la liste + modif par rapport � ajout
+			if (service != null){
 				this.getPanelService().setVisible(false);
-				this.fenetreParent.setTitle("Modification d'un services enqueteur");
-			
-				PanelModifServiceEnqueteur panelModifServiceEnqueteur = new PanelModifServiceEnqueteur();
-				panelModifServiceEnqueteur.setFenetre(this);
-				this.fenetreParent.getContentPane().add(panelModifServiceEnqueteur);
-				//On change la taille de la fenetre avant de pack pour �viter d'avoir une fenetre trop grande pleine de vide
+				this.fenetreParent.setTitle("Modification d'un service enqueteur");
+				
+				PanelModifServiceEnqueteur panelModifServiceEnqueteur = new PanelModifServiceEnqueteur(this, service);
+				this.fenetreParent.getContentPane().add(new JScrollPane(panelModifServiceEnqueteur));
+				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
-		}
-		
-		else if(e.getSource() == boutonSupprimerServiceEnqueteur){
-			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
-				//TODO
-			}
 			
 		}
-		
+		else if(e.getSource() == boutonSupprimerServiceEnqueteur){
+			if (service != null){
+				if(verifierSuppressionServiceEnqueteur()){
+					try {
+						facadeServiceEnqueteur.supprimerServiceEnqueteur(service);
+						JOptionPane.showMessageDialog(null,"Suppression reussie");
+					} catch (Exception e1) {
+						e1.printStackTrace();
+						JOptionPane.showMessageDialog(null, e1.getMessage());
+					}
+					this.getPanelService().setVisible(false);
+					this.fenetreParent.getContentPane().remove(panelService);
+					this.createPanel();
+				}
+			}
+		}
 	}
 
-	//Pour que les panneaux ajout ou modifier puisse acc�der au panel accueil
+	//Pour que les panneaux ajout ou modifier puisse acceder au panel accueil
 	public JPanel getPanelService() {
 		return panelService;
+	}
+	
+	public boolean verifierSuppressionServiceEnqueteur() {
+		int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionServiceEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
+		return reply == JOptionPane.YES_OPTION;
+	}
+	
+	public FacadeServiceEnqueteur getFacadeServiceEnqueteur(){
+		return facadeServiceEnqueteur;
+	}
+	
+	public FacadeCorpsEnqueteur getFacadeCorpsEnqueteur(){
+		return facadeCorpsEnqueteur;
 	}
 }
