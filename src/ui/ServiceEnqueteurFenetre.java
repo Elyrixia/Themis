@@ -127,13 +127,13 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		}
 		
 		else if(e.getSource() == boutonConsulterServiceEnqueteur){
-			if (!this.listeSelectionServiceEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 		}
 		
 		else if(e.getSource() == boutonModifierServiceEnqueteur){
-			if (!this.listeSelectionServiceEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
 				//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
 				this.getPanelService().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un services enqueteur");
@@ -148,7 +148,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		}
 		
 		else if(e.getSource() == boutonSupprimerServiceEnqueteur){
-			if (!this.listeSelectionServiceEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionServiceEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 			

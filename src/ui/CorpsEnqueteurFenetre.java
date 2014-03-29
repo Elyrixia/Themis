@@ -126,13 +126,13 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			}
 			
 			else if(e.getSource() == boutonConsulterCorpsEnqueteur){
-				if (!this.listeSelectionCorpsEnqueteur.getSelectedValue().equals(null)){
+				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
 					//TODO
 				}
 			}
 			
 			else if(e.getSource() == boutonModifierCorpsEnqueteur){
-				if (!this.listeSelectionCorpsEnqueteur.getSelectedValue().equals(null)){
+				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
 					//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
 					this.getPanelCorps().setVisible(false);
 					this.fenetreParent.setTitle("Modification d'un corps enqueteur");
@@ -147,7 +147,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			}
 			
 			else if(e.getSource() == boutonSupprimerCorpsEnqueteur){
-				if (!this.listeSelectionCorpsEnqueteur.getSelectedValue().equals(null)){
+				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
 					//TODO
 				}
 				

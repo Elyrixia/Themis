@@ -111,7 +111,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
 	     */
 	    HashMap<String,String> filtre = new HashMap<String, String>();
-	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre);
+	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre); //C'EST ICI QUE CA BUG AVEC LES TROIS ERREURS MYSTIQUES
 	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
 			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
 		}
@@ -207,17 +207,17 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonConsulterEnqueteur){
-			if (!this.listeSelectionEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 		}
 		else if(e.getSource() == boutonConsulterTitreEnqueteur){
-			if (!this.listeSelectionTitreEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 		}
 		else if(e.getSource() == boutonModifierEnqueteur){
-			if (!this.listeSelectionEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
@@ -231,7 +231,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			}
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
-			if (!this.listeSelectionTitreEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
@@ -246,13 +246,13 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			
 		}
 		else if(e.getSource() == boutonSupprimerEnqueteur){
-			if (!this.listeSelectionEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 			
 		}
 		else if(e.getSource() == boutonSupprimerTitreEnqueteur){
-			if (!this.listeSelectionTitreEnqueteur.getSelectedValue().equals(null)){
+			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
 				//TODO
 			}
 		}
