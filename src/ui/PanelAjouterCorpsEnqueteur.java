@@ -88,7 +88,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null,"Ajout réussi");
+				JOptionPane.showMessageDialog(null,"Ajout rï¿½ussi");
 				this.retourFenetre();
 			}
 		}
@@ -96,14 +96,14 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	}
 	
 	/*
-	 * Méthode qui enlève ce panel de la fenetre pour remettre le panel d'accueil
+	 * Mï¿½thode qui enlï¿½ve ce panel de la fenetre pour remettre le panel d'accueil
 	 */
 	public void retourFenetre(){
 		this.fenetre.getContentPane().remove(this);
 		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
 		this.fenetre.getPanelCorps().setVisible(true);
 		
-		this.fenetre.setPreferredSize(new Dimension(650,550));
+		this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 		this.fenetre.pack();
 	}
 
