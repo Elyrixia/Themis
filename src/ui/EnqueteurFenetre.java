@@ -7,12 +7,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
@@ -21,6 +23,7 @@ import javax.swing.ListSelectionModel;
 import business.enqueteur.Enqueteur;
 import business.enqueteur.TitreEnqueteur;
 import facade.FacadeEnqueteur;
+import facade.FacadeServiceEnqueteur;
 import facade.FacadeTitreEnqueteur;
 
 
@@ -29,20 +32,22 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	//Attributes :
 	private FacadeEnqueteur facadeEnqueteur;
 	private FacadeTitreEnqueteur facadeTitreEnqueteur;
+	private FacadeServiceEnqueteur facadeServiceEnqueteur; //besoin pour choisir le service quand on ajoute/modifie un enqueteur
 	private ArrayList<Enqueteur> listeEnqueteur;
 	private ArrayList<TitreEnqueteur> listeTitreEnqueteur;
 	private JFrame fenetreParent;
 	
-	//Onglets
+	//Onglets & panels
 	private JTabbedPane panelOnglet;
 	private JPanel panelEnqueteur, panelTitreEnqueteur;
+	
 	//Elements des panels
 	private JLabel labelEnqueteur;
 	private JLabel labelTitreEnqueteur;
 	
-	private JScrollPane panneauListeEnqueteur;
 	private JList listeSelectionEnqueteur;
     private DefaultListModel modelListEnqueteur;
+    private JScrollPane panneauListeEnqueteur;
     
     private DefaultListModel modelListTitreEnqueteur;
 	private JList listeSelectionTitreEnqueteur;
@@ -63,22 +68,14 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		super();
 		this.facadeEnqueteur = new FacadeEnqueteur();
 		this.facadeTitreEnqueteur = new FacadeTitreEnqueteur();
+		this.facadeServiceEnqueteur = new FacadeServiceEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Enqueteur");
 		this.createOnglets();
-		//Ajout listener sur boutons
-		this.boutonAjouterEnqueteur.addActionListener(this);
-		this.boutonAjouterTitreEnqueteur.addActionListener(this);
-		this.boutonConsulterEnqueteur.addActionListener(this);
-		this.boutonConsulterTitreEnqueteur.addActionListener(this);
-		this.boutonModifierEnqueteur.addActionListener(this);
-		this.boutonModifierTitreEnqueteur.addActionListener(this);
-		this.boutonSupprimerEnqueteur.addActionListener(this);
-		this.boutonSupprimerTitreEnqueteur.addActionListener(this);
 		this.setVisible(true);
 	}
 
-	public void createOnglets(){
+	public void createOnglets(){		
 		//Onglets
 		panelOnglet = new JTabbedPane();
 		//Creation onglets
@@ -96,32 +93,41 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		boutonSupprimerEnqueteur = new JButton("Supprimer");
 		boutonSupprimerTitreEnqueteur = new JButton("Supprimer");
 		
+		//Ajout listener sur boutons
+		this.boutonAjouterEnqueteur.addActionListener(this);
+		this.boutonAjouterTitreEnqueteur.addActionListener(this);
+		this.boutonConsulterEnqueteur.addActionListener(this);
+		this.boutonConsulterTitreEnqueteur.addActionListener(this);
+		this.boutonModifierEnqueteur.addActionListener(this);
+		this.boutonModifierTitreEnqueteur.addActionListener(this);
+		this.boutonSupprimerEnqueteur.addActionListener(this);
+		this.boutonSupprimerTitreEnqueteur.addActionListener(this);
+		
 		//Creation liste
 	    modelListEnqueteur = new DefaultListModel();
 		listeSelectionEnqueteur = new JList(modelListEnqueteur);
 	    panneauListeEnqueteur = new JScrollPane(listeSelectionEnqueteur);
 	    listeSelectionEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    MyRenderer affichageEnqueteur = new MyRenderer(facadeEnqueteur);
+	    listeSelectionEnqueteur.setCellRenderer(affichageEnqueteur);
 	    
 	    modelListTitreEnqueteur = new DefaultListModel();
 		listeSelectionTitreEnqueteur = new JList(modelListTitreEnqueteur);
 	    panneauListeTitreEnqueteur = new JScrollPane(listeSelectionTitreEnqueteur);
 	    listeSelectionTitreEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    MyRenderer affichageTitreEnqueteur = new MyRenderer(facadeTitreEnqueteur);
+	    listeSelectionTitreEnqueteur.setCellRenderer(affichageTitreEnqueteur);
 		
-	    /*
-	     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
-	     */
 	    HashMap<String,String> filtre = new HashMap<String, String>();
 	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre);
-	    ArrayList<String> apercus = facadeEnqueteur.getApercu(listeEnqueteur);
-	    for (int i=0; i < apercus.size(); i++) {
-			modelListEnqueteur.addElement(apercus.get(i));
+	    for (int i=0; i < listeEnqueteur.size(); i++) {
+			modelListEnqueteur.addElement(listeEnqueteur.get(i));
 		}
 	    
 	    HashMap<String,String> filtreTitre = new HashMap<String, String>();
 	    listeTitreEnqueteur = facadeTitreEnqueteur.chargerTitreEnqueteur(filtreTitre);
-	    apercus = facadeTitreEnqueteur.getApercu(listeTitreEnqueteur);
-	    for (int i=0; i < apercus.size(); i++) {
-			modelListTitreEnqueteur.addElement(apercus.get(i));
+	    for (int i=0; i < listeTitreEnqueteur.size(); i++) {
+			modelListTitreEnqueteur.addElement(listeTitreEnqueteur.get(i));
 		}
 		
 		//Creation contraintes
@@ -202,51 +208,56 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		
 		super.actionPerformed(e);
+		Enqueteur enqueteur = (Enqueteur) listeSelectionEnqueteur.getSelectedValue();
+		TitreEnqueteur titre = (TitreEnqueteur) listeSelectionTitreEnqueteur.getSelectedValue();
 		
 		if (e.getSource() == boutonAjouterEnqueteur)
 		{
 			this.getPanelOnglet().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un enqueteur");
 			
-			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur();
-			panelAjoutEnqueteur.setFenetre(this);
+			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur(this);
 			this.fenetreParent.getContentPane().add(panelAjoutEnqueteur);
-			//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
+			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTitreEnqueteur){
 			this.getPanelOnglet().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un titre enqueteur");
 			
-			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur();
-			panelAjoutTitreEnqueteur.setFenetre(this);
+			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur(this);
 			this.fenetreParent.getContentPane().add(panelAjoutTitreEnqueteur);
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonConsulterEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO
+			if (enqueteur != null){
+				HashMap<String, Object> hashMapEnqueteur = facadeEnqueteur.consulterEnqueteur(enqueteur);
+				String descriptionEnqueteur = "";
+				for (Map.Entry entry : hashMapEnqueteur.entrySet()) {
+				    descriptionEnqueteur += entry.getKey() + " : " + entry.getValue() + "\n";
+				}
+				JOptionPane.showMessageDialog(null, descriptionEnqueteur);
 			}
 		}
 		else if(e.getSource() == boutonConsulterTitreEnqueteur){
-			if (!(this.listeSelectionTitreEnqueteur.getSelectedValue() == null)){
-				/*String idTitre = ((String) listeSelectionTitreEnqueteur.getSelectedValue()).substring(8, 9);
-				HashMap filtre = new HashMap<String,String>();
-				filtre.put("id=", idTitre);
-				System.out.println(facadeTitreEnqueteur.chargerTitreEnqueteur(filtre));*/
-				
+			if (titre != null){
+				HashMap<String, Object> hashMapTitreEnqueteur = facadeTitreEnqueteur.consulterTitreEnqueteur(titre);
+				String descriptionTitreEnqueteur = "";
+				for (Map.Entry entry : hashMapTitreEnqueteur.entrySet()) {
+				    descriptionTitreEnqueteur += entry.getKey() + " : " + entry.getValue() + "\n";
+				}
+				JOptionPane.showMessageDialog(null, descriptionTitreEnqueteur);
 			}
 		}
 		else if(e.getSource() == boutonModifierEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO : verif d'une selection de la liste + modif par rapport a ajout
+			if (enqueteur != null){
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
 			
-				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur();
-				panelModifEnqueteur.setFenetre(this);
+				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur(this, enqueteur);
 				this.fenetreParent.getContentPane().add(panelModifEnqueteur);
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
@@ -254,13 +265,12 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			}
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
-			if (!(this.listeSelectionTitreEnqueteur.getSelectedValue() == null)){
+			if (titre != null){
 				//TODO : verif d'une selection de la liste + modif par rapport a ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
 				
-				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur();
-				panelModifTitreEnqueteur.setFenetre(this);
+				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur(this, titre);
 				this.fenetreParent.getContentPane().add(panelModifTitreEnqueteur);
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
@@ -269,18 +279,52 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			
 		}
 		else if(e.getSource() == boutonSupprimerEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO
+			if (enqueteur != null){
+				if(verifierSuppressionEnqueteur()){
+					try {
+						facadeEnqueteur.supprimerEnqueteur(enqueteur);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					this.getPanelOnglet().setVisible(false);
+					this.fenetreParent.getContentPane().remove(panelOnglet);
+					this.createOnglets();
+				}
 			}
 			
 		}
 		else if(e.getSource() == boutonSupprimerTitreEnqueteur){
-			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO
+			if (titre != null){
+				if(verifierSuppressionTitreEnqueteur()){
+					try {
+						facadeTitreEnqueteur.supprimerTitreEnqueteur(titre);
+					} catch (Exception e1) {
+						e1.printStackTrace();
+					}
+					this.getPanelOnglet().setVisible(false);
+					this.fenetreParent.getContentPane().remove(panelOnglet);
+					this.createOnglets();
+				}
 			}
 		}
 		
 		
+	}
+	
+	public boolean verifierSuppressionEnqueteur() {
+		int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
+		if (reply == JOptionPane.YES_OPTION) 
+			return true;
+		else
+			return false;
+	}
+	
+	public boolean verifierSuppressionTitreEnqueteur() {
+		int reply = JOptionPane.showConfirmDialog(null, "Etes-vous certains de vouloir supprimer " + this.listeSelectionTitreEnqueteur.getSelectedValue() + " ?", "Suppression", JOptionPane.YES_NO_OPTION);
+		if (reply == JOptionPane.YES_OPTION) 
+			return true;
+		else
+			return false;
 	}
 
 	//Methode appellee par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
@@ -288,10 +332,19 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		return panelOnglet;
 	}
 
-	//getter de la facade pour que les panels ajouter et modifier puisse appeler les fonctions correspondantes
+	//getter de la facade pour que les panels ajouter et modifier de titre puisse ajouter/modif un titre
 	public FacadeTitreEnqueteur getFacadeTitreEnqueteur() {
 		return facadeTitreEnqueteur;
 	}
 
+	//getter de la facade pour que les panels ajouter et modifier de enqueteur puisse ajouter/modif un enqueteur
+	public FacadeEnqueteur getFacadeEnqueteur() {
+		return facadeEnqueteur;
+	}
+	
+	//getter de la facade pour que le panel ajout/modif enqueteur puisse récupérer la liste des services
+	public FacadeServiceEnqueteur getFacadeServiceEnqueteur(){
+		return facadeServiceEnqueteur;
+	}
 	
 }

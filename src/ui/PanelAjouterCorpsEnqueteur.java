@@ -88,7 +88,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null,"Ajout r�ussi");
+				JOptionPane.showMessageDialog(null,"Ajout reussi");
 				this.retourFenetre();
 			}
 		}
@@ -96,7 +96,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	}
 	
 	/*
-	 * M�thode qui enl�ve ce panel de la fenetre pour remettre le panel d'accueil
+	 * Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	 */
 	public void retourFenetre(){
 		this.fenetre.getContentPane().remove(this);

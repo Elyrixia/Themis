@@ -17,7 +17,7 @@ import javax.swing.JTextField;
 public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener{
 
 	//Liste Attributs
-	private EnqueteurFenetre fenetre;
+	protected EnqueteurFenetre fenetre;
 	//Label
 	protected JLabel labelLibelle;
 	//Input
@@ -27,7 +27,9 @@ public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener
 	protected JButton boutonAnnuler;
 	
 	
-	PanelAjouterTitreEnqueteur(){
+	PanelAjouterTitreEnqueteur(EnqueteurFenetre fen){
+		fenetre = fen;
+		
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		 
@@ -69,11 +71,6 @@ public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener
 		this.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 	}
 	
-	
-	public void setFenetre(EnqueteurFenetre fen){
-		fenetre = fen;
-	}
-	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
 		{			
@@ -92,12 +89,9 @@ public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener
 				this.retourFenetre();
 			}
 		}
-		
 	}
 	
-	/*
-	 * Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
-	 */
+	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	public void retourFenetre(){
 		this.fenetre.getContentPane().remove(this);
 		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
