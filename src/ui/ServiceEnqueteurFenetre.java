@@ -5,10 +5,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
-import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
@@ -16,11 +17,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import business.enqueteur.ServiceEnqueteur;
+import facade.FacadeEnqueteur;
+import facade.FacadeServiceEnqueteur;
+
 
 public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListener{
 
-	//private FacadeServiceEnqueteur detectiveServiceFacade;
-	//private ArrayList<ServiceEnqueteur> listeServiceEnqueteur;
+	private FacadeServiceEnqueteur facadeServiceEnqueteur;
+	private ArrayList<ServiceEnqueteur> listeServiceEnqueteur;
 	
 	private JFrame fenetreParent;
 	
@@ -39,6 +44,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 	
 	ServiceEnqueteurFenetre(){
 		super();
+		this.facadeServiceEnqueteur = new FacadeServiceEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Service");
 		this.createPanel();
@@ -69,6 +75,12 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 	    /*
 	     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
 	     */
+	    HashMap<String,String> filtre = new HashMap<String, String>();
+	    listeServiceEnqueteur = facadeServiceEnqueteur.chargerServiceEnqueteur(filtre);
+	    ArrayList<String> apercus = facadeServiceEnqueteur.getApercu(listeServiceEnqueteur);
+	    for (int i=0; i < apercus.size(); i++) {
+	    	modelListServiceEnqueteur.addElement(apercus.get(i));
+		}
 		
 		//Creation contraintes
 		GridBagConstraints contrainteBoutonAjouterServiceEnqueteur = new GridBagConstraints();

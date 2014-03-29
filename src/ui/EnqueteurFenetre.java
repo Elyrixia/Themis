@@ -61,7 +61,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	// Constructor
 	public EnqueteurFenetre() {
 		super();
-		facadeEnqueteur = new FacadeEnqueteur();
+		this.facadeEnqueteur = new FacadeEnqueteur();
 		this.facadeTitreEnqueteur = new FacadeTitreEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Enqueteur");
@@ -112,14 +112,16 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	     */
 	    HashMap<String,String> filtre = new HashMap<String, String>();
 	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre);
-	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
-			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
+	    ArrayList<String> apercus = facadeEnqueteur.getApercu(listeEnqueteur);
+	    for (int i=0; i < apercus.size(); i++) {
+			modelListEnqueteur.addElement(apercus.get(i));
 		}
 	    
 	    HashMap<String,String> filtreTitre = new HashMap<String, String>();
 	    listeTitreEnqueteur = facadeTitreEnqueteur.chargerTitreEnqueteur(filtreTitre);
-	    for (int i=0; i < this.listeTitreEnqueteur.size(); i++) {
-			modelListTitreEnqueteur.addElement(this.listeTitreEnqueteur.get(i));
+	    apercus = facadeTitreEnqueteur.getApercu(listeTitreEnqueteur);
+	    for (int i=0; i < apercus.size(); i++) {
+			modelListTitreEnqueteur.addElement(apercus.get(i));
 		}
 		
 		//Creation contraintes
@@ -282,7 +284,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		return panelOnglet;
 	}
 
-	//getter de la facade pour que les panels ajouter et modifier puisse appeller les fonctions correspondantes
+	//getter de la facade pour que les panels ajouter et modifier puisse appeler les fonctions correspondantes
 	public FacadeTitreEnqueteur getFacadeTitreEnqueteur() {
 		return facadeTitreEnqueteur;
 	}

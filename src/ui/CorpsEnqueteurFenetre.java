@@ -5,6 +5,8 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
@@ -15,14 +17,14 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import business.enqueteur.CorpsEnqueteur;
 import facade.FacadeCorpsEnqueteur;
-import facade.FacadeTitreEnqueteur;
 
 
 public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener{
 	
 	private FacadeCorpsEnqueteur facadeCorpsEnqueteur;
-	//private ArrayList<CorpsEnqueteur> listeCorpsEnqueteur;
+	private ArrayList<CorpsEnqueteur> listeCorpsEnqueteur;
 	
 	private JFrame fenetreParent;
 	
@@ -73,6 +75,12 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 		    /*
 		     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
 		     */
+		    HashMap<String,String> filtre = new HashMap<String, String>();
+		    listeCorpsEnqueteur = facadeCorpsEnqueteur.chargerCorpsEnqueteur(filtre);
+		    ArrayList<String> apercus = facadeCorpsEnqueteur.getApercu(listeCorpsEnqueteur);
+		    for (int i=0; i < apercus.size(); i++) {
+		    	modelListCorpsEnqueteur.addElement(apercus.get(i));
+			}
 			
 			//Creation contraintes
 			GridBagConstraints contrainteBoutonAjouterCorpsEnqueteur = new GridBagConstraints();
