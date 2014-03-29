@@ -41,7 +41,7 @@ public abstract class CorpsEnqueteur implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	// setters and getters
 	

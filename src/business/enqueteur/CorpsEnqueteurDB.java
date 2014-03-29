@@ -1,5 +1,7 @@
 package business.enqueteur;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import persistence.SQLManager;
@@ -39,8 +41,19 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 	}
 
 	@Override
-	public void delete() {
+	public void delete() throws Exception {
 		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(ServiceEnqueteurDB.TABLE_NAME, "id_corps = " + this.id);
+		try {
+			rs.last();
+			int nbServices = rs.getRow();
+			if(nbServices > 0) {
+				throw new Exception("This Corps is used by " + nbServices + " service(s)!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		// Prepare the query
 		String where = "id = "+this.id;
