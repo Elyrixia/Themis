@@ -5,9 +5,11 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -29,7 +31,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		this.setLayout(gridBagLayout);
 		 
-		labelLibelle = new JLabel("Nom :");
+		labelLibelle = new JLabel("Libelle :");
 		GridBagConstraints contrainteLabelLibelle = new GridBagConstraints();
 		contrainteLabelLibelle.gridx = 0;
 		contrainteLabelLibelle.gridy = 0;
@@ -74,17 +76,35 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
-		{
-			this.fenetre.getContentPane().remove(this);
-			this.fenetre.setTitle("Accueil Gestion Corps Enqueteur");
-			this.fenetre.getPanelCorps().setVisible(true);
-			
-			//On remet la taille de la fenetre d'accueil avant de pack sinon la fenetre n'aura pas une taille convenable (affichage que du menu)
-			this.fenetre.setPreferredSize(new Dimension(650,550));
-			this.fenetre.pack();
-		}else if (e.getSource() == boutonValider){
-			//TODO
+		{			
+			this.retourFenetre();
 		}
+		else if(e.getSource() == boutonValider){
+			if(inputLibelle.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Vous devez remplir le champ !", "Error", JOptionPane.ERROR_MESSAGE);
+			}else{
+				try {
+					this.fenetre.getFacadeCorpsEnqueteur().ajouterCorpsEnqueteur(inputLibelle.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null,"Ajout réussi");
+				this.retourFenetre();
+			}
+		}
+		
+	}
+	
+	/*
+	 * Méthode qui enlève ce panel de la fenetre pour remettre le panel d'accueil
+	 */
+	public void retourFenetre(){
+		this.fenetre.getContentPane().remove(this);
+		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
+		this.fenetre.getPanelCorps().setVisible(true);
+		
+		this.fenetre.setPreferredSize(new Dimension(650,550));
+		this.fenetre.pack();
 	}
 
 }

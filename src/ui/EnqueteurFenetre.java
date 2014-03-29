@@ -62,7 +62,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	public EnqueteurFenetre() {
 		super();
 		facadeEnqueteur = new FacadeEnqueteur();
-		facadeTitreEnqueteur = new FacadeTitreEnqueteur();
+		this.facadeTitreEnqueteur = new FacadeTitreEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Enqueteur");
 		this.createOnglets();
@@ -111,7 +111,14 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	     * TODO : Aller chercher les listes avec facade et les mettre ci-dessus
 	     */
 	    HashMap<String,String> filtre = new HashMap<String, String>();
-	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre); //C'EST ICI QUE CA BUG AVEC LES TROIS ERREURS MYSTIQUES
+	    listeEnqueteur = facadeEnqueteur.chargerEnqueteur(filtre);
+	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
+			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
+		}
+	    
+	    
+	    HashMap<String,String> filtreTitre = new HashMap<String, String>();
+	    listeTitreEnqueteur = facadeTitreEnqueteur.chargerTitreEnqueteur(filtreTitre);
 	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
 			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
 		}
@@ -145,17 +152,29 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		
 		GridBagConstraints contrainteBoutonAjouterTitreEnqueteur = new GridBagConstraints();
 		contrainteBoutonAjouterTitreEnqueteur.gridx=1; contrainteBoutonAjouterTitreEnqueteur.gridy=0;
+		contrainteBoutonAjouterTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteBoutonAjouterTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		GridBagConstraints contrainteLabelTitreEnqueteur = new GridBagConstraints();
 		contrainteLabelTitreEnqueteur.gridx=1; contrainteLabelTitreEnqueteur.gridy=1;
+		contrainteLabelTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteLabelTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		GridBagConstraints contrainteListeTitreEnqueteur = new GridBagConstraints();
 		contrainteListeTitreEnqueteur.gridx=0; contrainteListeTitreEnqueteur.gridy=2;
 		contrainteListeTitreEnqueteur.gridwidth=3;
+		contrainteListeTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteListeTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		GridBagConstraints contrainteBoutonConsulterTitreEnqueteur = new GridBagConstraints();
 		contrainteBoutonConsulterTitreEnqueteur.gridx=0; contrainteBoutonConsulterTitreEnqueteur.gridy=3;
+		contrainteBoutonConsulterTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteBoutonConsulterTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		GridBagConstraints contrainteBoutonModifierTitreEnqueteur = new GridBagConstraints();
 		contrainteBoutonModifierTitreEnqueteur.gridx=1; contrainteBoutonModifierTitreEnqueteur.gridy=3;
+		contrainteBoutonConsulterTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteBoutonConsulterTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		GridBagConstraints contrainteBoutonSupprimerTitreEnqueteur = new GridBagConstraints();
 		contrainteBoutonSupprimerTitreEnqueteur.gridx=2; contrainteBoutonSupprimerTitreEnqueteur.gridy=3;
+		contrainteBoutonConsulterTitreEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteBoutonConsulterTitreEnqueteur.anchor = GridBagConstraints.CENTER;
 		
 		//Ajout composants avec contraintes au panel
 		panelEnqueteur.add(labelEnqueteur, contrainteLabelEnqueteur);
@@ -264,5 +283,11 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	public JTabbedPane getPanelOnglet() {
 		return panelOnglet;
 	}
+
+	//getter de la facade pour que les panels ajouter et modifier puisse appeller les fonctions correspondantes
+	public FacadeTitreEnqueteur getFacadeTitreEnqueteur() {
+		return facadeTitreEnqueteur;
+	}
+
 	
 }

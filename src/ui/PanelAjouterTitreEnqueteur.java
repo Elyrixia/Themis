@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -75,18 +76,35 @@ public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener
 	
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == boutonAnnuler)
-		{
-			//Remet les champs vides au cas où?
-			inputLibelle.setText("");
-			
-			this.fenetre.getContentPane().remove(this);
-			this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
-			this.fenetre.getPanelOnglet().setVisible(true);
-			
-			this.fenetre.setPreferredSize(new Dimension(650,550));
-			this.fenetre.pack();
+		{			
+			this.retourFenetre();
+		}
+		else if(e.getSource() == boutonValider){
+			if(inputLibelle.getText().equals("")){
+				JOptionPane.showMessageDialog(null, "Vous devez remplir le champ !", "Error", JOptionPane.ERROR_MESSAGE);
+			}else{
+				try {
+					this.fenetre.getFacadeTitreEnqueteur().ajouterTitreEnqueteur(inputLibelle.getText());
+				} catch (Exception e1) {
+					e1.printStackTrace();
+				}
+				JOptionPane.showMessageDialog(null,"Ajout réussi");
+				this.retourFenetre();
+			}
 		}
 		
+	}
+	
+	/*
+	 * Méthode qui enlève ce panel de la fenetre pour remettre le panel d'accueil
+	 */
+	public void retourFenetre(){
+		this.fenetre.getContentPane().remove(this);
+		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
+		this.fenetre.getPanelOnglet().setVisible(true);
+		
+		this.fenetre.setPreferredSize(new Dimension(650,550));
+		this.fenetre.pack();
 	}
 	
 

@@ -5,6 +5,7 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -14,10 +15,13 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import facade.FacadeCorpsEnqueteur;
+import facade.FacadeTitreEnqueteur;
+
 
 public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener{
 	
-	//private FacadeCorpsEnqueteur detectiveCorpsFacade;
+	private FacadeCorpsEnqueteur facadeCorpsEnqueteur;
 	//private ArrayList<CorpsEnqueteur> listeCorpsEnqueteur;
 	
 	private JFrame fenetreParent;
@@ -38,6 +42,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 	// Constructor
 		public CorpsEnqueteurFenetre() {
 			super();
+			this.facadeCorpsEnqueteur = new FacadeCorpsEnqueteur();
 			this.fenetreParent = super.getFenetre();
 			this.fenetreParent.setTitle("Accueil Gestion Corps");
 			this.createPanel();
@@ -158,6 +163,11 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 		//Pour que les panneaux ajout ou modifier puisse accéder au panel accueil
 		public JPanel getPanelCorps() {
 			return panelCorps;
+		}
+
+		//getter de la facade pour que les panels ajouter et modifier puisse appeller les fonctions correspondantes
+		public FacadeCorpsEnqueteur getFacadeCorpsEnqueteur() {
+			return facadeCorpsEnqueteur;
 		}
 	
 }
