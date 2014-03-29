@@ -82,7 +82,7 @@ public class FacadeObjet extends FacadeAbstraite {
 		result.put("libelle", objet.getLibelle());
 		result.put("comment", objet.getComment());
 		result.put("id_scelle", objet.getIdScelle());
-		result.put("id_type_objet", objet.getIdType());
+		result.put("id_type", objet.getIdType());
 		result.put("id_objet", objet.getIdObjet());
 		return result;
 	}

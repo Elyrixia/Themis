@@ -21,7 +21,7 @@ public class ObjetDB extends Objet {
 		map.put("comment", this.comment);
 		
 		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
-		map.put("id_type_objet", String.valueOf(this.idType.getId()));
+		map.put("id_type", String.valueOf(this.idType.getId()));
 		map.put("id_objet", String.valueOf(this.idObjet.getId()));
 		
 		// Run the query
@@ -41,7 +41,7 @@ public class ObjetDB extends Objet {
 		map.put("comment", this.comment);
 		
 		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
-		map.put("id_type_objet", String.valueOf(this.idType.getId()));
+		map.put("id_type", String.valueOf(this.idType.getId()));
 		map.put("id_objet", String.valueOf(this.idObjet.getId()));
 		
 		String where = "id = "+this.id;

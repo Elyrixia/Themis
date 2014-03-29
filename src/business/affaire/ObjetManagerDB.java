@@ -50,13 +50,13 @@ public class ObjetManagerDB extends ObjetManager {
 				
 				// Need to instantiate TypeObjet to add to the Objet
 				
-				int typeObjet = result.getInt("id_type_objet");
+				int typeObjet = result.getInt("id_type");
 				TypeObjetManager toMng = new TypeObjetManagerDB();
 				HashMap<String, String> filterTypeObjet = new HashMap<String, String>();
 				filterTypeObjet.put("id", "=" + String.valueOf(typeObjet));
 				toMng.loadTypeObjet(filterTypeObjet);
 				ArrayList<TypeObjet> resultTypeObjet = toMng.getListeTypesObjet();
-				row.put("id_type_objet", resultTypeObjet.get(0));
+				row.put("id_type", resultTypeObjet.get(0));
 
 				// Need to instantiate Objet to add to the Objet if it exists
 				

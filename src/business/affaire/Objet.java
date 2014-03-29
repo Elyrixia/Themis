@@ -31,7 +31,7 @@ public abstract class Objet implements Business {
 		this.libelle = (String) map.get("libelle");
 		this.comment = (String) map.get("comment");
 		this.idScelle = (Scelle) map.get("id_scelle");
-		this.idType = (TypeObjet) map.get("id_type_objet");
+		this.idType = (TypeObjet) map.get("id_type");
 		this.idObjet = (Objet) map.get("id_objet");
 	}
 	
