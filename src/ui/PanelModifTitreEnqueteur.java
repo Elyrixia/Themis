@@ -31,7 +31,7 @@ public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur {
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null,"Modif reussi");
+				JOptionPane.showMessageDialog(null,"Modification reussie");
 				this.retourFenetre();
 			}
 		}

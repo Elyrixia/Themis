@@ -219,7 +219,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur(this);
 			this.fenetreParent.getContentPane().add(panelAjoutEnqueteur);
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
-			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT+120));
+			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTitreEnqueteur){
