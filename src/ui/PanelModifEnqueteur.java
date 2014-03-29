@@ -17,34 +17,47 @@ public class PanelModifEnqueteur extends PanelAjouterEnqueteur implements Action
 	
 	PanelModifEnqueteur(EnqueteurFenetre fen, Enqueteur e){
 		super(fen);
+		
 		enqueteur = e;
 		HashMap<String, Object> hashMapEnqueteur = this.fenetre.getFacadeEnqueteur().consulterEnqueteur(enqueteur);
 		String nom = (String) hashMapEnqueteur.get("nom");
-		super.inputNom.setText(nom);
+		inputNom.setText(nom);
 		
 		String prenom = (String) hashMapEnqueteur.get("prenom");
-		super.inputPrenom.setText(prenom);
+		inputPrenom.setText(prenom);
 		
 		String adresse = (String) hashMapEnqueteur.get("adresse");
-		super.inputAdresse.setText(adresse);
+		inputAdresse.setText(adresse);
 		
 		String telPro = (String) hashMapEnqueteur.get("telephone_pro");
-		super.inputTelPro.setText(telPro);
+		inputTelPro.setText(telPro);
 		
 		String telPerso = (String) hashMapEnqueteur.get("telephone_perso");
-		super.inputTelPerso.setText(telPerso);
+		inputTelPerso.setText(telPerso);
 		
 		String mail = (String) hashMapEnqueteur.get("email");
-		super.inputMail.setText(mail);
+		inputMail.setText(mail);
 		
 		String fax = (String) hashMapEnqueteur.get("fax_pro");
-		super.inputFax.setText(fax);
+		inputFax.setText(fax);
 		
 		ServiceEnqueteur service = (ServiceEnqueteur) hashMapEnqueteur.get("id_service");
-		super.listeSelectionServiceEnqueteur.setSelectedValue(service, true);
+		for(int i = 0; i < listeSelectionServiceEnqueteur.getModel().getSize(); i++) {
+			ServiceEnqueteur se = (ServiceEnqueteur) listeSelectionServiceEnqueteur.getModel().getElementAt(i);
+			if(se.equals(service)) {
+				listeSelectionServiceEnqueteur.setSelectedValue(se, true);
+				break;
+			}
+		}
 		
-		String titre = (String) hashMapEnqueteur.get("id_titre");
-		super.listeSelectionTitreEnqueteur.setSelectedValue(titre, true);
+		TitreEnqueteur titre = (TitreEnqueteur) hashMapEnqueteur.get("id_titre");
+		for(int i = 0; i < listeSelectionTitreEnqueteur.getModel().getSize(); i++) {
+			TitreEnqueteur te = (TitreEnqueteur) listeSelectionTitreEnqueteur.getModel().getElementAt(i);
+			if(te.equals(titre)) {
+				listeSelectionTitreEnqueteur.setSelectedValue(te, true);
+				break;
+			}
+		}
 	}
 	
 	public void actionPerformed(ActionEvent e) {

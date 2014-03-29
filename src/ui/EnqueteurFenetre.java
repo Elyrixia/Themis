@@ -219,7 +219,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur(this);
 			this.fenetreParent.getContentPane().add(panelAjoutEnqueteur);
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
-			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
+			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT+120));
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTitreEnqueteur){
@@ -342,7 +342,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		return facadeEnqueteur;
 	}
 	
-	//getter de la facade pour que le panel ajout/modif enqueteur puisse récupérer la liste des services
+	//getter de la facade pour que le panel ajout/modif enqueteur puisse rï¿½cupï¿½rer la liste des services
 	public FacadeServiceEnqueteur getFacadeServiceEnqueteur(){
 		return facadeServiceEnqueteur;
 	}
