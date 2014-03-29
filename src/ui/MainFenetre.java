@@ -4,6 +4,9 @@ import javax.swing.UIManager;
 
 public class MainFenetre
 {
+	
+	public static final int WINDOW_WIDTH = 640;
+	public static final int WINDOW_HEIGHT = 480;
 
 	// Attributes :
 	private FenetreMenu	window;

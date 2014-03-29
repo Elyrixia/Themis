@@ -116,11 +116,10 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
 		}
 	    
-	    
 	    HashMap<String,String> filtreTitre = new HashMap<String, String>();
 	    listeTitreEnqueteur = facadeTitreEnqueteur.chargerTitreEnqueteur(filtreTitre);
 	    for (int i=0; i < this.listeEnqueteur.size(); i++) {
-			modelListEnqueteur.addElement(this.listeEnqueteur.get(i));
+			modelListTitreEnqueteur.addElement(this.listeEnqueteur.get(i));
 		}
 		
 		//Creation contraintes
@@ -210,8 +209,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur();
 			panelAjoutEnqueteur.setFenetre(this);
 			this.fenetreParent.getContentPane().add(panelAjoutEnqueteur);
-			//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-			this.setPreferredSize(new Dimension(500,400));
+			//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTitreEnqueteur){
@@ -221,8 +219,8 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur();
 			panelAjoutTitreEnqueteur.setFenetre(this);
 			this.fenetreParent.getContentPane().add(panelAjoutTitreEnqueteur);
-			//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-			this.setPreferredSize(new Dimension(450,200));
+			//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonConsulterEnqueteur){
@@ -237,29 +235,29 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierEnqueteur){
 			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
+				//TODO : vï¿½rif d'une sï¿½lection de la liste + modif par rapport ï¿½ ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
 			
 				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur();
 				panelModifEnqueteur.setFenetre(this);
 				this.fenetreParent.getContentPane().add(panelModifEnqueteur);
-				//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-				this.setPreferredSize(new Dimension(500,400));
+				//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
 			if (!(this.listeSelectionEnqueteur.getSelectedValue() == null)){
-				//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
+				//TODO : vï¿½rif d'une sï¿½lection de la liste + modif par rapport ï¿½ ajout
 				this.getPanelOnglet().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
 				
 				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur();
 				panelModifTitreEnqueteur.setFenetre(this);
 				this.fenetreParent.getContentPane().add(panelModifTitreEnqueteur);
-				//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-				this.setPreferredSize(new Dimension(500,400));
+				//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
 			
@@ -279,7 +277,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		
 	}
 
-	//Méthode appellée par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
+	//Mï¿½thode appellï¿½e par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
 	public JTabbedPane getPanelOnglet() {
 		return panelOnglet;
 	}

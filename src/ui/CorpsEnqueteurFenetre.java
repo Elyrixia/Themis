@@ -125,8 +125,8 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 				PanelAjouterCorpsEnqueteur panelAjoutCorpsEnqueteur = new PanelAjouterCorpsEnqueteur();
 				panelAjoutCorpsEnqueteur.setFenetre(this);
 				this.fenetreParent.getContentPane().add(panelAjoutCorpsEnqueteur);
-				//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-				this.setPreferredSize(new Dimension(450,200));
+				//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
 			}
 			
@@ -138,15 +138,15 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			
 			else if(e.getSource() == boutonModifierCorpsEnqueteur){
 				if (!(this.listeSelectionCorpsEnqueteur.getSelectedValue() == null)){
-					//TODO : vérif d'une sélection de la liste + modif par rapport à ajout
+					//TODO : vï¿½rif d'une sï¿½lection de la liste + modif par rapport ï¿½ ajout
 					this.getPanelCorps().setVisible(false);
 					this.fenetreParent.setTitle("Modification d'un corps enqueteur");
 				
 					PanelModifCorpsEnqueteur panelModifCorpsEnqueteur = new PanelModifCorpsEnqueteur();
 					panelModifCorpsEnqueteur.setFenetre(this);
 					this.fenetreParent.getContentPane().add(panelModifCorpsEnqueteur);
-					//On change la taille de la fenetre avant de pack pour éviter d'avoir une fenetre trop grande pleine de vide
-					this.setPreferredSize(new Dimension(500,400));
+					//On change la taille de la fenetre avant de pack pour ï¿½viter d'avoir une fenetre trop grande pleine de vide
+					this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 					this.fenetreParent.pack();
 				}
 			}
@@ -160,7 +160,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			
 		}
 
-		//Pour que les panneaux ajout ou modifier puisse accéder au panel accueil
+		//Pour que les panneaux ajout ou modifier puisse accï¿½der au panel accueil
 		public JPanel getPanelCorps() {
 			return panelCorps;
 		}

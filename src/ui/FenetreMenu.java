@@ -1,6 +1,7 @@
 package ui;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -42,7 +43,7 @@ public class FenetreMenu extends JFrame implements ActionListener{
 	FenetreMenu(){
 		super();
 		// Au niveau de la taille, il faut au moins 450 pour afficher les menus en longueur correctement
-		this.setSize(650,550);
+		this.setSize(MainFenetre.WINDOW_WIDTH, MainFenetre.WINDOW_HEIGHT);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.createMenus();
 	}

@@ -116,7 +116,7 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 			this.fenetre.getPanelService().setVisible(true);
 			
 			//On remet la taille de la fenetre d'accueil avant de pack sinon la fenetre n'aura pas une taille convenable (affichage que du menu)
-			this.fenetre.setPreferredSize(new Dimension(650,550));
+			this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetre.pack();
 		}else if (e.getSource() == boutonValider){
 			//TODO
