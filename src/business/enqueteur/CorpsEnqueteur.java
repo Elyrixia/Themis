@@ -65,8 +65,7 @@ public abstract class CorpsEnqueteur implements Business {
 	}
 	
 	public String toString() {
-		String message = "CorpsEnqueteur n°"+this.id+" - ";
-		message += "Libelle: "+this.libelle+".";
+		String message = "CorpsEnqueteur n°"+this.id+" - "+this.libelle;
 		
 		return message;
 	}
