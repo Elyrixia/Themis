@@ -79,7 +79,7 @@ public class PanelModifEnqueteur extends PanelAjouterEnqueteur implements Action
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null,"Ajout reussi");
+				JOptionPane.showMessageDialog(null,"Modification reussie");
 				this.retourFenetre();
 			}
 		}

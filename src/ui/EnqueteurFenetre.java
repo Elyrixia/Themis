@@ -283,6 +283,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 				if(verifierSuppressionEnqueteur()){
 					try {
 						facadeEnqueteur.supprimerEnqueteur(enqueteur);
+						JOptionPane.showMessageDialog(null,"Suppression reussie");
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
@@ -298,6 +299,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 				if(verifierSuppressionTitreEnqueteur()){
 					try {
 						facadeTitreEnqueteur.supprimerTitreEnqueteur(titre);
+						JOptionPane.showMessageDialog(null,"Suppression reussie");
 					} catch (Exception e1) {
 						e1.printStackTrace();
 					}
