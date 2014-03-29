@@ -12,7 +12,7 @@ import business.affaire.Scelle;
 import business.affaire.ScelleManager;
 import business.affaire.ScelleManagerDB;
 
-public class FacadeScelle {
+public class FacadeScelle extends FacadeAbstraite {
 	
 	// ATTRIBUTES
 	

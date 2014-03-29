@@ -11,7 +11,7 @@ import business.enqueteur.ServiceEnqueteur;
 import business.enqueteur.ServiceEnqueteurManager;
 import business.enqueteur.ServiceEnqueteurManagerDB;
 
-public class FacadeServiceEnqueteur {
+public class FacadeServiceEnqueteur extends FacadeAbstraite {
 
 	// ATTRIBUTES
 	

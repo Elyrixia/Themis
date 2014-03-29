@@ -10,7 +10,7 @@ import business.enqueteur.CorpsEnqueteur;
 import business.enqueteur.CorpsEnqueteurManager;
 import business.enqueteur.CorpsEnqueteurManagerDB;
 
-public class FacadeCorpsEnqueteur
+public class FacadeCorpsEnqueteur extends FacadeAbstraite
 {
 
 	// ATTRIBUTES

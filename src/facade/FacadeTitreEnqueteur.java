@@ -10,7 +10,7 @@ import business.enqueteur.TitreEnqueteur;
 import business.enqueteur.TitreEnqueteurManager;
 import business.enqueteur.TitreEnqueteurManagerDB;
 
-public class FacadeTitreEnqueteur {
+public class FacadeTitreEnqueteur extends FacadeAbstraite {
 
 	// ATTRIBUTES
 	

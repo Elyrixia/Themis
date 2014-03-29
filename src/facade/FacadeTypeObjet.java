@@ -10,7 +10,7 @@ import business.affaire.TypeObjet;
 import business.affaire.TypeObjetManager;
 import business.affaire.TypeObjetManagerDB;
 
-public class FacadeTypeObjet {
+public class FacadeTypeObjet extends FacadeAbstraite {
 
 	// ATTRIBUTES
 

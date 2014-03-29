@@ -12,7 +12,7 @@ import business.enqueteur.EnqueteurManagerDB;
 import business.enqueteur.ServiceEnqueteur;
 import business.enqueteur.TitreEnqueteur;
 
-public class FacadeEnqueteur {
+public class FacadeEnqueteur extends FacadeAbstraite {
 
 	// ATTRIBUTES
 	

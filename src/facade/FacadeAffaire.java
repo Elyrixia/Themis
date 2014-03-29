@@ -3,7 +3,6 @@ package facade;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import persistence.DBFactory;
 import persistence.Factory;
@@ -11,7 +10,7 @@ import business.affaire.Affaire;
 import business.affaire.AffaireManager;
 import business.affaire.AffaireManagerDB;
 
-public class FacadeAffaire {
+public class FacadeAffaire extends FacadeAbstraite {
 
 	//ATTRIBUTES
 
@@ -92,25 +91,6 @@ public class FacadeAffaire {
 		result.put("delai", affaire.getDelai());
 		return result;
 	}
-
-	/**
-	 * Get ArrayList<String> containing a toString for each Affaire
-	 * 
-	 * @param: listeAffaires: ArrayList to read
-	 */
-	public ArrayList<String> getApercu(ArrayList<Affaire> listeAffaires) {
-		
-		ArrayList<String> listeApercus = new ArrayList<String>();
-		Iterator<Affaire> it = listeAffaires.iterator();
-		
-		while(it.hasNext()) {
-			listeApercus.add(it.next().toString());
-		}
-		
-		return listeApercus;
-		
-	}
-	
 	
 	/**
 	 * Load an ArrayList of Affaire using a filter
