@@ -127,7 +127,8 @@ public abstract class Scelle implements Business {
 				dateRecup.equals(a.getDateRecup()) && 
 				lieuRecup.equals(a.getLieuRecup()) && 
 				comment.equals(a.getComment()) && 
-				idAffaire.equals(a.getIdAffaire());
+				idAffaire.equals(a.getIdAffaire()) && 
+				(idScelle != null ? idScelle.equals(a.getIdScelle()) : true);
 	}
 	
 }

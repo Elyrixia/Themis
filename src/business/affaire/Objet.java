@@ -110,7 +110,7 @@ public abstract class Objet implements Business {
 				comment.equals(a.getComment()) && 
 				idScelle.equals(a.getIdScelle()) && 
 				idType.equals(a.getIdType()) && 
-				idObjet.equals(a.getIdObjet());
+				(idObjet != null ? idObjet.equals(a.getIdObjet()) : true);
 	}
 	
 }
