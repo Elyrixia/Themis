@@ -198,6 +198,17 @@ public class SQLManager
 		// executing the query
 		this._executeQuery(query);
 	}
+	
+	/**
+	 * 
+	 * @param table
+	 * @param where
+	 * @return
+	 */
+	public int count(String table, String where)
+	{
+		return 0;
+	}
 
 	/**
 	 * 
