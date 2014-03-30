@@ -7,6 +7,10 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
+import ui.enqueteur.CorpsEnqueteurFenetre;
+import ui.enqueteur.EnqueteurFenetre;
+import ui.enqueteur.ServiceEnqueteurFenetre;
+
 // Classe fenetre avec juste les menus
 public class FenetreMenu extends JFrame implements ActionListener{
 	
@@ -40,7 +44,7 @@ public class FenetreMenu extends JFrame implements ActionListener{
 	private JMenuItem sousMenuCoutAnnuel;
 	private JMenuItem sousMenuGestionOutil;
 	
-	FenetreMenu(){
+	public FenetreMenu(){
 		super();
 		// Au niveau de la taille, il faut au moins 450 pour afficher les menus en longueur correctement
 		this.setSize(MainFenetre.WINDOW_WIDTH, MainFenetre.WINDOW_HEIGHT);
@@ -96,7 +100,7 @@ public class FenetreMenu extends JFrame implements ActionListener{
 		this.setJMenuBar(menuBar);
 	}
 	
-	FenetreMenu getFenetre(){
+	public FenetreMenu getFenetre(){
 		return this;
 	}
 	

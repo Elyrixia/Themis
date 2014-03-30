@@ -1,4 +1,4 @@
-package ui;
+package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -12,6 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
+import ui.MainFenetre;
 
 
 public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener{

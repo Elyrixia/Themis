@@ -1,4 +1,4 @@
-package ui;
+package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -20,6 +20,9 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.ListSelectionModel;
 
+import ui.FenetreMenu;
+import ui.MainFenetre;
+import ui.MyRenderer;
 import business.enqueteur.Enqueteur;
 import business.enqueteur.TitreEnqueteur;
 import facade.FacadeEnqueteur;

@@ -8,7 +8,7 @@ import javax.swing.JList;
 import business.Business;
 import facade.FacadeAbstraite;
 
-class MyRenderer extends DefaultListCellRenderer { 
+public class MyRenderer extends DefaultListCellRenderer { 
 	private FacadeAbstraite facade; 
 	
 	public MyRenderer(FacadeAbstraite f) { 

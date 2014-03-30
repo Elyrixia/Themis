@@ -1,4 +1,4 @@
-package ui;
+package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +19,9 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
+import ui.FenetreMenu;
+import ui.MainFenetre;
+import ui.MyRenderer;
 import business.enqueteur.ServiceEnqueteur;
 import facade.FacadeCorpsEnqueteur;
 import facade.FacadeServiceEnqueteur;
@@ -43,7 +46,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 	private JButton boutonModifierServiceEnqueteur;
 	private JButton boutonSupprimerServiceEnqueteur;
 	
-	ServiceEnqueteurFenetre(){
+	public ServiceEnqueteurFenetre(){
 		super();
 		this.facadeServiceEnqueteur = new FacadeServiceEnqueteur();
 		this.facadeCorpsEnqueteur = new FacadeCorpsEnqueteur();

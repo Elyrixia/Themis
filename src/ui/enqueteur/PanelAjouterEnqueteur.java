@@ -1,4 +1,4 @@
-package ui;
+package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -19,6 +19,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
+import ui.MainFenetre;
+import ui.MyRenderer;
 import business.enqueteur.ServiceEnqueteur;
 import business.enqueteur.TitreEnqueteur;
 
@@ -263,7 +265,7 @@ public class PanelAjouterEnqueteur extends JPanel implements ActionListener{
 		
 	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	public void retourFenetre(){
-		this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() à cause du JScrollPane
+		this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() ï¿½ cause du JScrollPane
 		this.fenetre.setTitle("Accueil Gestion Enqueteur");
 		this.fenetre.createOnglets();
 			

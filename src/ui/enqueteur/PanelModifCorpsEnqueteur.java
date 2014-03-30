@@ -1,20 +1,22 @@
-package ui;
+package ui.enqueteur;
 import java.awt.event.ActionEvent;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
-import business.enqueteur.TitreEnqueteur;
+
+import business.enqueteur.CorpsEnqueteur;
 
 
-public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur {
+
+public class PanelModifCorpsEnqueteur extends PanelAjouterCorpsEnqueteur {
 	
-	private TitreEnqueteur titre;
+	private CorpsEnqueteur corps;
 
-	PanelModifTitreEnqueteur(EnqueteurFenetre fen, TitreEnqueteur t){
+	PanelModifCorpsEnqueteur(CorpsEnqueteurFenetre fen, CorpsEnqueteur c){
 		super(fen);
-		titre = t;
-		HashMap<String, Object> hashMapTitre = this.fenetre.getFacadeTitreEnqueteur().consulterTitreEnqueteur(titre);
-		String libelle = (String) hashMapTitre.get("libelle");
+		corps=c;
+		HashMap<String, Object> hashMapCorps = this.fenetre.getFacadeCorpsEnqueteur().consulterCorpsEnqueteur(corps);
+		String libelle = (String) hashMapCorps.get("libelle");
 		super.inputLibelle.setText(libelle);
 	}
 	
@@ -26,7 +28,7 @@ public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur {
 				JOptionPane.showMessageDialog(null, "Vous devez remplir le champ !", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
 				try {
-					this.fenetre.getFacadeTitreEnqueteur().modifierTitreEnqueteur(titre, inputLibelle.getText());
+					this.fenetre.getFacadeCorpsEnqueteur().modifierCorpsEnqueteur(corps, inputLibelle.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
@@ -35,4 +37,5 @@ public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur {
 			}
 		}
 	}
+
 }

@@ -2,6 +2,8 @@ package ui;
 
 import javax.swing.UIManager;
 
+import ui.enqueteur.EnqueteurFenetre;
+
 public class MainFenetre
 {
 	
