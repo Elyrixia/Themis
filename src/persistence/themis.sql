@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client: localhost
--- Généré le: Sam 29 Mars 2014 à 17:20
+-- Généré le: Dim 30 Mars 2014 à 14:17
 -- Version du serveur: 5.5.35-0ubuntu0.13.10.2
 -- Version de PHP: 5.5.3-1ubuntu2.2
 
@@ -35,6 +35,7 @@ CREATE TABLE IF NOT EXISTS `affaire` (
   `date_ordre` date NOT NULL,
   `date_rendu` date NOT NULL,
   `delai` tinyint(1) NOT NULL DEFAULT '0',
+  `comment` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 
@@ -68,7 +69,7 @@ CREATE TABLE IF NOT EXISTS `enqueteur` (
   `fax_pro` varchar(14) NOT NULL,
   `telephone_perso` varchar(14) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 -- --------------------------------------------------------
 

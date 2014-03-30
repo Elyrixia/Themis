@@ -35,6 +35,8 @@ public abstract class Affaire implements Business {
 	 */
 	protected boolean delai;
 	
+	protected String comment;
+	
 	public Affaire() {
 		
 	}
@@ -134,6 +136,14 @@ public abstract class Affaire implements Business {
 		this.delai = delai;
 	}
 	
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 	public String toString() {
 		String message = "Affaire n�"+this.id+" - "+this.nom;
 		
@@ -148,7 +158,8 @@ public abstract class Affaire implements Business {
 				numParquet == a.getNumParquet() && 
 				dateOrdre.equals(a.getDateOrdre()) && 
 				dateRendu.equals(a.getDateRendu()) && 
-				delai == a.getDelai();
+				delai == a.getDelai() && 
+				comment.equals(a.getComment());
 	}
 	
 }

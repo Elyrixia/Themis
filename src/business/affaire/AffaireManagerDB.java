@@ -40,6 +40,7 @@ public class AffaireManagerDB extends AffaireManager {
 				row.put("date_ordre", result.getDate("date_ordre"));
 				row.put("date_rendu", result.getDate("date_rendu"));
 				row.put("delai", result.getBoolean("delai"));
+				row.put("comment", result.getString("comment"));
 				
 				// Loading Affaire using values in row
 				newAffaire.load(row);

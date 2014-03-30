@@ -28,7 +28,7 @@ public class FacadeAffaire extends FacadeAbstraite {
 	 * Add a new Affaire
 	 * @param: Affaire attributes
 	 */
-	public Affaire ajouterAffaire(String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai) throws Exception
+	public Affaire ajouterAffaire(String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai, String comment) throws Exception
 	{
 		Factory fac = DBFactory.getInstance();
 		Affaire newAffaire = fac.createAffaire();
@@ -40,7 +40,8 @@ public class FacadeAffaire extends FacadeAbstraite {
 		newAffaire.setDateOrdre(dateOrdre);
 		newAffaire.setDateRendu(dateRendu);
 		newAffaire.setDelai(delai);
-
+		newAffaire.setComment(comment);
+		
 		newAffaire.create();
 
 		return newAffaire;
@@ -50,7 +51,7 @@ public class FacadeAffaire extends FacadeAbstraite {
 	 * Edit an Affaire
 	 * @param: Affaire attributes
 	 */
-	public void modifierAffaire(Affaire affaire, String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai) throws Exception
+	public void modifierAffaire(Affaire affaire, String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai, String comment) throws Exception
 	{
 		affaire.setNom(nom);
 		affaire.setNumDossier(numDossier);
@@ -59,7 +60,8 @@ public class FacadeAffaire extends FacadeAbstraite {
 		affaire.setDateOrdre(dateOrdre);
 		affaire.setDateRendu(dateRendu);
 		affaire.setDelai(delai);
-
+		affaire.setComment(comment);
+		
 		affaire.update();
 	}
 
@@ -89,6 +91,8 @@ public class FacadeAffaire extends FacadeAbstraite {
 		result.put("date_ordre", affaire.getDateOrdre());
 		result.put("date_rendu", affaire.getDateRendu());
 		result.put("delai", affaire.getDelai());
+		result.put("comment", affaire.getComment());
+		
 		return result;
 	}
 	
