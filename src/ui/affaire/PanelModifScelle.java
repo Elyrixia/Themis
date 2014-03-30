@@ -65,17 +65,15 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		else if(e.getSource() == boutonValider){
 			String lieuRecup = inputLieuRecup.getText(); Number numPV = (Number) inputNumPV.getValue(); Date dateRecup = (Date) inputDateRecup.getValue(); 
 			String commentaire = inputCommentaire.getText(); Affaire affaire = (Affaire) listeSelectionAffaire.getSelectedValue();
-			Scelle scelle;
-			if(listeSelectionScelle.getSelectedValue() instanceof String){
-				scelle = null;
-			}else{
-				scelle = (Scelle) listeSelectionScelle.getSelectedValue();
-			}
+			Scelle scelleParent = (Scelle) listeSelectionScelle.getSelectedValue();
 			if(lieuRecup.equals("") || numPV == null || dateRecup == null || lieuRecup == null || affaire == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
-			}else{
+			}else if(scelle == scelleParent){
+				JOptionPane.showMessageDialog(null, "Tu veux mettre ce scelle comme son parent !", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else{
 				try {
-					this.fenetre.getFacadeScelle().modifierScelle(scelle, numPV.intValue(), dateRecup, lieuRecup, commentaire, affaire, scelle);
+					this.fenetre.getFacadeScelle().modifierScelle(scelle, numPV.intValue(), dateRecup, lieuRecup, commentaire, affaire, scelleParent);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

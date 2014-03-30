@@ -45,9 +45,9 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 		
 		Objet objet = (Objet) hashMapObjet.get("id_objet");
 		for(int i = 0; i < listeSelectionObjet.getModel().getSize(); i++) {
-			Scelle s = (Scelle) listeSelectionObjet.getModel().getElementAt(i);
-			if(s.equals(objet)) {
-				listeSelectionObjet.setSelectedValue(s, true);
+			Objet o = (Objet) listeSelectionObjet.getModel().getElementAt(i);
+			if(o.equals(objet)) {
+				listeSelectionObjet.setSelectedValue(o, true);
 				break;
 			}
 		}
@@ -62,17 +62,15 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			String libelle = inputLibelle.getText(); String commentaire = inputCommentaire.getText(); 
 			Scelle scelle = (Scelle) listeSelectionScelle.getSelectedValue(); 
 			TypeObjet typeObjet = (TypeObjet) listeSelectionTypeObjet.getSelectedValue();
-			Objet objet;
-			if(listeSelectionObjet.getSelectedValue() instanceof String){
-				objet = null;
-			}else{
-				objet = (Objet) listeSelectionObjet.getSelectedValue();
-			}
+			Objet objetParent = (Objet) listeSelectionObjet.getSelectedValue();
 			if(libelle.equals("") || scelle == null || typeObjet == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
-			}else{
+			}else if(objet == objetParent){
+				JOptionPane.showMessageDialog(null, "Tu veux mettre cet objet comme son parent !", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+			else{
 				try {
-					this.fenetre.getFacadeObjet().modifierObjet(objet, libelle, commentaire, scelle, typeObjet, objet);
+					this.fenetre.getFacadeObjet().modifierObjet(objet, libelle, commentaire, scelle, typeObjet, objetParent);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
