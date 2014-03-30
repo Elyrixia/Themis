@@ -27,7 +27,7 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		Integer numPV = (Integer) hashMapScelle.get("num_proces");
 		super.inputNumPV.setValue(numPV);
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/aaaa");
 		try {
 			Date dateRecup = format.parse((String) hashMapScelle.get("date_recup"));
 			super.inputDateRecup.setValue(dateRecup);
@@ -68,8 +68,6 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 			Scelle scelleParent = (Scelle) listeSelectionScelle.getSelectedValue();
 			if(lieuRecup.equals("") || numPV == null || dateRecup == null || lieuRecup == null || affaire == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
-			}else if(scelle == scelleParent){
-				JOptionPane.showMessageDialog(null, "Tu veux mettre ce scelle comme son parent !", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else{
 				try {

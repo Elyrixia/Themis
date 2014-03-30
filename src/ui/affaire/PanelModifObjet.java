@@ -65,8 +65,6 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			Objet objetParent = (Objet) listeSelectionObjet.getSelectedValue();
 			if(libelle.equals("") || scelle == null || typeObjet == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
-			}else if(objet == objetParent){
-				JOptionPane.showMessageDialog(null, "Tu veux mettre cet objet comme son parent !", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else{
 				try {
