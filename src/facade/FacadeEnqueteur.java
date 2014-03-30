@@ -91,6 +91,7 @@ public class FacadeEnqueteur extends FacadeAbstraite {
 		result.put("fax_pro", enqueteur.getFaxPro());
 		result.put("id_titre", enqueteur.getTitre());
 		result.put("id_service", enqueteur.getService());
+		result.put("nombre d'affaires dans lesquelles cet enqueteur a travaillé", enqueteur.getNbAffaires());
 		
 		return result;
 	}

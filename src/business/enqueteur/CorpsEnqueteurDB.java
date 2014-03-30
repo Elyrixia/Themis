@@ -69,16 +69,6 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 	public int getNbServices() {
 		
 		SQLManager sqlManager = SQLManager.getConnection();
-		
-		ResultSet rs = sqlManager.select(ServiceEnqueteurDB.TABLE_NAME, "id_corps = " + this.id);
-		int nbServices = 0;
-		try {
-			rs.last();
-			nbServices = rs.getRow();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return nbServices;
+		return sqlManager.count(ServiceEnqueteurDB.TABLE_NAME, "id_corps = " + this.id);
 	}
 }

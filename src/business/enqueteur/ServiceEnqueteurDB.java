@@ -79,17 +79,7 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 	public int getNbEnqueteurs() {
 		
 		SQLManager sqlManager = SQLManager.getConnection();
-		
-		ResultSet rs = sqlManager.select(EnqueteurDB.TABLE_NAME, "id_service = " + this.id);
-		int nbEnqueteurs = 0;
-		try {
-			rs.last();
-			nbEnqueteurs = rs.getRow();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
-		return nbEnqueteurs;
+		return sqlManager.count(EnqueteurDB.TABLE_NAME, "id_service = " + this.id);
 	}
 
 }

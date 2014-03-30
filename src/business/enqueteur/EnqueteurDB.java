@@ -3,6 +3,7 @@ package business.enqueteur;
 import java.util.HashMap;
 
 import persistence.SQLManager;
+import business.affaire.AffaireDB;
 
 public class EnqueteurDB extends Enqueteur {
 	
@@ -63,6 +64,16 @@ public class EnqueteurDB extends Enqueteur {
 		
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
+	}
+	
+	/**
+	 * 
+	 * @return the number of affaires in which this detective has worked
+	 */
+	public int getNbAffaires() {
+		
+		SQLManager sqlManager = SQLManager.getConnection();
+		return sqlManager.count(AffaireDB.TABLE_NAME, "id_enqueteur = " + this.id);
 	}
 
 }

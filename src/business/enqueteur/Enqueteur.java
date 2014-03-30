@@ -58,6 +58,11 @@ public abstract class Enqueteur extends Personne implements Business
 	 */
 	public abstract void delete();
 	
+	/**
+	 * @see getNbAffaires from EnqueteurDB
+	 */
+	public abstract int getNbAffaires();
+	
 	// getters and setters
 
 	public TitreEnqueteur getTitre() {
