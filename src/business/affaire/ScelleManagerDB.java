@@ -51,7 +51,7 @@ public class ScelleManagerDB extends ScelleManager {
 				
 				// Need to instantiate Scelle to add to the Scelle if it exists
 
-				int scelle = result.getInt("id_scelle");
+				Object scelle = result.getObject("id_scelle");
 				if (!result.wasNull()) {
 					ScelleManager sMng = new ScelleManagerDB();
 					HashMap<String, String> filterScelle = new HashMap<String, String>();
@@ -59,6 +59,9 @@ public class ScelleManagerDB extends ScelleManager {
 					sMng.loadScelle(filterScelle);
 					ArrayList<Scelle> resultScelle = sMng.getListeScelles();
 					row.put("id_scelle", resultScelle.get(0));
+				}
+				else {
+					row.put("id_scelle", null);
 				}
 				
 				// Loading Scelle using values in row

@@ -60,7 +60,7 @@ public class ObjetManagerDB extends ObjetManager {
 
 				// Need to instantiate Objet to add to the Objet if it exists
 				
-				int objet = result.getInt("id_objet");
+				Object objet = result.getObject("id_objet");
 				if (!result.wasNull()) {
 					ObjetManager oMng = new ObjetManagerDB();
 					HashMap<String, String> filterObjet = new HashMap<String, String>();
@@ -69,6 +69,10 @@ public class ObjetManagerDB extends ObjetManager {
 					ArrayList<Objet> resultObjet = oMng.getListeObjets();
 					row.put("id_objet", resultObjet.get(0));
 				}
+				else {
+					row.put("id_objet", null);
+				}
+					
 				
 				// Loading Objet using values in row
 				newObjet.load(row);
