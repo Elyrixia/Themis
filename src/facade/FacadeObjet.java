@@ -78,12 +78,16 @@ public class FacadeObjet extends FacadeAbstraite {
 	 */
 	public HashMap<String, Object> consulterObjet(Objet objet) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("id", objet.getId());
-		result.put("libelle", objet.getLibelle());
-		result.put("comment", objet.getComment());
-		result.put("id_scelle", objet.getIdScelle());
-		result.put("id_type", objet.getIdType());
-		result.put("id_objet", objet.getIdObjet());
+		result.put("ID", objet.getId());
+		result.put("Lobelle", objet.getLibelle());
+		result.put("Commentaire", objet.getComment());
+		result.put("Scelle", objet.getIdScelle());
+		result.put("Type d'objet", objet.getIdType());
+		if(objet.getIdObjet() == null)
+			result.put("Objet parent", "Aucun");
+		else
+			result.put("Objet parent", objet.getIdObjet());
+		
 		return result;
 	}
 
