@@ -94,16 +94,16 @@ public class FacadeAffaire extends FacadeAbstraite {
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
 		
-		result.put("ID", affaire.getId());
-		result.put("Nom", affaire.getNom());
-		result.put("Numero de dossier", affaire.getNumDossier());
-		result.put("Numero d'instruction", affaire.getNumInstruction());
-		result.put("Numero du parquet", affaire.getNumParquet());
-		result.put("Date de l'ordre", df.format(affaire.getDateOrdre()));
-		result.put("Date de rendu", df.format(affaire.getDateRendu()));
-		result.put("Avec delai", affaire.getDelai() ? "Oui" : "Non");
-		result.put("Commentaire", affaire.getComment());
-		result.put("Enqueteur", affaire.getEnqueteur());
+		result.put("id", affaire.getId());
+		result.put("nom", affaire.getNom());
+		result.put("num_dossier", affaire.getNumDossier());
+		result.put("num_instruction", affaire.getNumInstruction());
+		result.put("num_parquet", affaire.getNumParquet());
+		result.put("date_ordre", df.format(affaire.getDateOrdre()));
+		result.put("date_rendu", df.format(affaire.getDateRendu()));
+		result.put("delai", affaire.getDelai());
+		result.put("comment", affaire.getComment());
+		result.put("id_enqueteur", affaire.getEnqueteur());
 		
 		return result;
 	}

@@ -64,9 +64,9 @@ public class FacadeTitreEnqueteur extends FacadeAbstraite {
 	 */
 	public HashMap<String,Object> consulterTitreEnqueteur(TitreEnqueteur titre) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		result.put("ID", titre.getId());
-		result.put("Libelle", titre.getLibelle());
-		result.put("Nombre d'enqueteurs avec ce titre", titre.getNbEnqueteurs());
+		result.put("id", titre.getId());
+		result.put("libelle", titre.getLibelle());
+		result.put("nombre d'enqueteurs avec ce titre", titre.getNbEnqueteurs());
 		return result;
 	}
 		

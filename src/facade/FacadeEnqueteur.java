@@ -81,17 +81,17 @@ public class FacadeEnqueteur extends FacadeAbstraite {
 	 */
 	public HashMap<String,Object> consulterEnqueteur(Enqueteur enqueteur) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		result.put("ID", enqueteur.getId());
-		result.put("Nom", enqueteur.getNom());
-		result.put("Prenom", enqueteur.getPrenom());
-		result.put("Adresse", enqueteur.getAdresse());
-		result.put("Telephone professionnel", enqueteur.getTelephonePro());
-		result.put("Telephone personnel", enqueteur.getTelephonePerso());
-		result.put("Email",enqueteur.getEmail());
-		result.put("Fax profesionnel", enqueteur.getFaxPro());
-		result.put("Titre", enqueteur.getTitre());
-		result.put("Service", enqueteur.getService());
-		result.put("Nombre d'affaires dans lesquelles cet enqueteur a travaille", enqueteur.getNbAffaires());
+		result.put("id", enqueteur.getId());
+		result.put("nom", enqueteur.getNom());
+		result.put("prenom", enqueteur.getPrenom());
+		result.put("adresse", enqueteur.getAdresse());
+		result.put("telephone_pro", enqueteur.getTelephonePro());
+		result.put("telephone_perso", enqueteur.getTelephonePerso());
+		result.put("email",enqueteur.getEmail());
+		result.put("fax_pro", enqueteur.getFaxPro());
+		result.put("id_titre", enqueteur.getTitre());
+		result.put("id_service", enqueteur.getService());
+		result.put("nombre d'affaires dans lesquelles cet enqueteur a travaille", enqueteur.getNbAffaires());
 		
 		return result;
 	}

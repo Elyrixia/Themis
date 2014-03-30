@@ -80,16 +80,16 @@ public class FacadeScelle extends FacadeAbstraite {
 	 */
 	public HashMap<String, Object> consulterScelle(Scelle scelle) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
-		result.put("ID", scelle.getId());
-		result.put("Numero de proces", scelle.getNumProces());
-		result.put("Date de recuperation", scelle.getDateRecup());
-		result.put("Lieu de recuperation", scelle.getLieuRecup());
-		result.put("Commentaire", scelle.getComment());
-		result.put("Affaire", scelle.getIdAffaire());
+		result.put("id", scelle.getId());
+		result.put("num_proces", scelle.getNumProces());
+		result.put("date_recup", scelle.getDateRecup());
+		result.put("lieu_recup", scelle.getLieuRecup());
+		result.put("comment", scelle.getComment());
+		result.put("id_affaire", scelle.getIdAffaire());
 		if(scelle.getIdScelle() == null)
-			result.put("Scelle parent", "Aucun");
+			result.put("id_scelle", "Aucun");
 		else
-			result.put("Scelle parent", scelle.getIdScelle());
+			result.put("id_scelle", scelle.getIdScelle());
 		
 		return result;
 	}
