@@ -35,7 +35,7 @@ public class PanelAjouterServiceEnqueteur extends JPanel implements ActionListen
 	protected JTextField inputLibelle;
 	protected JTextField inputTelephone;
 	protected JTextField inputLieu;
-	//JList pour choisir un titre et un service
+	//JList pour choisir un corps
     private DefaultListModel modelListCorpsEnqueteur;
 	protected JList listeSelectionCorpsEnqueteur;
 	private JScrollPane panneauListeCorpsEnqueteur;

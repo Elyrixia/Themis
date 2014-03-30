@@ -21,7 +21,9 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import business.affaire.Affaire;
+import facade.FacadeAbstraite;
 import facade.FacadeAffaire;
+import facade.FacadeEnqueteur;
 import ui.FenetreMenu;
 import ui.MainFenetre;
 import ui.MyRenderer;
@@ -29,6 +31,7 @@ import ui.MyRenderer;
 public class AffaireFenetre extends FenetreMenu implements ActionListener{
 	
 	private FacadeAffaire facadeAffaire;
+	private FacadeEnqueteur facadeEnqueteur; //pour choisir l'enqueteur qui a refile l'affaire
 	private ArrayList<Affaire> listeAffaire;
 	private JFrame fenetreParent;
 	
@@ -50,6 +53,7 @@ public class AffaireFenetre extends FenetreMenu implements ActionListener{
 	public AffaireFenetre() {
 		super();
 		this.facadeAffaire = new FacadeAffaire();
+		this.facadeEnqueteur = new FacadeEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Suivi Affaire");
 		this.createPanel();
@@ -197,5 +201,9 @@ public class AffaireFenetre extends FenetreMenu implements ActionListener{
 	//getter de la facade pour que les panels ajouter et modifier puisse ajouter/modif une affaire
 	public FacadeAffaire getFacadeAffaire() {
 		return facadeAffaire;
+	}
+
+	public FacadeEnqueteur getFacadeEnqueteur() {
+		return facadeEnqueteur;
 	}
 }

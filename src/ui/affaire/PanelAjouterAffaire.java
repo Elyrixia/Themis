@@ -9,21 +9,29 @@ import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 
+import business.enqueteur.Enqueteur;
+import business.enqueteur.Enqueteur;
 import ui.MainFenetre;
+import ui.MyRenderer;
 
 
 public class PanelAjouterAffaire extends JPanel implements ActionListener{
@@ -39,6 +47,7 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 	protected JLabel labelDelai;
 	protected JLabel labelDateMaxRendu;
 	protected JLabel labelCommentaire;
+	protected JLabel labelEnqueteur;
 	//Inputs
 	protected JTextField inputNom;
 	protected JFormattedTextField inputNumInstruction;
@@ -48,7 +57,10 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 	protected JCheckBox inputDelai;
 	protected JFormattedTextField inputDateMaxRendu;
 	protected JTextArea inputCommentaire;
-	
+	//JList pour choisir l'enqueteur qui a donne l'affaire
+    private DefaultListModel modelListEnqueteur;
+	protected JList listeSelectionEnqueteur;
+	private JScrollPane panneauListeEnqueteur;
 	//Boutons
 	protected JButton boutonValider;
 	protected JButton boutonAnnuler;
@@ -123,7 +135,7 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		contrainteInputNumParquet.anchor = GridBagConstraints.WEST;
 		this.add(inputNumParquet, contrainteInputNumParquet);
 		
-		labelDateOrdre = new JLabel("Date Ordre (yyyy-MM-dd) :");
+		labelDateOrdre = new JLabel("Date Ordre (jj/mm/aaaa) :");
 		GridBagConstraints contrainteLabelDateOrdre = new GridBagConstraints();
 		contrainteLabelDateOrdre.gridx = 0;
 		contrainteLabelDateOrdre.gridy = 4;
@@ -131,7 +143,7 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		contrainteLabelDateOrdre.anchor = GridBagConstraints.WEST;
 		this.add(labelDateOrdre, contrainteLabelDateOrdre);
 		
-		DateFormat formatDate = new SimpleDateFormat("yyyy-MM-dd");
+		DateFormat formatDate = new SimpleDateFormat("dd/MM/yyyy");
 		
 		inputDateOrdre = new JFormattedTextField(formatDate); inputDateOrdre.setColumns(10);
 		GridBagConstraints contrainteInputDateOrdre = new GridBagConstraints();
@@ -159,7 +171,7 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		contrainteInputDelai.anchor = GridBagConstraints.WEST;
 		this.add(inputDelai, contrainteInputDelai);
 		
-		labelDateMaxRendu = new JLabel("Date Max Rendu (yyyy-MM-dd) :");
+		labelDateMaxRendu = new JLabel("Date Max Rendu (jj/mm/aaaa) :");
 		GridBagConstraints contrainteLabelDateMaxRendu = new GridBagConstraints();
 		contrainteLabelDateMaxRendu.gridx = 0;
 		contrainteLabelDateMaxRendu.gridy = 6;
@@ -196,11 +208,40 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		areaScrollPane.setPreferredSize(new Dimension(200, 100));
 		this.add(areaScrollPane, contrainteInputCommentaire);
 		
+		//Liste enqueteur
+		labelEnqueteur = new JLabel("Enqueteur :");
+		GridBagConstraints contrainteLabelEnqueteur = new GridBagConstraints();
+		contrainteLabelEnqueteur.gridx = 0;
+		contrainteLabelEnqueteur.gridy = 8;
+		contrainteLabelEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteLabelEnqueteur.anchor = GridBagConstraints.WEST;
+		this.add(labelEnqueteur, contrainteLabelEnqueteur);
+		
+		modelListEnqueteur = new DefaultListModel();
+		listeSelectionEnqueteur = new JList(modelListEnqueteur);
+	    panneauListeEnqueteur = new JScrollPane(listeSelectionEnqueteur);
+	    listeSelectionEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    MyRenderer affichageEnqueteur = new MyRenderer(this.fenetre.getFacadeEnqueteur());
+	    listeSelectionEnqueteur.setCellRenderer(affichageEnqueteur);
+	    GridBagConstraints contrainteListeEnqueteur = new GridBagConstraints();
+		contrainteListeEnqueteur.gridx=1; contrainteListeEnqueteur.gridy=8;
+		contrainteListeEnqueteur.gridwidth=2;
+		contrainteListeEnqueteur.insets = new Insets(0, 0, 5, 2);
+		contrainteListeEnqueteur.anchor = GridBagConstraints.CENTER;
+		
+		ArrayList<Enqueteur> listeEnqueteur;
+	    HashMap<String,String> filtreEnqueteur = new HashMap<String, String>();
+	    listeEnqueteur = this.fenetre.getFacadeEnqueteur().chargerEnqueteur(filtreEnqueteur);
+	    for (int i=0; i < listeEnqueteur.size(); i++) {
+			modelListEnqueteur.addElement(listeEnqueteur.get(i));
+		}
+	    this.add(panneauListeEnqueteur, contrainteListeEnqueteur);
+		
 		//Boutons :
 		boutonValider = new JButton("Valider");
 		GridBagConstraints contrainteBoutonValider = new GridBagConstraints();
 		contrainteBoutonValider.gridx = 0;
-		contrainteBoutonValider.gridy = 8;
+		contrainteBoutonValider.gridy = 9;
 		contrainteBoutonValider.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonValider.anchor = GridBagConstraints.WEST;
 		boutonValider.addActionListener(this);
@@ -209,7 +250,7 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		boutonAnnuler = new JButton("Annuler");
 		GridBagConstraints contrainteBoutonAnnuler = new GridBagConstraints();
 		contrainteBoutonAnnuler.gridx = 1;
-		contrainteBoutonAnnuler.gridy = 8;
+		contrainteBoutonAnnuler.gridy = 9;
 		contrainteBoutonAnnuler.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonAnnuler.anchor = GridBagConstraints.WEST;
 		boutonAnnuler.addActionListener(this);
@@ -228,13 +269,14 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 			Number numDossier = (Number) inputNumDossier.getValue(); Number numParquet = (Number) inputNumParquet.getValue();
 			Date dateOrdre = (Date) inputDateOrdre.getValue(); Date dateRendu = (Date) inputDateMaxRendu.getValue();
 			boolean delai = inputDelai.isSelected(); String commentaire = inputCommentaire.getText();
+			Enqueteur enqueteur = (Enqueteur) listeSelectionEnqueteur.getSelectedValue();
 			if(nom.equals("") || numInstruction == null || numDossier == null || numParquet == null || 
-					dateOrdre == null || dateRendu == null){
+					dateOrdre == null || dateRendu == null || enqueteur == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
 				try {
 					this.fenetre.getFacadeAffaire().ajouterAffaire(nom, numDossier.intValue(), numInstruction.intValue(), numParquet.intValue(),
-							dateOrdre, dateRendu, delai, commentaire);
+							dateOrdre, dateRendu, delai, commentaire, enqueteur);
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
