@@ -22,7 +22,7 @@ public class ScelleDB extends Scelle {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("num_proces", String.valueOf(this.numProces));
 		
-		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
 		map.put("date_recup", db.format(this.dateRecup));
 		
 		map.put("lieu_recup", this.lieuRecup);
@@ -48,7 +48,7 @@ public class ScelleDB extends Scelle {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("num_proces", String.valueOf(this.numProces));
 				
-		DateFormat db = new SimpleDateFormat("MM/dd/yyyy");
+		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
 		map.put("date_recup", db.format(this.dateRecup));
 				
 		map.put("lieu_recup", this.lieuRecup);

@@ -83,6 +83,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		this.facadeScelle = new FacadeScelle();
 		this.facadeObjet = new FacadeObjet();
 		this.facadeTypeObjet = new FacadeTypeObjet();
+		this.facadeAffaire = new FacadeAffaire();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Scelle");
 		this.createOnglets();

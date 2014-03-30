@@ -11,7 +11,6 @@ import javax.swing.JOptionPane;
 
 import business.affaire.Affaire;
 import business.affaire.Scelle;
-import business.affaire.Affaire;
 
 public class PanelModifScelle extends PanelAjouterScelle implements ActionListener{
 
@@ -41,9 +40,9 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		
 		Affaire affaire = (Affaire) hashMapScelle.get("id_affaire");
 		for(int i = 0; i < listeSelectionAffaire.getModel().getSize(); i++) {
-			Affaire e = (Affaire) listeSelectionAffaire.getModel().getElementAt(i);
-			if(e.equals(affaire)) {
-				listeSelectionAffaire.setSelectedValue(e, true);
+			Affaire a = (Affaire) listeSelectionAffaire.getModel().getElementAt(i);
+			if(a.equals(affaire)) {
+				listeSelectionAffaire.setSelectedValue(a, true);
 				break;
 			}
 		}
@@ -52,7 +51,7 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
 			Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
 			if(s.equals(scelle)) {
-				listeSelectionAffaire.setSelectedValue(s, true);
+				listeSelectionScelle.setSelectedValue(s, true);
 				break;
 			}
 		}

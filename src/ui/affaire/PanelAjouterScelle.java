@@ -49,11 +49,11 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	protected JFormattedTextField inputDateRecup;
 	protected JTextField inputLieuRecup;
 	protected JTextArea inputCommentaire;
-	//JList pour choisir l'affaire qui concerne le scelle
+	//JList pour choisir eventuellement un scelle si c'est un sous scelle en cours d'ajout
 	private DefaultListModel modelListScelle;
 	protected JList listeSelectionScelle;
 	private JScrollPane panneauListeScelle;
-	//JList pour choisir eventuellement un scelle si c'est un sous scelle en cours d'ajout
+	//JList pour choisir l'affaire qui concerne le scelle
 	private DefaultListModel modelListAffaire;
 	protected JList listeSelectionAffaire;
 	private JScrollPane panneauListeAffaire;
@@ -162,7 +162,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	    HashMap<String,String> filtreAffaire = new HashMap<String, String>();
 	    listeAffaire = this.fenetre.getFacadeAffaire().chargerAffaire(filtreAffaire);
 	    for (int i=0; i < listeAffaire.size(); i++) {
-			modelListScelle.addElement(listeAffaire.get(i));
+			modelListAffaire.addElement(listeAffaire.get(i));
 		}
 	    this.add(panneauListeAffaire, contrainteListeAffaire);
 	    
@@ -190,7 +190,6 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	  	ArrayList<Scelle> listeScelle;
 	  	HashMap<String,String> filtreScelle = new HashMap<String, String>();
 	  	listeScelle = this.fenetre.getFacadeScelle().chargerScelle(filtreScelle);
-	  	modelListScelle.addElement("Aucun");
 	  	for (int i=0; i < listeScelle.size(); i++) {
 	  		modelListScelle.addElement(listeScelle.get(i));
 	  	}
@@ -226,12 +225,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 		else if(e.getSource() == boutonValider){
 			String lieuRecup = inputLieuRecup.getText(); Number numPV = (Number) inputNumPV.getValue(); Date dateRecup = (Date) inputDateRecup.getValue(); 
 			String commentaire = inputCommentaire.getText(); Affaire affaire = (Affaire) listeSelectionAffaire.getSelectedValue();
-			Scelle scelle;
-			if(listeSelectionScelle.getSelectedValue() instanceof String){
-				scelle = null;
-			}else{
-				scelle = (Scelle) listeSelectionScelle.getSelectedValue();
-			}
+			Scelle scelle = (Scelle) listeSelectionScelle.getSelectedValue();
 			if(lieuRecup.equals("") || numPV == null || dateRecup == null || lieuRecup == null || affaire == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
@@ -248,7 +242,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	
 	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 		public void retourFenetre(){
-			this.fenetre.getContentPane().remove(this);
+			this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() a cause du JScrollPane
 			this.fenetre.setTitle("Accueil Suivi Affaire");
 			this.fenetre.createOnglets();
 			
