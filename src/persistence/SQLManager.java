@@ -207,6 +207,28 @@ public class SQLManager
 	 */
 	public int count(String table, String where)
 	{
+		String query = "SELECT COUNT(*) FROM ";
+		query += table;
+		
+		if(where != SQLManager.NO_WHERE)
+		{
+			query += " WHERE " + where;
+		}
+		
+		System.out.println(query);
+		
+		try
+		{
+			Statement statement = connection.createStatement();
+			ResultSet rs = statement.executeQuery(query);
+			rs.first();
+			return rs.getInt(1);
+		}
+		catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 
