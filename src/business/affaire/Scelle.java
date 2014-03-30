@@ -122,13 +122,22 @@ public abstract class Scelle implements Business {
 	}
 	
 	public boolean equals(Scelle a) {
+		boolean bothScelleNull = (idScelle == null && a.getIdScelle() == null);
+		boolean bothScelleNotNull = (idScelle != null && a.getIdScelle() != null);
+	
 		return  id == a.getId() && 
 				numProces == a.getNumProces() && 
 				dateRecup.equals(a.getDateRecup()) && 
 				lieuRecup.equals(a.getLieuRecup()) && 
 				comment.equals(a.getComment()) && 
 				idAffaire.equals(a.getIdAffaire()) && 
-				(idScelle != null ? idScelle.equals(a.getIdScelle()) : true);
+				(bothScelleNull ?
+						true : 
+						(bothScelleNotNull ?
+								idScelle.equals(a.getIdScelle()) : 
+								false
+						)
+				);
 	}
 	
 }

@@ -1,5 +1,7 @@
 package facade;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -80,9 +82,11 @@ public class FacadeScelle extends FacadeAbstraite {
 	 */
 	public HashMap<String, Object> consulterScelle(Scelle scelle) {
 		HashMap<String, Object> result = new HashMap<String, Object>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
 		result.put("id", scelle.getId());
 		result.put("num_proces", scelle.getNumProces());
-		result.put("date_recup", scelle.getDateRecup());
+		result.put("date_recup", df.format(scelle.getDateRecup()));
 		result.put("lieu_recup", scelle.getLieuRecup());
 		result.put("comment", scelle.getComment());
 		result.put("id_affaire", scelle.getIdAffaire());
