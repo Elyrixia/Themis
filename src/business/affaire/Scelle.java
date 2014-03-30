@@ -55,7 +55,7 @@ public abstract class Scelle implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	// getters and setters
 	
@@ -116,7 +116,7 @@ public abstract class Scelle implements Business {
 	}
 	
 	public String toString() {
-		String message = "Scelle n�"+this.id+" - "+this.comment;
+		String message = "Scelle #"+this.id+" - "+this.comment;
 		
 		return message;
 	}

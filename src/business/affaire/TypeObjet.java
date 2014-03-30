@@ -36,7 +36,7 @@ public abstract class TypeObjet implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	// getters and setters
 	
@@ -57,7 +57,7 @@ public abstract class TypeObjet implements Business {
 	}
 
 	public String toString() {
-		String message = "TypeObjet n�"+this.id+" - "+this.libelle;
+		String message = "TypeObjet #"+this.id+" - "+this.libelle;
 		
 		return message;
 	}

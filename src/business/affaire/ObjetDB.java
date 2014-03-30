@@ -1,5 +1,7 @@
 package business.affaire;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 
 import persistence.SQLManager;
@@ -54,9 +56,20 @@ public class ObjetDB extends Objet {
 	}
 
 	@Override
-	public void delete() {
+	public void delete() throws Exception {
 		
 		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(ObjetDB.TABLE_NAME, "id_objet = " + this.id);
+		try {
+			rs.last();
+			int nbObjets = rs.getRow();
+			if(nbObjets > 0) {
+				throw new Exception("This objet is used by " + nbObjets + " objet(s)!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		// Prepare the query
 		String where = "id = "+this.id;

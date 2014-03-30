@@ -73,7 +73,7 @@ public abstract class Affaire implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	// getters and setters
 	
@@ -158,7 +158,7 @@ public abstract class Affaire implements Business {
 	}
 	
 	public String toString() {
-		String message = "Affaire n�"+this.id+" - "+this.nom;
+		String message = "Affaire #"+this.id+" - "+this.nom;
 		
 		return message;
 	}

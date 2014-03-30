@@ -99,7 +99,7 @@ public abstract class Enqueteur extends Personne implements Business
 	}
 	
 	public String toString() {
-		String message = "Enqueteur n�"+this.id+" - "+this.nom+" "+this.prenom;
+		String message = "Enqueteur #"+this.id+" - "+this.nom+" "+this.prenom;
 		
 		return message;
 	}

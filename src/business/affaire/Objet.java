@@ -48,8 +48,8 @@ public abstract class Objet implements Business {
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
-
+	public abstract void delete() throws Exception;
+	
 	public int getId() {
 		return id;
 	}
@@ -96,6 +96,12 @@ public abstract class Objet implements Business {
 
 	public void setIdObjet(Objet idObjet) {
 		this.idObjet = idObjet;
+	}
+	
+	public String toString() {
+		String message = "Objet #"+this.id+" - "+this.libelle;
+		
+		return message;
 	}
 	
 	public boolean equals(Objet a) {

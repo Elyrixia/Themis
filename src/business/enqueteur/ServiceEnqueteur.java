@@ -131,7 +131,7 @@ public abstract class ServiceEnqueteur implements Business
 	}
 	
 	public String toString() {
-		String message = "ServiceEnqueteur n�"+this.id+" - "+this.libelle;
+		String message = "ServiceEnqueteur #"+this.id+" - "+this.libelle;
 		
 		return message;
 	}

@@ -1,5 +1,7 @@
 package business.affaire;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
@@ -66,9 +68,31 @@ public class ScelleDB extends Scelle {
 	}
 
 	@Override
-	public void delete() {
+	public void delete() throws Exception {
 		
 		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(ScelleDB.TABLE_NAME, "id_scelle = " + this.id);
+		try {
+			rs.last();
+			int nbScelles = rs.getRow();
+			if(nbScelles > 0) {
+				throw new Exception("This scelle is used by " + nbScelles + " scelle(s)!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		rs = sqlManager.select(ObjetDB.TABLE_NAME, "id_scelle = " + this.id);
+		try {
+			rs.last();
+			int nbObjets = rs.getRow();
+			if(nbObjets > 0) {
+				throw new Exception("This scelle is used by " + nbObjets + " objet(s)!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		// Prepare the query
 		String where = "id = "+this.id;

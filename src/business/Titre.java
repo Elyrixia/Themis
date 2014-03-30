@@ -34,7 +34,7 @@ public abstract class Titre {
 	}
 	
 	public String toString() {
-		String message = "Titre n�"+this.id+" - "+this.libelle;
+		String message = "Titre #"+this.id+" - "+this.libelle;
 		
 		return message;
 	}
