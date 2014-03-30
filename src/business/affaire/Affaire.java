@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.HashMap;
 
 import business.Business;
+import business.enqueteur.Enqueteur;
 
 public abstract class Affaire implements Business {
 	
@@ -36,6 +37,8 @@ public abstract class Affaire implements Business {
 	protected boolean delai;
 	
 	protected String comment;
+	
+	protected Enqueteur idEnqueteur;
 	
 	public Affaire() {
 		
@@ -140,6 +143,14 @@ public abstract class Affaire implements Business {
 		return comment;
 	}
 
+	public void setEnqueteur(Enqueteur e) {
+		this.idEnqueteur = e;
+	}
+	
+	public Enqueteur getEnqueteur() {
+		return idEnqueteur;
+	}
+
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
@@ -159,7 +170,8 @@ public abstract class Affaire implements Business {
 				dateOrdre.equals(a.getDateOrdre()) && 
 				dateRendu.equals(a.getDateRendu()) && 
 				delai == a.getDelai() && 
-				comment.equals(a.getComment());
+				comment.equals(a.getComment()) && 
+				idEnqueteur.equals(a.getEnqueteur());
 	}
 	
 }

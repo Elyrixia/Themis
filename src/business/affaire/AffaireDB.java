@@ -33,6 +33,8 @@ public class AffaireDB extends Affaire {
 		
 		map.put("comment", this.comment);
 		
+		map.put("id_enqueteur", String.valueOf(this.idEnqueteur.getId()));
+		
 		// Run the query
 		this.id = sql.insert(TABLE_NAME, map);
 		
@@ -57,6 +59,8 @@ public class AffaireDB extends Affaire {
 		map.put("delai", Utilitaire.booleanToString(this.delai));
 		
 		map.put("comment", this.comment);
+		
+		map.put("id_enqueteur", String.valueOf(this.idEnqueteur.getId()));
 		
 		String where = "id = "+this.id;
 		

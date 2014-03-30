@@ -1,5 +1,7 @@
 package facade;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -9,6 +11,7 @@ import persistence.Factory;
 import business.affaire.Affaire;
 import business.affaire.AffaireManager;
 import business.affaire.AffaireManagerDB;
+import business.enqueteur.Enqueteur;
 
 public class FacadeAffaire extends FacadeAbstraite {
 
@@ -28,7 +31,9 @@ public class FacadeAffaire extends FacadeAbstraite {
 	 * Add a new Affaire
 	 * @param: Affaire attributes
 	 */
-	public Affaire ajouterAffaire(String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai, String comment) throws Exception
+	public Affaire ajouterAffaire(String nom, int numDossier, int numInstruction, 
+			int numParquet, Date dateOrdre, Date dateRendu, boolean delai, String comment, 
+			Enqueteur enqueteur) throws Exception
 	{
 		Factory fac = DBFactory.getInstance();
 		Affaire newAffaire = fac.createAffaire();
@@ -41,6 +46,7 @@ public class FacadeAffaire extends FacadeAbstraite {
 		newAffaire.setDateRendu(dateRendu);
 		newAffaire.setDelai(delai);
 		newAffaire.setComment(comment);
+		newAffaire.setEnqueteur(enqueteur);
 		
 		newAffaire.create();
 
@@ -51,7 +57,9 @@ public class FacadeAffaire extends FacadeAbstraite {
 	 * Edit an Affaire
 	 * @param: Affaire attributes
 	 */
-	public void modifierAffaire(Affaire affaire, String nom, int numDossier, int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai, String comment) throws Exception
+	public void modifierAffaire(Affaire affaire, String nom, int numDossier, 
+			int numInstruction, int numParquet, Date dateOrdre, Date dateRendu, boolean delai, 
+			String comment, Enqueteur enqueteur) throws Exception
 	{
 		affaire.setNom(nom);
 		affaire.setNumDossier(numDossier);
@@ -61,6 +69,7 @@ public class FacadeAffaire extends FacadeAbstraite {
 		affaire.setDateRendu(dateRendu);
 		affaire.setDelai(delai);
 		affaire.setComment(comment);
+		affaire.setEnqueteur(enqueteur);
 		
 		affaire.update();
 	}
@@ -83,15 +92,18 @@ public class FacadeAffaire extends FacadeAbstraite {
 	public HashMap<String, Object> consulterAffaire(Affaire affaire)
 	{
 		HashMap<String, Object> result = new HashMap<String, Object>();
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		
 		result.put("id", affaire.getId());
 		result.put("nom", affaire.getNom());
 		result.put("num_dossier", affaire.getNumDossier());
 		result.put("num_instruction", affaire.getNumInstruction());
 		result.put("num_parquet", affaire.getNumParquet());
-		result.put("date_ordre", affaire.getDateOrdre());
-		result.put("date_rendu", affaire.getDateRendu());
+		result.put("date_ordre", df.format(affaire.getDateOrdre()));
+		result.put("date_rendu", df.format(affaire.getDateRendu()));
 		result.put("delai", affaire.getDelai());
 		result.put("comment", affaire.getComment());
+		result.put("id_enqueteur", affaire.getEnqueteur());
 		
 		return result;
 	}
