@@ -132,7 +132,10 @@ public class SQLManager
 		for (String key : fieldsValues.keySet())
 		{
 			fields.add(key);
-			values.add("'" + fieldsValues.get(key) + "'");
+			if(fieldsValues.get(key) == "null")
+				values.add("null");
+			else
+				values.add("'" + fieldsValues.get(key) + "'");
 		}
 
 		query += Utilitaire.implode(",", fields);
@@ -165,7 +168,11 @@ public class SQLManager
 		for (String column : fieldsValues.keySet())
 		{
 			value = fieldsValues.get(column);
-			query += column + "='" + value + "',";
+			if(value == "null")
+				query += column + "=" + value + ",";
+			else
+				query += column + "='" + value + "',";
+			
 		}
 
 		query = query.substring(0, query.length() - 1); // Getting rid of the last ',
