@@ -20,7 +20,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import business.enqueteur.CorpsEnqueteur;
-import business.enqueteur.CorpsEnqueteur;
 import facade.FacadeCorpsEnqueteur;
 
 
@@ -118,7 +117,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			panelCorps.add(boutonSupprimerCorpsEnqueteur, contrainteBoutonSupprimerCorpsEnqueteur);
 			
 			//Ajout onglet a la fenetre
-			this.fenetreParent.getContentPane().add(new JScrollPane(panelCorps));
+			this.fenetreParent.getContentPane().add(panelCorps);
 		}
 		
 		public void actionPerformed(ActionEvent e) {
@@ -132,7 +131,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 				this.fenetreParent.setTitle("Ajout d'un corps enqueteur");
 				
 				PanelAjouterCorpsEnqueteur panelAjoutCorpsEnqueteur = new PanelAjouterCorpsEnqueteur(this);
-				this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutCorpsEnqueteur));
+				this.fenetreParent.getContentPane().add(panelAjoutCorpsEnqueteur);
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
@@ -154,7 +153,7 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 					this.fenetreParent.setTitle("Modification d'un corps enqueteur");
 					
 					PanelModifCorpsEnqueteur panelModifCorpsEnqueteur = new PanelModifCorpsEnqueteur(this, corps);
-					this.fenetreParent.getContentPane().add(new JScrollPane(panelModifCorpsEnqueteur));
+					this.fenetreParent.getContentPane().add(panelModifCorpsEnqueteur);
 					//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 					this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 					this.fenetreParent.pack();

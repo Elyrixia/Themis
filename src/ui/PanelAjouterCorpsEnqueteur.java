@@ -93,7 +93,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	
 	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	public void retourFenetre(){
-		this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() à cause du JScrollPane
+		this.fenetre.getContentPane().remove(this);
 		this.fenetre.setTitle("Accueil Gestion Corps Enqueteur");
 		this.fenetre.createPanel();
 		

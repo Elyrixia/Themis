@@ -46,6 +46,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 	ServiceEnqueteurFenetre(){
 		super();
 		this.facadeServiceEnqueteur = new FacadeServiceEnqueteur();
+		this.facadeCorpsEnqueteur = new FacadeCorpsEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Service");
 		this.createPanel();
@@ -117,7 +118,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		panelService.add(boutonSupprimerServiceEnqueteur, contrainteBoutonSupprimerServiceEnqueteur);
 		
 		//Ajout onglet a la fenetre
-		this.fenetreParent.getContentPane().add(new JScrollPane(panelService));
+		this.fenetreParent.getContentPane().add(panelService);
 	}
 	
 	public void actionPerformed(ActionEvent e) {
@@ -131,7 +132,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 			this.fenetreParent.setTitle("Ajout d'un service enqueteur");
 			
 			PanelAjouterServiceEnqueteur panelAjoutServiceEnqueteur = new PanelAjouterServiceEnqueteur(this);
-			this.fenetreParent.getContentPane().add(new JScrollPane(panelAjoutServiceEnqueteur));
+			this.fenetreParent.getContentPane().add(panelAjoutServiceEnqueteur);
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetreParent.pack();
@@ -152,7 +153,7 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 				this.fenetreParent.setTitle("Modification d'un service enqueteur");
 				
 				PanelModifServiceEnqueteur panelModifServiceEnqueteur = new PanelModifServiceEnqueteur(this, service);
-				this.fenetreParent.getContentPane().add(new JScrollPane(panelModifServiceEnqueteur));
+				this.fenetreParent.getContentPane().add(panelModifServiceEnqueteur);
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
 				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 				this.fenetreParent.pack();
