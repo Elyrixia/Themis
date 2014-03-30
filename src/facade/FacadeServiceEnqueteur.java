@@ -71,12 +71,12 @@ public class FacadeServiceEnqueteur extends FacadeAbstraite {
 	 */
 	public HashMap<String,Object> consulterServiceEnqueteur(ServiceEnqueteur service) {
 		HashMap<String,Object> result = new HashMap<String,Object>();
-		result.put("id", service.getId());
-		result.put("libelle", service.getLibelle());
-		result.put("telephone", service.getTelephone());
-		result.put("lieu", service.getLieu());
-		result.put("id_corps", service.getCorps());
-		result.put("nombre d'enqueteurs travaillant dans ce service", service.getNbEnqueteurs());
+		result.put("ID", service.getId());
+		result.put("Libelle", service.getLibelle());
+		result.put("Telephone", service.getTelephone());
+		result.put("Lieu", service.getLieu());
+		result.put("Corps", service.getCorps());
+		result.put("Nombre d'enqueteurs travaillant dans ce service", service.getNbEnqueteurs());
 		return result;
 	}
 	
