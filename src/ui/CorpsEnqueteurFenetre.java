@@ -69,10 +69,12 @@ public class CorpsEnqueteurFenetre extends FenetreMenu implements ActionListener
 			this.boutonSupprimerCorpsEnqueteur.addActionListener(this);
 			
 			//Creation liste
-		    modelListCorpsEnqueteur = new DefaultListModel();
+			modelListCorpsEnqueteur = new DefaultListModel();
 			listeSelectionCorpsEnqueteur = new JList(modelListCorpsEnqueteur);
 		    panneauListeCorpsEnqueteur = new JScrollPane(listeSelectionCorpsEnqueteur);
 		    listeSelectionCorpsEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		    MyRenderer affichageCorpsEnqueteur = new MyRenderer(facadeCorpsEnqueteur);
+		    listeSelectionCorpsEnqueteur.setCellRenderer(affichageCorpsEnqueteur);
 		    
 		    HashMap<String,String> filtreCorps = new HashMap<String, String>();
 		    listeCorpsEnqueteur = facadeCorpsEnqueteur.chargerCorpsEnqueteur(filtreCorps);

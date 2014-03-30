@@ -47,7 +47,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 		contrainteInputLibelle.gridy = 0;
 		contrainteInputLibelle.insets = new Insets(0, 0, 5, 2);
 		contrainteInputLibelle.anchor = GridBagConstraints.WEST;
-		add(inputLibelle, contrainteInputLibelle);
+		this.add(inputLibelle, contrainteInputLibelle);
 		
 		//Boutons :
 		boutonValider = new JButton("Valider");
@@ -56,8 +56,8 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 		contrainteBoutonValider.gridy = 1;
 		contrainteBoutonValider.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonValider.anchor = GridBagConstraints.WEST;
-		add(boutonValider, contrainteBoutonValider);
 		boutonValider.addActionListener(this);
+		add(boutonValider, contrainteBoutonValider);
 		
 		boutonAnnuler = new JButton("Annuler");
 		GridBagConstraints contrainteBoutonAnnuler = new GridBagConstraints();
@@ -65,8 +65,8 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 		contrainteBoutonAnnuler.gridy = 1;
 		contrainteBoutonAnnuler.insets = new Insets(0, 0, 5, 2);
 		contrainteBoutonAnnuler.anchor = GridBagConstraints.WEST;
-		add(boutonAnnuler, contrainteBoutonAnnuler);
 		boutonAnnuler.addActionListener(this);
+		add(boutonAnnuler, contrainteBoutonAnnuler);
 				
 		this.setBorder(BorderFactory.createEmptyBorder(25,25,25,25));
 	}
@@ -93,7 +93,7 @@ public class PanelAjouterCorpsEnqueteur extends JPanel implements ActionListener
 	
 	//Methode qui enleve ce panel de la fenetre pour remettre le panel d'accueil
 	public void retourFenetre(){
-		this.fenetre.getContentPane().remove(this);
+		this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() à cause du JScrollPane
 		this.fenetre.setTitle("Accueil Gestion Corps Enqueteur");
 		this.fenetre.createPanel();
 		

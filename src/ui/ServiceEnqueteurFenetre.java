@@ -68,10 +68,12 @@ public class ServiceEnqueteurFenetre extends FenetreMenu implements ActionListen
 		this.boutonSupprimerServiceEnqueteur.addActionListener(this);
 		
 		//Creation liste
-	    modelListServiceEnqueteur = new DefaultListModel();
+		modelListServiceEnqueteur = new DefaultListModel();
 		listeSelectionServiceEnqueteur = new JList(modelListServiceEnqueteur);
 	    panneauListeServiceEnqueteur = new JScrollPane(listeSelectionServiceEnqueteur);
 	    listeSelectionServiceEnqueteur.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+	    MyRenderer affichageServiceEnqueteur = new MyRenderer(facadeServiceEnqueteur);
+	    listeSelectionServiceEnqueteur.setCellRenderer(affichageServiceEnqueteur);
 	    
 	    HashMap<String,String> filtreService = new HashMap<String, String>();
 	    listeServiceEnqueteur = facadeServiceEnqueteur.chargerServiceEnqueteur(filtreService);
