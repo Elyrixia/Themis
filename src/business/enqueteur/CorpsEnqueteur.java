@@ -43,6 +43,8 @@ public abstract class CorpsEnqueteur implements Business {
 	 */
 	public abstract void delete() throws Exception;
 	
+	public abstract int getNbServices();
+	
 	// setters and getters
 	
 	public int getId() {

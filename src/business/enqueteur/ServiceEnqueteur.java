@@ -64,6 +64,8 @@ public abstract class ServiceEnqueteur implements Business
 	 * @see delete() from interface Business
 	 */
 	public abstract void delete() throws Exception;
+	
+	public abstract int getNbEnqueteurs();
 
 	// getters and setters
 

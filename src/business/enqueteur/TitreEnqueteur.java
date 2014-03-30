@@ -28,6 +28,8 @@ public abstract class TitreEnqueteur extends Titre implements Business {
 	 */
 	public abstract void delete() throws Exception;
 	
+	public abstract int getNbEnqueteurs();
+	
 	public boolean equals(TitreEnqueteur a) {
 		return super.equals(a);
 	}

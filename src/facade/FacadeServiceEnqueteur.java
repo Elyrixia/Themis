@@ -76,6 +76,7 @@ public class FacadeServiceEnqueteur extends FacadeAbstraite {
 		result.put("telephone", service.getTelephone());
 		result.put("lieu", service.getLieu());
 		result.put("id_corps", service.getCorps());
+		result.put("nombre d'enqueteurs travaillant dans ce service", service.getNbEnqueteurs());
 		return result;
 	}
 	

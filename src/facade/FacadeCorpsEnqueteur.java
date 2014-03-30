@@ -79,6 +79,7 @@ public class FacadeCorpsEnqueteur extends FacadeAbstraite
 		HashMap<String, Object> result = new HashMap<String, Object>();
 		result.put("id", corps.getId());
 		result.put("libelle", corps.getLibelle());
+		result.put("nombre de services dependant de ce corps", corps.getNbServices());
 		return result;
 	}
 

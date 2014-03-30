@@ -61,4 +61,24 @@ public class CorpsEnqueteurDB extends CorpsEnqueteur
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
 	}
+	
+	/**
+	 * 
+	 * @return the number of services that depend on this corps
+	 */
+	public int getNbServices() {
+		
+		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(ServiceEnqueteurDB.TABLE_NAME, "id_corps = " + this.id);
+		int nbServices = 0;
+		try {
+			rs.last();
+			nbServices = rs.getRow();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return nbServices;
+	}
 }

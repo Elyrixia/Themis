@@ -65,5 +65,25 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
 	}
+	
+	/**
+	 * 
+	 * @return the number of detectives that use this title
+	 */
+	public int getNbEnqueteurs() {
+		
+		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(EnqueteurDB.TABLE_NAME, "id_titre = " + this.id);
+		int nbEnqueteurs = 0;
+		try {
+			rs.last();
+			nbEnqueteurs = rs.getRow();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return nbEnqueteurs;
+	}
 
 }

@@ -71,5 +71,25 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
 	}
+	
+	/**
+	 * 
+	 * @return the number of detectives that work in this service
+	 */
+	public int getNbEnqueteurs() {
+		
+		SQLManager sqlManager = SQLManager.getConnection();
+		
+		ResultSet rs = sqlManager.select(EnqueteurDB.TABLE_NAME, "id_service = " + this.id);
+		int nbEnqueteurs = 0;
+		try {
+			rs.last();
+			nbEnqueteurs = rs.getRow();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return nbEnqueteurs;
+	}
 
 }
