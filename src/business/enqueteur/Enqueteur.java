@@ -56,7 +56,7 @@ public abstract class Enqueteur extends Personne implements Business
 	/**
 	 * @see delete() from interface Business
 	 */
-	public abstract void delete();
+	public abstract void delete() throws Exception;
 	
 	/**
 	 * @see getNbAffaires from EnqueteurDB
