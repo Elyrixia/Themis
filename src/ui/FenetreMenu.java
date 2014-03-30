@@ -8,6 +8,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 
 import ui.affaire.AffaireFenetre;
+import ui.affaire.ScelleFenetre;
 import ui.enqueteur.CorpsEnqueteurFenetre;
 import ui.enqueteur.EnqueteurFenetre;
 import ui.enqueteur.ServiceEnqueteurFenetre;
@@ -64,7 +65,7 @@ public class FenetreMenu extends JFrame implements ActionListener{
 		this.menuGestionCompta = new JMenu("Gestion Compta");
 		this.sousMenuQuitter = new JMenuItem("Quitter"); sousMenuQuitter.addActionListener(this);
 		this.sousMenuSuiviAffaire = new JMenuItem("Suivi des Affaires"); sousMenuSuiviAffaire.addActionListener(this);
-		this.sousMenuGestionScelle = new JMenuItem("Gestion des Scelles");
+		this.sousMenuGestionScelle = new JMenuItem("Gestion des Scelles"); sousMenuGestionScelle.addActionListener(this);
 		this.sousMenuGestionMission = new JMenuItem("Gestion des Missions");
 		this.sousMenuGestionFacturation = new JMenuItem("Gestion Facturation");
 		this.sousMenuGestionTGI = new JMenuItem("Gestion des TGI");
@@ -121,6 +122,10 @@ public class FenetreMenu extends JFrame implements ActionListener{
 		}else if(e.getSource() == sousMenuSuiviAffaire){
 			this.dispose();
 			FenetreMenu fen = new AffaireFenetre();
+		}
+		else if(e.getSource() == sousMenuGestionScelle){
+			this.dispose();
+			FenetreMenu fen = new ScelleFenetre();
 		}
 			
 	}

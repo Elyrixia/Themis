@@ -78,7 +78,7 @@ public class PanelModifAffaire extends PanelAjouterAffaire implements ActionList
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
-				JOptionPane.showMessageDialog(null,"Modification reussi");
+				JOptionPane.showMessageDialog(null,"Modification reussie");
 				this.retourFenetre();
 			}
 		}

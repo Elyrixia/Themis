@@ -2,7 +2,7 @@ package ui;
 
 import javax.swing.UIManager;
 
-import ui.enqueteur.EnqueteurFenetre;
+import ui.affaire.AffaireFenetre;
 
 public class MainFenetre
 {
@@ -16,7 +16,7 @@ public class MainFenetre
 	// Constructors :
 	public MainFenetre()
 	{
-		this.window = new EnqueteurFenetre();
+		this.window = new AffaireFenetre();
 	}
 
 	public static void main(String[] args)

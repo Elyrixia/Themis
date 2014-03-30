@@ -1,21 +1,22 @@
-package ui.enqueteur;
+package ui.affaire;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
-import business.enqueteur.TitreEnqueteur;
+import business.affaire.TypeObjet;
+import ui.enqueteur.EnqueteurFenetre;
 
+public class PanelModifTypeObjet extends PanelAjouterTypeObjet implements ActionListener{
 
-public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur implements ActionListener{
-	
-	private TitreEnqueteur titre;
+	private TypeObjet typeObjet;
 
-	PanelModifTitreEnqueteur(EnqueteurFenetre fen, TitreEnqueteur t){
+	PanelModifTypeObjet(ScelleFenetre fen, TypeObjet t){
 		super(fen);
-		titre = t;
-		HashMap<String, Object> hashMapTitre = this.fenetre.getFacadeTitreEnqueteur().consulterTitreEnqueteur(titre);
+		typeObjet = t;
+		HashMap<String, Object> hashMapTitre = this.fenetre.getFacadeTypeObjet().consulterTypeObjet(typeObjet);
 		String libelle = (String) hashMapTitre.get("libelle");
 		super.inputLibelle.setText(libelle);
 	}
@@ -28,7 +29,7 @@ public class PanelModifTitreEnqueteur extends PanelAjouterTitreEnqueteur impleme
 				JOptionPane.showMessageDialog(null, "Vous devez remplir le champ !", "Error", JOptionPane.ERROR_MESSAGE);
 			}else{
 				try {
-					this.fenetre.getFacadeTitreEnqueteur().modifierTitreEnqueteur(titre, inputLibelle.getText());
+					this.fenetre.getFacadeTypeObjet().modifierTypeObjet(typeObjet, inputLibelle.getText());
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}

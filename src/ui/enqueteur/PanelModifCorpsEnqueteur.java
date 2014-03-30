@@ -1,5 +1,6 @@
 package ui.enqueteur;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
@@ -8,7 +9,7 @@ import business.enqueteur.CorpsEnqueteur;
 
 
 
-public class PanelModifCorpsEnqueteur extends PanelAjouterCorpsEnqueteur {
+public class PanelModifCorpsEnqueteur extends PanelAjouterCorpsEnqueteur implements ActionListener{
 	
 	private CorpsEnqueteur corps;
 
