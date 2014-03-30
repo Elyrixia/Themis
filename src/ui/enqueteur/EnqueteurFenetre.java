@@ -74,11 +74,11 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		this.facadeServiceEnqueteur = new FacadeServiceEnqueteur();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Enqueteur");
-		this.createOnglets();
+		this.createOngletsEnqueteur();
 		this.setVisible(true);
 	}
 
-	public void createOnglets(){		
+	public void createOngletsEnqueteur(){		
 		//Onglets
 		panelOnglet = new JTabbedPane();
 		//Creation onglets
@@ -202,9 +202,9 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		panelTitreEnqueteur.add(boutonSupprimerTitreEnqueteur, contrainteBoutonSupprimerTitreEnqueteur);
 		
 		//Ajout onglet a la fenetre
-		getPanelOnglet().addTab("Enqueteurs", null, new JScrollPane(panelEnqueteur));
-		getPanelOnglet().addTab("Titres d'Enqueteurs", null, new JScrollPane(panelTitreEnqueteur));
-		this.fenetreParent.getContentPane().add(getPanelOnglet());
+		getPanelOngletEnqueteur().addTab("Enqueteurs", null, new JScrollPane(panelEnqueteur));
+		getPanelOngletEnqueteur().addTab("Titres d'Enqueteurs", null, new JScrollPane(panelTitreEnqueteur));
+		this.fenetreParent.getContentPane().add(getPanelOngletEnqueteur());
 	}
 
 	
@@ -216,7 +216,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		
 		if (e.getSource() == boutonAjouterEnqueteur)
 		{
-			this.getPanelOnglet().setVisible(false);
+			this.getPanelOngletEnqueteur().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un enqueteur");
 			
 			PanelAjouterEnqueteur panelAjoutEnqueteur = new PanelAjouterEnqueteur(this);
@@ -226,7 +226,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTitreEnqueteur){
-			this.getPanelOnglet().setVisible(false);
+			this.getPanelOngletEnqueteur().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un titre enqueteur");
 			
 			PanelAjouterTitreEnqueteur panelAjoutTitreEnqueteur = new PanelAjouterTitreEnqueteur(this);
@@ -257,7 +257,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierEnqueteur){
 			if (enqueteur != null){
-				this.getPanelOnglet().setVisible(false);
+				this.getPanelOngletEnqueteur().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un enqueteur");
 			
 				PanelModifEnqueteur panelModifEnqueteur = new PanelModifEnqueteur(this, enqueteur);
@@ -269,7 +269,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierTitreEnqueteur){
 			if (titre != null){
-				this.getPanelOnglet().setVisible(false);
+				this.getPanelOngletEnqueteur().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un titre enqueteur");
 				
 				PanelModifTitreEnqueteur panelModifTitreEnqueteur = new PanelModifTitreEnqueteur(this, titre);
@@ -290,9 +290,9 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					this.getPanelOnglet().setVisible(false);
+					this.getPanelOngletEnqueteur().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
-					this.createOnglets();
+					this.createOngletsEnqueteur();
 				}
 			}
 			
@@ -307,9 +307,9 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					this.getPanelOnglet().setVisible(false);
+					this.getPanelOngletEnqueteur().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
-					this.createOnglets();
+					this.createOngletsEnqueteur();
 				}
 			}
 		}
@@ -328,7 +328,7 @@ public class EnqueteurFenetre extends FenetreMenu implements ActionListener{
 	}
 
 	//Methode appellee par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
-	public JTabbedPane getPanelOnglet() {
+	public JTabbedPane getPanelOngletEnqueteur() {
 		return panelOnglet;
 	}
 

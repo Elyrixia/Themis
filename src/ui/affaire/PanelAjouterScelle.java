@@ -244,7 +244,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 		public void retourFenetre(){
 			this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() a cause du JScrollPane
 			this.fenetre.setTitle("Accueil Suivi Affaire");
-			this.fenetre.createOnglets();
+			this.fenetre.createOngletsScelle();
 			
 			this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 			this.fenetre.pack();

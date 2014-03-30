@@ -97,7 +97,7 @@ public class PanelAjouterTitreEnqueteur extends JPanel implements ActionListener
 	public void retourFenetre(){
 		this.fenetre.getContentPane().remove(this.getParent().getParent()); //double getParent() � cause du JScrollPane
 		this.fenetre.setTitle("Accueil Gestion Titre Enqueteur");
-		this.fenetre.createOnglets();
+		this.fenetre.createOngletsEnqueteur();
 		
 		this.fenetre.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
 		this.fenetre.pack();

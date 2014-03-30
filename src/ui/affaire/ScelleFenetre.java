@@ -86,11 +86,11 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		this.facadeAffaire = new FacadeAffaire();
 		this.fenetreParent = super.getFenetre();
 		this.fenetreParent.setTitle("Accueil Gestion Scelle");
-		this.createOnglets();
+		this.createOngletsScelle();
 		this.setVisible(true);
 	}
 	
-	public void createOnglets(){		
+	public void createOngletsScelle(){		
 		//Onglets
 		panelOnglet = new JTabbedPane();
 		//Creation onglets
@@ -270,10 +270,10 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		panelTypeObjet.add(boutonSupprimerTypeObjet, contrainteBoutonSupprimerTypeObjet);
 	
 		//Ajout onglet a la fenetre
-		getPanelOnglet().addTab("Scelles", null, new JScrollPane(panelScelle));
-		getPanelOnglet().addTab("Objets", null, new JScrollPane(panelObjet));
-		getPanelOnglet().addTab("Type Objets", null, new JScrollPane(panelTypeObjet));
-		this.fenetreParent.getContentPane().add(getPanelOnglet());
+		getPanelOngletScelle().addTab("Scelles", null, new JScrollPane(panelScelle));
+		getPanelOngletScelle().addTab("Objets", null, new JScrollPane(panelObjet));
+		getPanelOngletScelle().addTab("Type Objets", null, new JScrollPane(panelTypeObjet));
+		this.fenetreParent.getContentPane().add(getPanelOngletScelle());
 	}
 	
 	public void actionPerformed(ActionEvent e) {	
@@ -285,7 +285,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		
 		if (e.getSource() == boutonAjouterScelle)
 		{
-			this.getPanelOnglet().setVisible(false);
+			this.getPanelOngletScelle().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un scelle");
 			
 			PanelAjouterScelle panelAjoutScelle = new PanelAjouterScelle(this);
@@ -295,7 +295,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterObjet){
-			this.getPanelOnglet().setVisible(false);
+			this.getPanelOngletScelle().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un objet");
 			
 			PanelAjouterObjet panelAjoutObjet = new PanelAjouterObjet(this);
@@ -305,7 +305,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 			this.fenetreParent.pack();
 		}
 		else if(e.getSource() == boutonAjouterTypeObjet){
-			this.getPanelOnglet().setVisible(false);
+			this.getPanelOngletScelle().setVisible(false);
 			this.fenetreParent.setTitle("Ajout d'un type objet");
 			
 			PanelAjouterTypeObjet panelAjoutTypeObjet = new PanelAjouterTypeObjet(this);
@@ -346,7 +346,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierScelle){
 			if (scelle != null){
-				this.getPanelOnglet().setVisible(false);
+				this.getPanelOngletScelle().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un scelle");
 			
 				PanelModifScelle panelModifScelle = new PanelModifScelle(this, scelle);
@@ -358,7 +358,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierObjet){
 			if (objet != null){
-				this.getPanelOnglet().setVisible(false);
+				this.getPanelOngletScelle().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un objet");
 				
 				PanelModifObjet panelModifObjet = new PanelModifObjet(this, objet);
@@ -371,7 +371,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 		}
 		else if(e.getSource() == boutonModifierTypeObjet){
 			if (typeObjet != null){
-				this.getPanelOnglet().setVisible(false);
+				this.getPanelOngletScelle().setVisible(false);
 				this.fenetreParent.setTitle("Modification d'un type objet");
 				
 				PanelModifTypeObjet panelModifTypeObjet = new PanelModifTypeObjet(this, typeObjet);
@@ -392,9 +392,9 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					this.getPanelOnglet().setVisible(false);
+					this.getPanelOngletScelle().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
-					this.createOnglets();
+					this.createOngletsScelle();
 				}
 			}
 			
@@ -409,9 +409,9 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					this.getPanelOnglet().setVisible(false);
+					this.getPanelOngletScelle().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
-					this.createOnglets();
+					this.createOngletsScelle();
 				}
 			}
 		}
@@ -425,9 +425,9 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 						e1.printStackTrace();
 						JOptionPane.showMessageDialog(null, e1.getMessage());
 					}
-					this.getPanelOnglet().setVisible(false);
+					this.getPanelOngletScelle().setVisible(false);
 					this.fenetreParent.getContentPane().remove(panelOnglet);
-					this.createOnglets();
+					this.createOngletsScelle();
 				}
 			}
 		}
@@ -449,7 +449,7 @@ public class ScelleFenetre extends FenetreMenu implements ActionListener{
 	}
 
 	//Methode appellee par les Panels comme Ajout ou Modifier pour revenir sur la page d'accueil en cas d'annulation ou de validation
-	public JTabbedPane getPanelOnglet() {
+	public JTabbedPane getPanelOngletScelle() {
 		return panelOnglet;
 	}
 
