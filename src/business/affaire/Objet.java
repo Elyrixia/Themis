@@ -3,7 +3,6 @@ package business.affaire;
 import java.util.HashMap;
 
 import business.Business;
-import business.Personne;
 
 public abstract class Objet implements Business {
 

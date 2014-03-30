@@ -11,9 +11,6 @@ import persistence.SQLManager;
 import business.enqueteur.Enqueteur;
 import business.enqueteur.EnqueteurManager;
 import business.enqueteur.EnqueteurManagerDB;
-import business.enqueteur.TitreEnqueteur;
-import business.enqueteur.TitreEnqueteurManager;
-import business.enqueteur.TitreEnqueteurManagerDB;
 
 import common.Utilitaire;
 

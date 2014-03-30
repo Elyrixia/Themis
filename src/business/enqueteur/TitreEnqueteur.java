@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import business.Business;
 import business.Titre;
-import business.affaire.Scelle;
 
 public abstract class TitreEnqueteur extends Titre implements Business {
 

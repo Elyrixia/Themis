@@ -3,7 +3,6 @@ package business.enqueteur;
 import java.util.HashMap;
 
 import business.Business;
-import business.affaire.Scelle;
 
 public abstract class ServiceEnqueteur implements Business
 {

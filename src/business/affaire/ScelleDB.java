@@ -29,7 +29,8 @@ public class ScelleDB extends Scelle {
 		map.put("comment", this.comment);
 		
 		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
+		if(this.idScelle == null) map.put("id_scelle", "null");
+		else map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		
 		// Run the query
 		this.id = sql.insert(TABLE_NAME, map);
@@ -54,7 +55,8 @@ public class ScelleDB extends Scelle {
 		map.put("comment", this.comment);
 				
 		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
+		if(this.idScelle == null) map.put("id_scelle", "null");
+		else map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		
 		String where = "id = "+this.id;
 		

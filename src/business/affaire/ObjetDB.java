@@ -22,7 +22,8 @@ public class ObjetDB extends Objet {
 		
 		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		map.put("id_type", String.valueOf(this.idType.getId()));
-		map.put("id_objet", String.valueOf(this.idObjet.getId()));
+		if(this.idObjet == null) map.put("id_objet", "null");
+		else map.put("id_objet", String.valueOf(this.idObjet.getId()));
 		
 		// Run the query
 		this.id = sql.insert(TABLE_NAME, map);
@@ -42,7 +43,8 @@ public class ObjetDB extends Objet {
 		
 		map.put("id_scelle", String.valueOf(this.idScelle.getId()));
 		map.put("id_type", String.valueOf(this.idType.getId()));
-		map.put("id_objet", String.valueOf(this.idObjet.getId()));
+		if(this.idObjet == null) map.put("id_objet", "null");
+		else map.put("id_objet", String.valueOf(this.idObjet.getId()));
 		
 		String where = "id = "+this.id;
 		

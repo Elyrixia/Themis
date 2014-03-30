@@ -2,8 +2,6 @@ package business;
 
 import java.util.regex.Pattern;
 
-import business.affaire.Affaire;
-
 public abstract class Personne {
 	
 	/**
