@@ -56,6 +56,8 @@ public abstract class Affaire implements Business {
 		this.dateOrdre = (Date) map.get("date_ordre");
 		this.dateRendu = (Date) map.get("date_rendu");
 		this.delai = (boolean) map.get("delai");
+		this.comment = (String) map.get("comment");
+		this.idEnqueteur = (Enqueteur) map.get("id_enqueteur");
 	}
 	
 	/**
@@ -143,16 +145,16 @@ public abstract class Affaire implements Business {
 		return comment;
 	}
 
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+
 	public void setEnqueteur(Enqueteur e) {
 		this.idEnqueteur = e;
 	}
 	
 	public Enqueteur getEnqueteur() {
 		return idEnqueteur;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
 	}
 	
 	public String toString() {

@@ -141,7 +141,7 @@ public class AffaireFenetre extends FenetreMenu implements ActionListener{
 			PanelAjouterAffaire panelAjoutAffaire = new PanelAjouterAffaire(this);
 			this.fenetreParent.getContentPane().add(panelAjoutAffaire);
 			//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
-			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
+			this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT+120));
 			this.fenetreParent.pack();
 		}
 		
@@ -163,7 +163,7 @@ public class AffaireFenetre extends FenetreMenu implements ActionListener{
 				PanelModifAffaire panelModifAffaire = new PanelModifAffaire(this, affaire);
 				this.fenetreParent.getContentPane().add(panelModifAffaire);
 				//On change la taille de la fenetre avant de pack pour eviter d'avoir une fenetre trop grande pleine de vide
-				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT));
+				this.setPreferredSize(new Dimension(MainFenetre.WINDOW_WIDTH,MainFenetre.WINDOW_HEIGHT+120));
 				this.fenetreParent.pack();
 			}
 		}
