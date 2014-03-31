@@ -10,7 +10,7 @@ public abstract class FacadeAbstraite {
 	 * @param: business: Business object to read
 	 */
 	public  String getApercu(Business business) {
-		return business.toString();
+		return business == null ? "Aucun" : business.toString();
 	}
 	
 	/**

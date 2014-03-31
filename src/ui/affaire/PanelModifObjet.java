@@ -43,12 +43,16 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			}
 		}
 		
-		Objet objetParent = (Objet) hashMapObjet.get("id_objet");
-		for(int i = 0; i < listeSelectionObjet.getModel().getSize(); i++) {
-			Objet o = (Objet) listeSelectionObjet.getModel().getElementAt(i);
-			if(o.equals(objetParent)) {
-				listeSelectionObjet.setSelectedValue(o, true);
-				break;
+		if(hashMapObjet.get("id_objet") instanceof String){
+			listeSelectionObjet.setSelectedIndex(0);
+		}else{
+			Objet objetParent = (Objet) hashMapObjet.get("id_objet");
+			for(int i = 1; i < listeSelectionObjet.getModel().getSize(); i++) {
+				Objet o = (Objet) listeSelectionObjet.getModel().getElementAt(i);
+				if(o.equals(objetParent)){
+					listeSelectionObjet.setSelectedValue(o, true);
+					break;
+				}
 			}
 		}
 	}

@@ -100,7 +100,7 @@ public class PanelAjouterObjet extends JPanel implements ActionListener{
 		this.add(areaScrollPane, contrainteInputCommentaire);
 		
 		//Liste Type Objet
-		labelTypeObjet = new JLabel("TypeObjet :");
+		labelTypeObjet = new JLabel("Type Objet :");
 		GridBagConstraints contrainteLabelTypeObjet = new GridBagConstraints();
 		contrainteLabelTypeObjet.gridx = 0;
 		contrainteLabelTypeObjet.gridy = 2;
@@ -158,7 +158,7 @@ public class PanelAjouterObjet extends JPanel implements ActionListener{
 		this.add(panneauListeScelle, contrainteListeScelle);
 		   
 		//Liste objets parents
-		labelObjet = new JLabel("Objet :");
+		labelObjet = new JLabel("Objet Parent :");
 		GridBagConstraints contrainteLabelObjet = new GridBagConstraints();
 		contrainteLabelObjet.gridx = 0;
 		contrainteLabelObjet.gridy = 4;
@@ -181,6 +181,7 @@ public class PanelAjouterObjet extends JPanel implements ActionListener{
 		ArrayList<Objet> listeObjet;
 		HashMap<String,String> filtreObjet = new HashMap<String, String>();
 		listeObjet = this.fenetre.getFacadeObjet().chargerObjet(filtreObjet);
+		modelListObjet.addElement(null);
 		for (int i=0; i < listeObjet.size(); i++) {
 			modelListObjet.addElement(listeObjet.get(i));
 		}
