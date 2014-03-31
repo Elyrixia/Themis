@@ -65,6 +65,17 @@ public class AffaireDB extends Affaire {
 			e.printStackTrace();
 		}
 		
+		rs = sqlManager.select(FraisDB.TABLE_NAME, "id_affaire = " + this.id);
+		try {
+			rs.last();
+			int nbFrais = rs.getRow();
+			if(nbFrais > 0) {
+				throw new Exception("This affaire is used by " + nbFrais + " frais!\nDeletion aborted.");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
 		// Prepare the query
 		String where = "id = "+this.id;
 		

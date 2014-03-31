@@ -10,7 +10,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses(value = { EnqueteurDBTest.class, TitreEnqueteurDBTest.class, 
 						ServiceEnqueteurDBTest.class, CorpsEnqueteurDBTest.class,
 						AffaireDBTest.class, ScelleDBTest.class,
-						ObjetDBTest.class, TypeObjetDBTest.class })
+						ObjetDBTest.class, TypeObjetDBTest.class, FraisDBTest.class })
 public class BusinessDBTestSuite {
 
 	@BeforeClass
