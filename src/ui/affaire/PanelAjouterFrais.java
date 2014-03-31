@@ -1,5 +1,5 @@
 /**
- * Tristan Sallé
+ * @author: Tristan Sallé
  */
 
 package ui.affaire;
