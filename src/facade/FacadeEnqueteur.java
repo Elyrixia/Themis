@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille
+ */
+
 package facade;
 
 import java.util.ArrayList;

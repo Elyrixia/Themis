@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille
+ */
+
 package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

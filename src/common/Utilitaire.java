@@ -1,3 +1,7 @@
+/**
+ * @author Benoit Ruiz
+ */
+
 package common;
 
 import java.io.FileInputStream;

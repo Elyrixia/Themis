@@ -1,3 +1,7 @@
+/**
+ * @author Benoit Ruiz
+ */
+
 package facade;
 
 import java.text.DateFormat;

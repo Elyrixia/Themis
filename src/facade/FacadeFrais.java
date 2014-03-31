@@ -1,3 +1,7 @@
+/**
+ * @author Tristan Sallé
+ */
+
 package facade;
 
 import java.util.ArrayList;

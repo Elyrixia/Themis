@@ -1,3 +1,7 @@
+/**
+ * @author Benoit Ruiz
+ */
+
 package tests;
 
 import static org.junit.Assert.assertEquals;

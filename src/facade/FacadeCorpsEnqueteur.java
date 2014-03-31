@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package facade;
 
 import java.util.ArrayList;

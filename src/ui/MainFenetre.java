@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille
+ */
+
 package ui;
 
 import javax.swing.UIManager;

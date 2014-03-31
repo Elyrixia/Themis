@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package ui.enqueteur;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;

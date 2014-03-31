@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package business.enqueteur;
 
 import java.util.HashMap;
@@ -15,6 +19,7 @@ public abstract class CorpsEnqueteur implements Business {
 	 * The name of the structure of detectives (e.g. Police)
 	 */
 	protected String libelle;
+	
 	
 	public CorpsEnqueteur() {
 		

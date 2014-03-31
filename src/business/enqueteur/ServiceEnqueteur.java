@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package business.enqueteur;
 
 import java.util.HashMap;

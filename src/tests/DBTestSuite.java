@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille, Nathan Marin, Benoit Ruiz, Tristan Sallé
+ */
+
 package tests;
 
 import org.junit.AfterClass;

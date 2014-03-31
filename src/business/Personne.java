@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille
+ */
+
 package business;
 
 import java.util.regex.Pattern;

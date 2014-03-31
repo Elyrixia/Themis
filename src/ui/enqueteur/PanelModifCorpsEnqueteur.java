@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package ui.enqueteur;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

@@ -1,3 +1,7 @@
+/**
+ * @author Benoit Ruiz
+ */
+
 package business.affaire;
 
 import java.util.Date;

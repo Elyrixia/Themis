@@ -1,3 +1,7 @@
+/**
+ * @author Benoit Ruiz
+ */
+
 package ui.affaire;
 
 import java.awt.event.ActionEvent;

@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille
+ */
+
 package business.enqueteur;
 
 import java.util.ArrayList;

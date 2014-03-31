@@ -1,3 +1,7 @@
+/**
+ * @author Tristan Sallé
+ */
+
 package business.affaire;
 
 import java.util.HashMap;

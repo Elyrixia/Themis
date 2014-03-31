@@ -1,3 +1,7 @@
+/**
+ * @author Nathan Marin
+ */
+
 package tests;
 
 import static org.junit.Assert.assertEquals;

@@ -1,3 +1,7 @@
+/**
+ * @author Alexandre Laffaille, Nathan Marin, Benoit Ruiz, Tristan Sallé
+ */
+
 package ui.affaire;
 
 import java.awt.Dimension;
