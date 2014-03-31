@@ -47,10 +47,10 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 			}
 		}
 		
-		Scelle scelle = (Scelle) hashMapScelle.get("id_scelle");
+		Scelle scelleParent = (Scelle) hashMapScelle.get("id_scelle");
 		for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
 			Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
-			if(s.equals(scelle)) {
+			if(s.equals(scelleParent)) {
 				listeSelectionScelle.setSelectedValue(s, true);
 				break;
 			}
@@ -68,6 +68,8 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 			Scelle scelleParent = (Scelle) listeSelectionScelle.getSelectedValue();
 			if(lieuRecup.equals("") || numPV == null || dateRecup == null || lieuRecup == null || affaire == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
+			}else if(scelle.equals(scelleParent)){
+				JOptionPane.showMessageDialog(null, "Vous ne pouvez pas mettre ce scelle comme son propre parent !", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else{
 				try {

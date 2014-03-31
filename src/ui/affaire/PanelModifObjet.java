@@ -43,10 +43,10 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			}
 		}
 		
-		Objet objet = (Objet) hashMapObjet.get("id_objet");
+		Objet objetParent = (Objet) hashMapObjet.get("id_objet");
 		for(int i = 0; i < listeSelectionObjet.getModel().getSize(); i++) {
 			Objet o = (Objet) listeSelectionObjet.getModel().getElementAt(i);
-			if(o.equals(objet)) {
+			if(o.equals(objetParent)) {
 				listeSelectionObjet.setSelectedValue(o, true);
 				break;
 			}
@@ -65,6 +65,8 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			Objet objetParent = (Objet) listeSelectionObjet.getSelectedValue();
 			if(libelle.equals("") || scelle == null || typeObjet == null){
 				JOptionPane.showMessageDialog(null, "Vous devez remplir tous les champs !", "Error", JOptionPane.ERROR_MESSAGE);
+			} else if(objet.equals(objetParent)){
+				JOptionPane.showMessageDialog(null, "Vous ne pouvez pas mettre cet objet comme son propre parent !", "Error", JOptionPane.ERROR_MESSAGE);
 			}
 			else{
 				try {
