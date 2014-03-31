@@ -1,14 +1,17 @@
 package tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.HashMap;
 
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
-import business.enqueteur.CorpsEnqueteur;
-import business.enqueteur.CorpsEnqueteurDB;
 import business.enqueteur.Enqueteur;
 import business.enqueteur.EnqueteurDB;
 import business.enqueteur.ServiceEnqueteur;
@@ -23,20 +26,11 @@ public class EnqueteurDBTest {
 	@Before
 	public void setUp() throws Exception {
 		
-		TitreEnqueteur t = new TitreEnqueteurDB();
-		t.setId(9999);
-		t.setLibelle("test_titre");
-		ServiceEnqueteur s = new ServiceEnqueteurDB();
-		s.setId(9999);
-		s.setLibelle("test_service");
-		s.setLieu("test_lieu");
-		s.setTelephone("0011223344");
-		CorpsEnqueteur c = new CorpsEnqueteurDB();
-		c.setId(9999);
-		c.setLibelle("test_corps");
-		s.setCorps(c);
 		e = new EnqueteurDB();
+		e.setId(9999);
 		
+		TitreEnqueteur t = mock(TitreEnqueteurDB.class);
+		ServiceEnqueteur s = mock(ServiceEnqueteurDB.class);
 		e.setTitre(t);
 		e.setService(s);
 		e.setNom("test_nom");
@@ -52,52 +46,50 @@ public class EnqueteurDBTest {
 	@Test
 	public void equalsTest() throws Exception {
 		
-		TitreEnqueteur t = new TitreEnqueteurDB();
-		t.setId(9999);
-		t.setLibelle("test_titre");
-		ServiceEnqueteur s = new ServiceEnqueteurDB();
-		s.setId(9999);
-		s.setLibelle("test_service");
-		s.setLieu("test_lieu");
-		s.setTelephone("0011223344");
-		CorpsEnqueteur c = new CorpsEnqueteurDB();
-		c.setId(9999);
-		c.setLibelle("test_corps");
-		s.setCorps(c);
-		
 		Enqueteur en = new EnqueteurDB();
-		
-		en.setTitre(t);
-		en.setService(s);
-		en.setNom("test_nom");
-		en.setPrenom("test_prenom");
-		en.setAdresse("test_adresse");
-		en.setTelephonePerso("0011223344");
-		en.setEmail("test_email@bob.fr");
-		en.setFaxPro("0011223344");
-		en.setTelephonePro("0011223344");
+		en.setId(9999);
 		
 		assertEquals(e.equals(en), true);
 		
-		en.setNom("test_nouveau_nom");
+		en.setId(9998);
 		
 		assertEquals(e.equals(en), false);
 	}
 	
-	/*
 	@Test
-	public void createTest() {
+	public void toStringTest() {
 		
-		e.create();
-		assertNotNull(e.getId());
-	}*/
-	
-	@Test
-	public void updateTest() {
+		String message = "Enqueteur #9999 - test_nom test_prenom";
 		
-		//e.create();
-		//assertNotNull(e.getId());
+		String messageToCompare = e.toString();
+		
+		assertEquals(messageToCompare, message);
 	}
+	
+	@SuppressWarnings("unchecked")
+	@Test
+	public void getHashMapTest() throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("nom", "test_nom");
+		map.put("prenom", "test_prenom");
+		map.put("adresse", "test_adresse");
+		map.put("telephone_pro", "0011223344");
+		map.put("telephone_perso", "0011223344");
+		map.put("email", "test_email@bob.fr");
+		map.put("fax_pro", "0011223344");
+		map.put("id_titre", "0");
+		map.put("id_service", "0");
+		
+		// La methode getHashMap est private, on passe donc par la reflection
+		Method method = e.getClass().getDeclaredMethod("getHashMap");
+		method.setAccessible(true);
+		HashMap<String, String> mapToCompare = 
+				(HashMap<String, String>) method.invoke(e);
+		
+		assertEquals(mapToCompare.toString(), map.toString());
+	}
+	
 	
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
