@@ -27,7 +27,7 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		Integer numPV = (Integer) hashMapScelle.get("num_proces");
 		super.inputNumPV.setValue(numPV);
 		
-		SimpleDateFormat format = new SimpleDateFormat("dd/MM/aaaa");
+		SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			Date dateRecup = format.parse((String) hashMapScelle.get("date_recup"));
 			super.inputDateRecup.setValue(dateRecup);
