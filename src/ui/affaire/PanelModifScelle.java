@@ -47,12 +47,16 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 			}
 		}
 		
-		Scelle scelleParent = (Scelle) hashMapScelle.get("id_scelle");
-		for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
-			Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
-			if(s.equals(scelleParent)) {
-				listeSelectionScelle.setSelectedValue(s, true);
-				break;
+		if(hashMapScelle.get("id_scelle") instanceof String){
+			listeSelectionScelle.setSelectedIndex(0);
+		}else{
+			Scelle scelleParent = (Scelle) hashMapScelle.get("id_scelle");
+			for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
+				Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
+				if(s.equals(scelleParent)) {
+					listeSelectionScelle.setSelectedValue(s, true);
+					break;
+				}
 			}
 		}
 	}
