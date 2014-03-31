@@ -13,4 +13,5 @@ public abstract class Factory
 	public abstract Scelle createScelle();
 	public abstract TypeObjet createTypeObjet();
 	public abstract Objet createObjet();
+	public abstract Frais createFrais();
 }

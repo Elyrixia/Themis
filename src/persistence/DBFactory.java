@@ -63,4 +63,9 @@ public class DBFactory extends Factory
 		return new ObjetDB();
 	}
 	
+	@Override
+	public Frais createFrais() {
+		return new FraisDB();
+	}
+	
 }
