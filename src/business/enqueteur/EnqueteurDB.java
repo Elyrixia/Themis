@@ -16,45 +16,25 @@ public class EnqueteurDB extends Enqueteur {
 	
 	@Override
 	public int create() {
+		// Connection to the DB
 		SQLManager sql = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("nom", this.nom);
-		map.put("prenom", this.prenom);
-		map.put("adresse", this.adresse);
-		map.put("telephone_pro", this.telephonePro);
-		map.put("telephone_perso", this.telephonePerso);
-		map.put("email", this.email);
-		map.put("fax_pro", this.faxPro);
-		map.put("id_titre", String.valueOf(this.idTitre.getId()));
-		map.put("id_service", String.valueOf(this.idService.getId()));
-		
 		// Run the query
-		this.id = sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, getHashMap());
 		
 		return this.id;
 	}
 
 	@Override
 	public void update() {
+		// Connection to the DB
 		SQLManager sqlManager = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("nom", this.nom);
-		map.put("prenom", this.prenom);
-		map.put("adresse", this.adresse);
-		map.put("telephone_pro", this.telephonePro);
-		map.put("telephone_perso", this.telephonePerso);
-		map.put("email", this.email);
-		map.put("fax_pro", this.faxPro);
-		map.put("id_titre", String.valueOf(this.idTitre.getId()));
-		map.put("id_service", String.valueOf(this.idService.getId()));
+		// Condition where
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, getHashMap(), where);
 	}
 
 	@Override
@@ -87,6 +67,22 @@ public class EnqueteurDB extends Enqueteur {
 		
 		SQLManager sqlManager = SQLManager.getConnection();
 		return sqlManager.count(AffaireDB.TABLE_NAME, "id_enqueteur = " + this.id);
+	}
+	
+	private HashMap<String,String> getHashMap() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("nom", this.nom);
+		map.put("prenom", this.prenom);
+		map.put("adresse", this.adresse);
+		map.put("telephone_pro", this.telephonePro);
+		map.put("telephone_perso", this.telephonePerso);
+		map.put("email", this.email);
+		map.put("fax_pro", this.faxPro);
+		map.put("id_titre", String.valueOf(this.idTitre.getId()));
+		map.put("id_service", String.valueOf(this.idService.getId()));
+		
+		return map;
 	}
 
 }

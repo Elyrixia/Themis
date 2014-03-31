@@ -17,25 +17,11 @@ public class ScelleDB extends Scelle {
 	
 	@Override
 	public int create() {
-		
+		// Connection to the DB
 		SQLManager sql = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("num_proces", String.valueOf(this.numProces));
-		
-		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
-		map.put("date_recup", db.format(this.dateRecup));
-		
-		map.put("lieu_recup", this.lieuRecup);
-		map.put("comment", this.comment);
-		
-		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		if(this.idScelle == null) map.put("id_scelle", "null");
-		else map.put("id_scelle", String.valueOf(this.idScelle.getId()));
-		
 		// Run the query
-		this.id = sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, getHashMap());
 		
 		return this.id;
 		
@@ -43,27 +29,14 @@ public class ScelleDB extends Scelle {
 
 	@Override
 	public void update() {
-		
+		// Connection to the DB
 		SQLManager sqlManager = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("num_proces", String.valueOf(this.numProces));
-				
-		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
-		map.put("date_recup", db.format(this.dateRecup));
-				
-		map.put("lieu_recup", this.lieuRecup);
-		map.put("comment", this.comment);
-				
-		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
-		if(this.idScelle == null) map.put("id_scelle", "null");
-		else map.put("id_scelle", String.valueOf(this.idScelle.getId()));
-		
+		// Condition where
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, getHashMap(), where);
 		
 	}
 
@@ -100,6 +73,24 @@ public class ScelleDB extends Scelle {
 		// Run the query
 		sqlManager.delete(TABLE_NAME, where);
 		
+	}
+	
+	private HashMap<String,String> getHashMap() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("num_proces", String.valueOf(this.numProces));
+		
+		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
+		map.put("date_recup", db.format(this.dateRecup));
+		
+		map.put("lieu_recup", this.lieuRecup);
+		map.put("comment", this.comment);
+		
+		map.put("id_affaire", String.valueOf(this.idAffaire.getId()));
+		if(this.idScelle == null) map.put("id_scelle", "null");
+		else map.put("id_scelle", String.valueOf(this.idScelle.getId()));
+		
+		return map;
 	}
 
 }

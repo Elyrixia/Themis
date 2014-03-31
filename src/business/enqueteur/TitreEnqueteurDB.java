@@ -17,14 +17,11 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 	@Override
 	public int create()
 	{
+		// Connection to the DB
 		SQLManager sql = SQLManager.getConnection();
 
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("libelle", this.libelle);
-
 		// Run the query
-		this.id = sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, getHashMap());
 
 		return this.id;
 	}
@@ -32,15 +29,14 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 	@Override
 	public void update()
 	{
+		// Connection to the DB
 		SQLManager sqlManager = SQLManager.getConnection();
 
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("libelle", this.libelle);
+		// Condition where
 		String where = "id = " + this.id;
 
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, getHashMap(), where);
 	}
 
 	@Override
@@ -74,6 +70,14 @@ public class TitreEnqueteurDB extends TitreEnqueteur
 		
 		SQLManager sqlManager = SQLManager.getConnection();
 		return sqlManager.count(EnqueteurDB.TABLE_NAME, "id_titre = " + this.id);
+	}
+	
+	private HashMap<String,String> getHashMap() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("libelle", this.libelle);
+		
+		return map;
 	}
 
 }

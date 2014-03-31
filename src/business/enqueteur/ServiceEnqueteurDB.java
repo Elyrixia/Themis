@@ -17,17 +17,11 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 	@Override
 	public int create()
 	{
+		// Connection to the DB
 		SQLManager sql = SQLManager.getConnection();
 
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("libelle", this.libelle);
-		map.put("telephone", this.telephone);
-		map.put("lieu", this.lieu);
-		map.put("id_corps", String.valueOf(this.idCorps.getId()));
-
 		// Run the query
-		this.id = sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, getHashMap());
 
 		return this.id;
 	}
@@ -35,18 +29,14 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 	@Override
 	public void update()
 	{
+		// Connection to the DB
 		SQLManager sqlManager = SQLManager.getConnection();
 
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("libelle", this.libelle);
-		map.put("telephone", this.telephone);
-		map.put("lieu", this.lieu);
-		map.put("id_corps", String.valueOf(this.idCorps.getId()));
+		// Condition where
 		String where = "id = " + this.id;
 
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, getHashMap(), where);
 	}
 
 	@Override
@@ -80,6 +70,17 @@ public class ServiceEnqueteurDB extends ServiceEnqueteur
 		
 		SQLManager sqlManager = SQLManager.getConnection();
 		return sqlManager.count(EnqueteurDB.TABLE_NAME, "id_service = " + this.id);
+	}
+	
+	private HashMap<String,String> getHashMap() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("libelle", this.libelle);
+		map.put("telephone", this.telephone);
+		map.put("lieu", this.lieu);
+		map.put("id_corps", String.valueOf(this.idCorps.getId()));
+		
+		return map;
 	}
 
 }

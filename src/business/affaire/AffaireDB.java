@@ -18,56 +18,25 @@ public class AffaireDB extends Affaire {
 	
 	@Override
 	public int create() {
+		// Connection to the DB
 		SQLManager sql = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("nom", this.nom);
-		map.put("num_dossier", String.valueOf(this.numDossier));
-		map.put("num_instruction", String.valueOf(this.numInstruction));
-		map.put("num_parquet", String.valueOf(this.numParquet));
-		
-		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
-		map.put("date_ordre", db.format(this.dateOrdre));
-		map.put("date_rendu", db.format(this.dateRendu));
-		
-		map.put("delai", Utilitaire.booleanToString(this.delai));
-		
-		map.put("comment", this.comment);
-		
-		map.put("id_enqueteur", String.valueOf(this.idEnqueteur.getId()));
-		
 		// Run the query
-		this.id = sql.insert(TABLE_NAME, map);
+		this.id = sql.insert(TABLE_NAME, getHashMap());
 		
 		return this.id;
 	}
 
 	@Override
 	public void update() {
+		// Connection to the DB
 		SQLManager sqlManager = SQLManager.getConnection();
 		
-		// Prepare the query
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("nom", this.nom);
-		map.put("num_dossier", String.valueOf(this.numDossier));
-		map.put("num_instruction", String.valueOf(this.numInstruction));
-		map.put("num_parquet", String.valueOf(this.numParquet));
-		
-		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
-		map.put("date_ordre", db.format(this.dateOrdre));
-		map.put("date_rendu", db.format(this.dateRendu));
-		
-		map.put("delai", Utilitaire.booleanToString(this.delai));
-		
-		map.put("comment", this.comment);
-		
-		map.put("id_enqueteur", String.valueOf(this.idEnqueteur.getId()));
-		
+		// Condition where
 		String where = "id = "+this.id;
 		
 		// Run the query
-		sqlManager.update(TABLE_NAME, map, where);
+		sqlManager.update(TABLE_NAME, getHashMap(), where);
 	}
 
 	@Override
@@ -92,4 +61,25 @@ public class AffaireDB extends Affaire {
 		sqlManager.delete(TABLE_NAME, where);
 	}
 
+	private HashMap<String,String> getHashMap() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		
+		map.put("nom", this.nom);
+		map.put("num_dossier", String.valueOf(this.numDossier));
+		map.put("num_instruction", String.valueOf(this.numInstruction));
+		map.put("num_parquet", String.valueOf(this.numParquet));
+		
+		DateFormat db = new SimpleDateFormat("yyyy-MM-dd");
+		map.put("date_ordre", db.format(this.dateOrdre));
+		map.put("date_rendu", db.format(this.dateRendu));
+		
+		map.put("delai", Utilitaire.booleanToString(this.delai));
+		
+		map.put("comment", this.comment);
+		
+		map.put("id_enqueteur", String.valueOf(this.idEnqueteur.getId()));
+		
+		return map;
+	}
+	
 }
