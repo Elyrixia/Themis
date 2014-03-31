@@ -1,6 +1,6 @@
 package tests;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -48,13 +48,49 @@ public class EnqueteurDBTest {
 		e.setTelephonePro("0011223344");
 		
 	}
-
+	
+	@Test
+	public void equalsTest() throws Exception {
+		
+		TitreEnqueteur t = new TitreEnqueteurDB();
+		t.setId(9999);
+		t.setLibelle("test_titre");
+		ServiceEnqueteur s = new ServiceEnqueteurDB();
+		s.setId(9999);
+		s.setLibelle("test_service");
+		s.setLieu("test_lieu");
+		s.setTelephone("0011223344");
+		CorpsEnqueteur c = new CorpsEnqueteurDB();
+		c.setId(9999);
+		c.setLibelle("test_corps");
+		s.setCorps(c);
+		
+		Enqueteur en = new EnqueteurDB();
+		
+		en.setTitre(t);
+		en.setService(s);
+		en.setNom("test_nom");
+		en.setPrenom("test_prenom");
+		en.setAdresse("test_adresse");
+		en.setTelephonePerso("0011223344");
+		en.setEmail("test_email@bob.fr");
+		en.setFaxPro("0011223344");
+		en.setTelephonePro("0011223344");
+		
+		assertEquals(e.equals(en), true);
+		
+		en.setNom("test_nouveau_nom");
+		
+		assertEquals(e.equals(en), false);
+	}
+	
+	/*
 	@Test
 	public void createTest() {
 		
 		e.create();
 		assertNotNull(e.getId());
-	}
+	}*/
 	
 	@Test
 	public void updateTest() {
