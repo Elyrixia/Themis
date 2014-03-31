@@ -104,10 +104,11 @@ public abstract class Enqueteur extends Personne implements Business
 		return message;
 	}
 	
-	public boolean equals(Enqueteur a) {
-		return  super.equals(a) && 
-				idTitre.equals(a.getTitre()) && 
-				idService.equals(a.getService());
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((Enqueteur)a).getId();
 	}
 
 }

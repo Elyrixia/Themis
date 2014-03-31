@@ -136,12 +136,11 @@ public abstract class ServiceEnqueteur implements Business
 		return message;
 	}
 	
-	public boolean equals(ServiceEnqueteur a) {
-		return  id == a.getId() && 
-				libelle.equals(a.getLibelle()) && 
-				lieu.equals(a.getLieu()) && 
-				telephone.equals(a.getTelephone()) && 
-				idCorps.equals(a.getCorps());
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((ServiceEnqueteur)a).getId();
 	}
 
 }

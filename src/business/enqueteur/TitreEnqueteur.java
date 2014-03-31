@@ -29,7 +29,10 @@ public abstract class TitreEnqueteur extends Titre implements Business {
 	
 	public abstract int getNbEnqueteurs();
 	
-	public boolean equals(TitreEnqueteur a) {
-		return super.equals(a);
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((TitreEnqueteur)a).getId();
 	}
 }

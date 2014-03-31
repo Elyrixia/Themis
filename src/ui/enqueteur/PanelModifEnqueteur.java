@@ -43,7 +43,7 @@ public class PanelModifEnqueteur extends PanelAjouterEnqueteur implements Action
 		ServiceEnqueteur service = (ServiceEnqueteur) hashMapEnqueteur.get("id_service");
 		for(int i = 0; i < listeSelectionServiceEnqueteur.getModel().getSize(); i++) {
 			ServiceEnqueteur se = (ServiceEnqueteur) listeSelectionServiceEnqueteur.getModel().getElementAt(i);
-			if(se.equals(service)) {
+			if(fenetre.getFacadeEnqueteur().compare(se, service)) {
 				listeSelectionServiceEnqueteur.setSelectedValue(se, true);
 				break;
 			}
@@ -52,7 +52,7 @@ public class PanelModifEnqueteur extends PanelAjouterEnqueteur implements Action
 		TitreEnqueteur titre = (TitreEnqueteur) hashMapEnqueteur.get("id_titre");
 		for(int i = 0; i < listeSelectionTitreEnqueteur.getModel().getSize(); i++) {
 			TitreEnqueteur te = (TitreEnqueteur) listeSelectionTitreEnqueteur.getModel().getElementAt(i);
-			if(te.equals(titre)) {
+			if(fenetre.getFacadeEnqueteur().compare(te, titre)) {
 				listeSelectionTitreEnqueteur.setSelectedValue(te, true);
 				break;
 			}

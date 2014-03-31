@@ -121,13 +121,20 @@ public abstract class Scelle implements Business {
 		return message;
 	}
 	
-	public boolean equals(Scelle a) {
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((Scelle)a).getId();
+	}
+	
+	/*public boolean equals(Scelle a) {
 		if(a == null) {
 			return false;
 		}
 		boolean bothScelleNull = (idScelle == null && a.getIdScelle() == null);
 		boolean bothScelleNotNull = (idScelle != null && a.getIdScelle() != null);
-	
+		
 		return  id == a.getId() && 
 				numProces == a.getNumProces() && 
 				dateRecup.equals(a.getDateRecup()) && 
@@ -141,6 +148,6 @@ public abstract class Scelle implements Business {
 								false
 						)
 				);
-	}
+	}*/
 	
 }

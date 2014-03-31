@@ -20,7 +20,15 @@ public abstract class FacadeAbstraite {
 	 * @return true if the instances have the same properties/values, false otherwise
 	 */
 	public boolean compare(Business a, Business b) {
-		return a.equals(b);
+		if(a == null && b == null) {
+			return true;
+		}
+		else if(a != null && b != null) {
+			return a.equals(b); // !!!!! Appelle le equals() de Object !!!!!!
+		}
+		else {
+			return false;
+		}
 	}
 
 }

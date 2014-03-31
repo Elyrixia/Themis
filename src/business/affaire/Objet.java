@@ -104,24 +104,11 @@ public abstract class Objet implements Business {
 		return message;
 	}
 	
-	public boolean equals(Objet a) {
-		if(a == null) {
-			return false;
-		}
-		boolean bothObjetNull = (idObjet == null && a.getIdObjet() == null);
-		boolean bothObjetNotNull = (idObjet != null && a.getIdObjet() != null);
-		return  id == a.getId() && 
-				libelle.equals(a.getLibelle()) && 
-				comment.equals(a.getComment()) && 
-				idScelle.equals(a.getIdScelle()) && 
-				idType.equals(a.getIdType()) && 
-				(bothObjetNull ?
-						true : 
-						(bothObjetNotNull ?
-								idObjet.equals(a.getIdObjet()) : 
-								false
-						)
-				);
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((Objet)a).getId();
 	}
 	
 }

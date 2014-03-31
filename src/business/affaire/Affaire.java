@@ -163,17 +163,11 @@ public abstract class Affaire implements Business {
 		return message;
 	}
 	
-	public boolean equals(Affaire a) {
-		return  id == a.getId() && 
-				nom.equals(a.getNom()) && 
-				numDossier == a.getNumDossier() && 
-				numInstruction == a.getNumInstruction() && 
-				numParquet == a.getNumParquet() && 
-				dateOrdre.equals(a.getDateOrdre()) && 
-				dateRendu.equals(a.getDateRendu()) && 
-				delai == a.getDelai() && 
-				comment.equals(a.getComment()) && 
-				idEnqueteur.equals(a.getEnqueteur());
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((Affaire)a).getId();
 	}
 	
 }

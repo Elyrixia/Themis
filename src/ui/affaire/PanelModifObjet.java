@@ -28,7 +28,7 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 		TypeObjet typeObjet = (TypeObjet) hashMapObjet.get("id_type");
 		for(int i = 0; i < listeSelectionTypeObjet.getModel().getSize(); i++) {
 			TypeObjet t = (TypeObjet) listeSelectionTypeObjet.getModel().getElementAt(i);
-			if(t.equals(typeObjet)) {
+			if(fenetre.getFacadeTypeObjet().compare(t, typeObjet)) {
 				listeSelectionTypeObjet.setSelectedValue(t, true);
 				break;
 			}
@@ -37,7 +37,7 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 		Scelle scelle = (Scelle) hashMapObjet.get("id_scelle");
 		for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
 			Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
-			if(s.equals(scelle)) {
+			if(fenetre.getFacadeScelle().compare(s, scelle)) {
 				listeSelectionScelle.setSelectedValue(s, true);
 				break;
 			}
@@ -49,7 +49,7 @@ public class PanelModifObjet extends PanelAjouterObjet implements ActionListener
 			Objet objetParent = (Objet) hashMapObjet.get("id_objet");
 			for(int i = 1; i < listeSelectionObjet.getModel().getSize(); i++) {
 				Objet o = (Objet) listeSelectionObjet.getModel().getElementAt(i);
-				if(o.equals(objetParent)){
+				if(fenetre.getFacadeObjet().compare(o, objetParent)) {
 					listeSelectionObjet.setSelectedValue(o, true);
 					break;
 				}

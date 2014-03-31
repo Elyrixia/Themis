@@ -30,7 +30,7 @@ public class PanelModifServiceEnqueteur extends PanelAjouterServiceEnqueteur imp
 		CorpsEnqueteur corps = (CorpsEnqueteur) hashMapEnqueteur.get("id_corps");
 		for(int i = 0; i < listeSelectionCorpsEnqueteur.getModel().getSize(); i++) {
 			CorpsEnqueteur te = (CorpsEnqueteur) listeSelectionCorpsEnqueteur.getModel().getElementAt(i);
-			if(te.equals(corps)) {
+			if(fenetre.getFacadeCorpsEnqueteur().compare(te, corps)) {
 				listeSelectionCorpsEnqueteur.setSelectedValue(te, true);
 				break;
 			}

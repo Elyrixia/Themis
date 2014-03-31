@@ -41,19 +41,20 @@ public class PanelModifScelle extends PanelAjouterScelle implements ActionListen
 		Affaire affaire = (Affaire) hashMapScelle.get("id_affaire");
 		for(int i = 0; i < listeSelectionAffaire.getModel().getSize(); i++) {
 			Affaire a = (Affaire) listeSelectionAffaire.getModel().getElementAt(i);
-			if(a.equals(affaire)) {
+			if(fenetre.getFacadeAffaire().compare(a, affaire)) {
 				listeSelectionAffaire.setSelectedValue(a, true);
 				break;
 			}
 		}
 		
-		if(hashMapScelle.get("id_scelle") instanceof String){
-			listeSelectionScelle.setSelectedIndex(0);
+		if(hashMapScelle.get("id_scelle") == null){
+			listeSelectionScelle.setSelectedIndex(0); // on selectionne "Aucun"
 		}else{
 			Scelle scelleParent = (Scelle) hashMapScelle.get("id_scelle");
+			// for each element in the JList of Scelle
 			for(int i = 0; i < listeSelectionScelle.getModel().getSize(); i++) {
 				Scelle s = (Scelle) listeSelectionScelle.getModel().getElementAt(i);
-				if(s.equals(scelleParent)) {
+				if(fenetre.getFacadeScelle().compare(s, scelleParent)) {
 					listeSelectionScelle.setSelectedValue(s, true);
 					break;
 				}

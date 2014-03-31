@@ -90,10 +90,7 @@ public class FacadeScelle extends FacadeAbstraite {
 		result.put("lieu_recup", scelle.getLieuRecup());
 		result.put("comment", scelle.getComment());
 		result.put("id_affaire", scelle.getIdAffaire());
-		if(scelle.getIdScelle() == null)
-			result.put("id_scelle", "Aucun");
-		else
-			result.put("id_scelle", scelle.getIdScelle());
+		result.put("id_scelle", scelle.getIdScelle());
 		
 		return result;
 	}

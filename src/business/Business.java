@@ -31,5 +31,12 @@ public interface Business
 	 * Example: if JDBC is chosen, this method will use "DELETE..."
 	 */
 	public void delete() throws Exception;
+	
+	/**
+	 * Compares the id of 2 Business objects
+	 * @param a
+	 * @return true if the id are the same, false otherwise
+	 */
+	public boolean equals(Business a);
 }
 	

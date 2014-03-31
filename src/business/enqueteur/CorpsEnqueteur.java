@@ -72,9 +72,11 @@ public abstract class CorpsEnqueteur implements Business {
 		return message;
 	}
 	
-	public boolean equals(CorpsEnqueteur a) {
-		return  id == a.getId() && 
-				libelle.equals(a.getLibelle());
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((CorpsEnqueteur)a).getId();
 	}
 	
 }

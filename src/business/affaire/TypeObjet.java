@@ -62,9 +62,11 @@ public abstract class TypeObjet implements Business {
 		return message;
 	}
 	
-	public boolean equals(TypeObjet a) {
-		return  id == a.getId() && 
-				libelle.equals(a.getLibelle());
+	/**
+	 * @see equals() from Business interface
+	 */
+	public boolean equals(Business a) {
+		return this.id == ((TypeObjet)a).getId();
 	}
 	
 }
