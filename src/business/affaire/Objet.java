@@ -105,6 +105,9 @@ public abstract class Objet implements Business {
 	}
 	
 	public boolean equals(Objet a) {
+		if(a == null) {
+			return false;
+		}
 		boolean bothObjetNull = (idObjet == null && a.getIdObjet() == null);
 		boolean bothObjetNotNull = (idObjet != null && a.getIdObjet() != null);
 		return  id == a.getId() && 

@@ -167,7 +167,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	    this.add(panneauListeAffaire, contrainteListeAffaire);
 	    
 	    //Liste scelle
-	    labelScelle = new JLabel("Scelle :");
+	    labelScelle = new JLabel("Scelle Parent :");
 	    GridBagConstraints contrainteLabelScelle = new GridBagConstraints();
 	    contrainteLabelScelle.gridx = 0;
 	    contrainteLabelScelle.gridy = 6;
@@ -190,6 +190,7 @@ public class PanelAjouterScelle extends JPanel implements ActionListener{
 	  	ArrayList<Scelle> listeScelle;
 	  	HashMap<String,String> filtreScelle = new HashMap<String, String>();
 	  	listeScelle = this.fenetre.getFacadeScelle().chargerScelle(filtreScelle);
+	  	modelListScelle.addElement(null);
 	  	for (int i=0; i < listeScelle.size(); i++) {
 	  		modelListScelle.addElement(listeScelle.get(i));
 	  	}

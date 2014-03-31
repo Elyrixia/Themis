@@ -122,6 +122,9 @@ public abstract class Scelle implements Business {
 	}
 	
 	public boolean equals(Scelle a) {
+		if(a == null) {
+			return false;
+		}
 		boolean bothScelleNull = (idScelle == null && a.getIdScelle() == null);
 		boolean bothScelleNotNull = (idScelle != null && a.getIdScelle() != null);
 	
