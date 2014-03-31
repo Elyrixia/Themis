@@ -21,7 +21,6 @@ import javax.swing.JScrollPane;
 import javax.swing.ListSelectionModel;
 
 import business.affaire.Affaire;
-import facade.FacadeAbstraite;
 import facade.FacadeAffaire;
 import facade.FacadeEnqueteur;
 import ui.FenetreMenu;

@@ -14,7 +14,6 @@ import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.BorderFactory;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
@@ -28,7 +27,6 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.ListSelectionModel;
 
-import business.enqueteur.Enqueteur;
 import business.enqueteur.Enqueteur;
 import ui.MainFenetre;
 import ui.MyRenderer;
@@ -201,7 +199,6 @@ public class PanelAjouterAffaire extends JPanel implements ActionListener{
 		contrainteInputCommentaire.gridy = 7;
 		contrainteInputCommentaire.insets = new Insets(0, 0, 5, 2);
 		contrainteInputCommentaire.anchor = GridBagConstraints.WEST;
-		//this.add(inputCommentaire, contrainteInputCommentaire);
 		
 		JScrollPane areaScrollPane = new JScrollPane(inputCommentaire);
 		areaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
